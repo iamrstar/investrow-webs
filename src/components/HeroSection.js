@@ -1,7 +1,89 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Shield, TrendingUp, Users, Award, CheckCircle2, ArrowRight, Sparkles, PhoneCall, Star } from 'lucide-react';
+import { Shield, TrendingUp, Users, Award, CheckCircle2, ArrowRight, Sparkles, PhoneCall, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+
+// Slideshow dataset with authentic human stories & brand metrics
+const HERO_SLIDES = [
+  {
+    id: 'family',
+    title: 'Family Wealth & SIP',
+    emoji: '👨‍👩‍👧',
+    src: '/images/hero/hero_family_wealth.jpg',
+    alt: 'Happy Indian family building long-term wealth with Investrow Mutual Funds',
+    topBadge: '100% Free Audit',
+    topBadgeBg: 'var(--accent-orange-gradient)',
+    leftBadge: {
+      category: 'SIP Compounding',
+      stat: '₹10k/mo → ₹1.18 Cr*',
+      sub: '+14.8% Avg. CAGR (20 Yrs)',
+      icon: TrendingUp,
+      iconColor: '#0284C7',
+      iconBg: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)'
+    },
+    rightBadge: {
+      stars: '★★★★★',
+      rating: '4.9/5',
+      stat: '3,000+ Families',
+      sub: 'Zero Bias Advisory',
+      icon: Users,
+      iconColor: '#FF6A13',
+      iconBg: 'linear-gradient(135deg, #FFF1EB, #FFE2D4)'
+    }
+  },
+  {
+    id: 'advisor',
+    title: '1-on-1 AMFI Advisory',
+    emoji: '🤝',
+    src: '/images/hero/hero_advisor_investor.jpg',
+    alt: 'Certified AMFI Advisor reviewing mutual fund portfolio on tablet with Indian couple',
+    topBadge: 'Dedicated Desk',
+    topBadgeBg: 'linear-gradient(135deg, #008AD8, #006FB0)',
+    leftBadge: {
+      category: 'Portfolio Audit',
+      stat: 'Zero Expense Drag',
+      sub: '23+ Years MFD Expertise',
+      icon: Shield,
+      iconColor: '#16A34A',
+      iconBg: 'linear-gradient(135deg, #DCFCE7, #BBF7D0)'
+    },
+    rightBadge: {
+      stars: '★★★★★',
+      rating: '4.9/5',
+      stat: '₹250+ Cr AUM',
+      sub: 'AMFI Certified MFD',
+      icon: Award,
+      iconColor: '#D97706',
+      iconBg: 'linear-gradient(135deg, #FEF3C7, #FDE68A)'
+    }
+  },
+  {
+    id: 'retirement',
+    title: 'Retirement & SWP',
+    emoji: '🌅',
+    src: '/images/services/retirement-swp.jpg',
+    alt: 'Senior Indian couple enjoying peaceful retirement with monthly mutual fund SWP cashflow',
+    topBadge: 'Tax-Smart SWP',
+    topBadgeBg: 'linear-gradient(135deg, #10B981, #059669)',
+    leftBadge: {
+      category: 'Monthly Cashflow',
+      stat: 'Disciplined SWP Income',
+      sub: 'Capital Preservation Focus',
+      icon: TrendingUp,
+      iconColor: '#0284C7',
+      iconBg: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)'
+    },
+    rightBadge: {
+      stars: '★★★★★',
+      rating: '5.0/5',
+      stat: 'Peaceful Living',
+      sub: 'Balanced Hybrid Funds',
+      icon: Users,
+      iconColor: '#10B981',
+      iconBg: 'linear-gradient(135deg, #DCFCE7, #BBF7D0)'
+    }
+  }
+];
 
 // Animated counter hook
 function useCountUp(target, duration = 2000) {
@@ -41,7 +123,27 @@ export default function HeroSection({ onLeadSubmitted }) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const [activeImageTab, setActiveImageTab] = useState('family'); // 'family' | 'advisor'
+  
+  // Slideshow state
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance slideshow every 4.5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
 
   const yearsCount = useCountUp(23, 1800);
   const aumCount = useCountUp(250, 2000);
@@ -400,65 +502,50 @@ export default function HeroSection({ onLeadSubmitted }) {
                 animation: 'gradient-shift 4s ease infinite'
               }} />
 
-              {/* View Switcher Tabs */}
+              {/* View Switcher Tabs (Synchronized with Slideshow) */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '10px 16px',
+                padding: '8px 14px',
                 background: '#F8FAFC',
-                borderBottom: '1px solid rgba(226, 232, 240, 0.8)'
+                borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
+                overflowX: 'auto',
+                gap: '6px'
               }}>
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveImageTab('family')}
-                    style={{
-                      padding: '6px 14px',
-                      borderRadius: '9999px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      cursor: 'pointer',
-                      transition: 'all 0.25s ease',
-                      background: activeImageTab === 'family' 
-                        ? 'linear-gradient(135deg, #008AD8, #006FB0)' 
-                        : '#FFFFFF',
-                      color: activeImageTab === 'family' ? '#FFFFFF' : '#475569',
-                      border: activeImageTab === 'family' ? '1px solid #008AD8' : '1px solid #CBD5E1',
-                      boxShadow: activeImageTab === 'family' ? '0 2px 8px rgba(0, 138, 216, 0.3)' : 'none'
-                    }}
-                  >
-                    <span>👨‍👩‍👧</span>
-                    <span>Family Wealth & SIP</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setActiveImageTab('advisor')}
-                    style={{
-                      padding: '6px 14px',
-                      borderRadius: '9999px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      cursor: 'pointer',
-                      transition: 'all 0.25s ease',
-                      background: activeImageTab === 'advisor' 
-                        ? 'linear-gradient(135deg, #FF6A13, #E85B07)' 
-                        : '#FFFFFF',
-                      color: activeImageTab === 'advisor' ? '#FFFFFF' : '#475569',
-                      border: activeImageTab === 'advisor' ? '1px solid #FF6A13' : '1px solid #CBD5E1',
-                      boxShadow: activeImageTab === 'advisor' ? '0 2px 8px rgba(255, 106, 19, 0.3)' : 'none'
-                    }}
-                  >
-                    <span>🤝</span>
-                    <span>1-on-1 AMFI Advisor</span>
-                  </button>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'nowrap' }}>
+                  {HERO_SLIDES.map((slide, idx) => (
+                    <button
+                      key={slide.id}
+                      type="button"
+                      onClick={() => setCurrentSlide(idx)}
+                      style={{
+                        padding: '6px 12px',
+                        borderRadius: '9999px',
+                        fontSize: '11.5px',
+                        fontWeight: 700,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        transition: 'all 0.25s ease',
+                        background: idx === currentSlide 
+                          ? (idx === 0 
+                              ? 'linear-gradient(135deg, #008AD8, #006FB0)' 
+                              : idx === 1 
+                                ? 'linear-gradient(135deg, #FF6A13, #E85B07)' 
+                                : 'linear-gradient(135deg, #10B981, #059669)')
+                          : '#FFFFFF',
+                        color: idx === currentSlide ? '#FFFFFF' : '#475569',
+                        border: idx === currentSlide ? 'none' : '1px solid #CBD5E1',
+                        boxShadow: idx === currentSlide ? '0 2px 8px rgba(10, 22, 40, 0.15)' : 'none'
+                      }}
+                    >
+                      <span>{slide.emoji}</span>
+                      <span>{slide.title}</span>
+                    </button>
+                  ))}
                 </div>
 
                 <div style={{
@@ -467,43 +554,134 @@ export default function HeroSection({ onLeadSubmitted }) {
                   gap: '4px',
                   fontSize: '11px',
                   color: '#15803D',
-                  fontWeight: 700
+                  fontWeight: 700,
+                  whiteSpace: 'nowrap',
+                  paddingLeft: '4px'
                 }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22C55E' }} />
-                  <span>Verified MFD</span>
+                  <span>Auto-Play</span>
                 </div>
               </div>
 
-              {/* Featured Visual Image Frame */}
-              <div style={{
-                position: 'relative',
-                height: '280px',
-                width: '100%',
-                overflow: 'hidden',
-                backgroundColor: '#0A1628'
-              }}>
-                <img 
-                  src={activeImageTab === 'family' ? '/images/hero/hero_family_wealth.jpg' : '/images/hero/hero_advisor_investor.jpg'}
-                  alt={activeImageTab === 'family' ? 'Happy Indian family building wealth with Investrow Mutual Funds' : 'AMFI Certified Financial Advisor consulting an Indian investor couple'}
-                  key={activeImageTab}
-                  className="hero-display-img"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block'
-                  }}
-                />
+              {/* Featured Visual Image Slideshow */}
+              <div 
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                style={{
+                  position: 'relative',
+                  height: '290px',
+                  width: '100%',
+                  overflow: 'hidden',
+                  backgroundColor: '#0A1628'
+                }}
+              >
+                {/* Cross-fade Slide Images */}
+                {HERO_SLIDES.map((slide, idx) => (
+                  <img 
+                    key={slide.id}
+                    src={slide.src}
+                    alt={slide.alt}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      opacity: idx === currentSlide ? 1 : 0,
+                      transform: idx === currentSlide ? 'scale(1)' : 'scale(1.05)',
+                      transition: 'opacity 0.75s ease-in-out, transform 1.2s ease-out',
+                      zIndex: idx === currentSlide ? 1 : 0,
+                      pointerEvents: 'none'
+                    }}
+                  />
+                ))}
 
                 {/* Subtle vignette gradient overlays to ensure badges pop */}
                 <div style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(180deg, rgba(10, 22, 40, 0.45) 0%, transparent 35%, transparent 60%, rgba(10, 22, 40, 0.6) 100%)',
-                  pointerEvents: 'none'
+                  background: 'linear-gradient(180deg, rgba(10, 22, 40, 0.45) 0%, transparent 35%, transparent 60%, rgba(10, 22, 40, 0.65) 100%)',
+                  pointerEvents: 'none',
+                  zIndex: 2
                 }} />
 
-                {/* Floating Badge Top-Left: AMFI Verified */}
+                {/* Slide Nav Arrow: Left */}
+                <button
+                  type="button"
+                  onClick={handlePrevSlide}
+                  aria-label="Previous slide"
+                  style={{
+                    position: 'absolute',
+                    left: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'rgba(10, 22, 40, 0.65)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    color: '#FFFFFF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '1px solid rgba(255, 255, 255, 0.25)',
+                    cursor: 'pointer',
+                    zIndex: 6,
+                    transition: 'all 0.2s ease',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(0, 138, 216, 0.9)';
+                    e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(10, 22, 40, 0.65)';
+                    e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                  }}
+                >
+                  <ChevronLeft size={18} />
+                </button>
+
+                {/* Slide Nav Arrow: Right */}
+                <button
+                  type="button"
+                  onClick={handleNextSlide}
+                  aria-label="Next slide"
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'rgba(10, 22, 40, 0.65)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    color: '#FFFFFF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '1px solid rgba(255, 255, 255, 0.25)',
+                    cursor: 'pointer',
+                    zIndex: 6,
+                    transition: 'all 0.2s ease',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 106, 19, 0.9)';
+                    e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(10, 22, 40, 0.65)';
+                    e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                  }}
+                >
+                  <ChevronRight size={18} />
+                </button>
+
+                {/* Floating Badge Top-Left: Static AMFI Verified Shield */}
                 <div className="hero-badge-top-left" style={{
                   position: 'absolute',
                   top: '12px',
@@ -513,21 +691,22 @@ export default function HeroSection({ onLeadSubmitted }) {
                   gap: '7px',
                   padding: '6px 12px',
                   borderRadius: '9999px',
-                  background: 'rgba(10, 22, 40, 0.82)',
+                  background: 'rgba(10, 22, 40, 0.85)',
                   backdropFilter: 'blur(10px)',
                   WebkitBackdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   color: '#FFFFFF',
                   fontSize: '11.5px',
                   fontWeight: 700,
-                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.3)'
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.3)',
+                  zIndex: 4
                 }}>
                   <Shield size={13} style={{ color: '#22C55E' }} />
                   <span>AMFI ARN-194720 • BSE 55533</span>
                 </div>
 
-                {/* Floating Badge Top-Right: Free Offer */}
-                <div className="hero-badge-top-right" style={{
+                {/* Floating Badge Top-Right: Dynamic Offer / Status */}
+                <div className="hero-badge-top-right" key={`top-${currentSlide}`} style={{
                   position: 'absolute',
                   top: '12px',
                   right: '12px',
@@ -536,19 +715,21 @@ export default function HeroSection({ onLeadSubmitted }) {
                   gap: '5px',
                   padding: '5px 12px',
                   borderRadius: '9999px',
-                  background: 'var(--accent-orange-gradient)',
+                  background: HERO_SLIDES[currentSlide].topBadgeBg,
                   color: '#FFFFFF',
                   fontSize: '11px',
                   fontWeight: 800,
                   letterSpacing: '0.4px',
-                  boxShadow: '0 4px 14px rgba(255, 106, 19, 0.45)'
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+                  zIndex: 4,
+                  animation: 'fadeIn 0.4s ease'
                 }}>
                   <Sparkles size={11} />
-                  <span>100% Free Audit</span>
+                  <span>{HERO_SLIDES[currentSlide].topBadge}</span>
                 </div>
 
-                {/* Floating Badge Bottom-Left: SIP Compounding Metric */}
-                <div className="hero-badge-bottom-left" style={{
+                {/* Floating Badge Bottom-Left: Dynamic Compounding Metric */}
+                <div className="hero-badge-bottom-left" key={`bottom-left-${currentSlide}`} style={{
                   position: 'absolute',
                   bottom: '12px',
                   left: '12px',
@@ -561,36 +742,41 @@ export default function HeroSection({ onLeadSubmitted }) {
                   border: '1px solid rgba(0, 138, 216, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '10px'
+                  gap: '10px',
+                  zIndex: 4,
+                  animation: 'fadeIn 0.4s ease'
                 }}>
                   <div style={{
                     width: '32px',
                     height: '32px',
                     borderRadius: '8px',
-                    background: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)',
-                    color: '#0284C7',
+                    background: HERO_SLIDES[currentSlide].leftBadge.iconBg,
+                    color: HERO_SLIDES[currentSlide].leftBadge.iconColor,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0
                   }}>
-                    <TrendingUp size={18} />
+                    {(() => {
+                      const IconComp = HERO_SLIDES[currentSlide].leftBadge.icon;
+                      return <IconComp size={18} />;
+                    })()}
                   </div>
                   <div>
                     <div style={{ fontSize: '9.5px', fontWeight: 800, color: '#0284C7', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
-                      SIP Compounding
+                      {HERO_SLIDES[currentSlide].leftBadge.category}
                     </div>
                     <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                      ₹10k/mo → ₹1.18 Cr*
+                      {HERO_SLIDES[currentSlide].leftBadge.stat}
                     </div>
                     <div style={{ fontSize: '9.5px', color: '#16A34A', fontWeight: 700 }}>
-                      +14.8% Avg. CAGR (20 Yrs)
+                      {HERO_SLIDES[currentSlide].leftBadge.sub}
                     </div>
                   </div>
                 </div>
 
-                {/* Floating Badge Bottom-Right: Trust Metric */}
-                <div className="hero-badge-bottom-right" style={{
+                {/* Floating Badge Bottom-Right: Dynamic Trust Metric */}
+                <div className="hero-badge-bottom-right" key={`bottom-right-${currentSlide}`} style={{
                   position: 'absolute',
                   bottom: '12px',
                   right: '12px',
@@ -603,33 +789,75 @@ export default function HeroSection({ onLeadSubmitted }) {
                   border: '1px solid rgba(255, 106, 19, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '9px'
+                  gap: '9px',
+                  zIndex: 4,
+                  animation: 'fadeIn 0.4s ease'
                 }}>
                   <div style={{
                     width: '32px',
                     height: '32px',
                     borderRadius: '8px',
-                    background: 'linear-gradient(135deg, #FFF1EB, #FFE2D4)',
-                    color: '#FF6A13',
+                    background: HERO_SLIDES[currentSlide].rightBadge.iconBg,
+                    color: HERO_SLIDES[currentSlide].rightBadge.iconColor,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0
                   }}>
-                    <Users size={17} />
+                    {(() => {
+                      const IconComp = HERO_SLIDES[currentSlide].rightBadge.icon;
+                      return <IconComp size={17} />;
+                    })()}
                   </div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                      <span style={{ color: '#F59E0B', fontSize: '10px' }}>★★★★★</span>
-                      <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--navy-deep)' }}>4.9/5</span>
+                      <span style={{ color: '#F59E0B', fontSize: '10px' }}>{HERO_SLIDES[currentSlide].rightBadge.stars}</span>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--navy-deep)' }}>{HERO_SLIDES[currentSlide].rightBadge.rating}</span>
                     </div>
                     <div style={{ fontSize: '11.5px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                      3,000+ Families
+                      {HERO_SLIDES[currentSlide].rightBadge.stat}
                     </div>
                     <div style={{ fontSize: '9.5px', color: '#64748B', fontWeight: 600 }}>
-                      Zero Bias Advisory
+                      {HERO_SLIDES[currentSlide].rightBadge.sub}
                     </div>
                   </div>
+                </div>
+
+                {/* Progress Indicators (Pills) at Bottom Center */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '8px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  zIndex: 5,
+                  background: 'rgba(10, 22, 40, 0.6)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  padding: '3px 8px',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(255, 255, 255, 0.2)'
+                }}>
+                  {HERO_SLIDES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentSlide(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      style={{
+                        width: idx === currentSlide ? '20px' : '6px',
+                        height: '6px',
+                        borderRadius: '9999px',
+                        background: idx === currentSlide ? '#FF6A13' : 'rgba(255, 255, 255, 0.45)',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
 
