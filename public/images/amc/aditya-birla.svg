@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 48" width="170" height="48">
+  <rect width="170" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <g>
+    <rect x="12" y="10" width="28" height="28" rx="4" fill="#D9232D"/>
+                     <circle cx="26" cy="24" r="7" fill="#FDB813"/>
+                     <path d="M26 13 V15 M26 33 V35 M15 24 H17 M35 24 H37" stroke="#FDB813" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="48" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="800" fill="#D9232D">ADITYA BIRLA</text>
+  <text x="48" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="0.4" fill="#FDB813">SUN LIFE MF</text>
+</svg>

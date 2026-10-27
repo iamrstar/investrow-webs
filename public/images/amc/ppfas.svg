@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 48" width="170" height="48">
+  <rect width="170" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <g>
+    <circle cx="26" cy="24" r="14" fill="#F0FDF4" stroke="#006837" stroke-width="1.5"/>
+                     <path d="M26 14 C21 17, 19 23, 26 33 C33 23, 31 17, 26 14 Z" fill="#006837"/>
+                     <path d="M26 19 V30" stroke="#8DC63F" stroke-width="1.5"/>
+  </g>
+  <text x="48" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="800" fill="#006837">PPFAS</text>
+  <text x="48" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="0.4" fill="#8DC63F">MUTUAL FUND</text>
+</svg>

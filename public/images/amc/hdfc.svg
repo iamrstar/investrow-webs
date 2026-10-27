@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 48" width="170" height="48">
+  <rect width="170" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <g>
+    <rect x="12" y="10" width="28" height="28" rx="4" fill="#004C8F"/>
+                     <rect x="20" y="18" width="12" height="12" fill="#ED1C24"/>
+                     <rect x="16" y="22" width="20" height="4" fill="#FFFFFF"/>
+                     <rect x="24" y="14" width="4" height="20" fill="#FFFFFF"/>
+  </g>
+  <text x="48" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="800" fill="#004C8F">HDFC</text>
+  <text x="48" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="0.4" fill="#ED1C24">MUTUAL FUND</text>
+</svg>

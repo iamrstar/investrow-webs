@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 48" width="170" height="48">
+  <rect width="170" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
+  <g>
+    <rect x="12" y="10" width="28" height="28" rx="4" fill="#004880"/>
+                     <path d="M26 14 L28 21 L35 21 L29 25 L31 32 L26 27 L21 32 L23 25 L17 21 L24 21 Z" fill="#F59E0B"/>
+  </g>
+  <text x="48" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="800" fill="#004880">BSE StAR MF</text>
+  <text x="48" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="0.4" fill="#F59E0B">EXECUTION PLATFORM</text>
+</svg>
