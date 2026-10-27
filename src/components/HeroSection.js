@@ -124,8 +124,18 @@ export default function HeroSection({ onLeadSubmitted }) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   
-  // Slideshow manual navigation state
+  // Slideshow state with silent auto-play
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance slideshow seamlessly every 4.5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
@@ -540,6 +550,8 @@ export default function HeroSection({ onLeadSubmitted }) {
 
               {/* Featured Visual Image Slideshow */}
               <div 
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 style={{
                   position: 'relative',
                   height: '290px',
