@@ -370,7 +370,7 @@ export default function AMCPartners({ onOpenConsultModal }) {
           }}
         >
           <Building2 size={16} style={{ color: '#FF6A13' }} />
-          <span>{showFullDirectory ? 'Hide Fund House Directory' : 'Browse All 40+ SEBI-Regulated AMCs with Logos'}</span>
+          <span>{showFullDirectory ? 'Hide Partner Directory' : 'Explore All 40+ SEBI-Regulated Mutual Fund Houses'}</span>
           {showFullDirectory ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </button>
 
