@@ -124,18 +124,8 @@ export default function HeroSection({ onLeadSubmitted }) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   
-  // Slideshow state
+  // Slideshow manual navigation state
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Auto-advance slideshow every 4.5 seconds
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [isPaused]);
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
@@ -502,71 +492,54 @@ export default function HeroSection({ onLeadSubmitted }) {
                 animation: 'gradient-shift 4s ease infinite'
               }} />
 
-              {/* View Switcher Tabs (Synchronized with Slideshow) */}
+              {/* View Switcher Tabs (Equal Flex Proportions) */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
+                gap: '8px',
                 padding: '8px 14px',
                 background: '#F8FAFC',
                 borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
-                overflowX: 'auto',
-                gap: '6px'
+                overflowX: 'auto'
               }}>
-                <div style={{ display: 'flex', gap: '6px', flexWrap: 'nowrap' }}>
-                  {HERO_SLIDES.map((slide, idx) => (
-                    <button
-                      key={slide.id}
-                      type="button"
-                      onClick={() => setCurrentSlide(idx)}
-                      style={{
-                        padding: '6px 12px',
-                        borderRadius: '9999px',
-                        fontSize: '11.5px',
-                        fontWeight: 700,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '5px',
-                        cursor: 'pointer',
-                        whiteSpace: 'nowrap',
-                        transition: 'all 0.25s ease',
-                        background: idx === currentSlide 
-                          ? (idx === 0 
-                              ? 'linear-gradient(135deg, #008AD8, #006FB0)' 
-                              : idx === 1 
-                                ? 'linear-gradient(135deg, #FF6A13, #E85B07)' 
-                                : 'linear-gradient(135deg, #10B981, #059669)')
-                          : '#FFFFFF',
-                        color: idx === currentSlide ? '#FFFFFF' : '#475569',
-                        border: idx === currentSlide ? 'none' : '1px solid #CBD5E1',
-                        boxShadow: idx === currentSlide ? '0 2px 8px rgba(10, 22, 40, 0.15)' : 'none'
-                      }}
-                    >
-                      <span>{slide.emoji}</span>
-                      <span>{slide.title}</span>
-                    </button>
-                  ))}
-                </div>
-
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '11px',
-                  color: '#15803D',
-                  fontWeight: 700,
-                  whiteSpace: 'nowrap',
-                  paddingLeft: '4px'
-                }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22C55E' }} />
-                  <span>Auto-Play</span>
-                </div>
+                {HERO_SLIDES.map((slide, idx) => (
+                  <button
+                    key={slide.id}
+                    type="button"
+                    onClick={() => setCurrentSlide(idx)}
+                    style={{
+                      flex: '1',
+                      padding: '7px 12px',
+                      borderRadius: '9999px',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                      transition: 'all 0.25s ease',
+                      background: idx === currentSlide 
+                        ? (idx === 0 
+                            ? 'linear-gradient(135deg, #008AD8, #006FB0)' 
+                            : idx === 1 
+                              ? 'linear-gradient(135deg, #FF6A13, #E85B07)' 
+                              : 'linear-gradient(135deg, #10B981, #059669)')
+                        : '#FFFFFF',
+                      color: idx === currentSlide ? '#FFFFFF' : '#475569',
+                      border: idx === currentSlide ? 'none' : '1px solid #CBD5E1',
+                      boxShadow: idx === currentSlide ? '0 2px 8px rgba(10, 22, 40, 0.15)' : 'none'
+                    }}
+                  >
+                    <span>{slide.emoji}</span>
+                    <span>{slide.title}</span>
+                  </button>
+                ))}
               </div>
 
               {/* Featured Visual Image Slideshow */}
               <div 
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
                 style={{
                   position: 'relative',
                   height: '290px',
