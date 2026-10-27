@@ -41,6 +41,7 @@ export default function HeroSection({ onLeadSubmitted }) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [activeImageTab, setActiveImageTab] = useState('family'); // 'family' | 'advisor'
 
   const yearsCount = useCountUp(23, 1800);
   const aumCount = useCountUp(250, 2000);
@@ -173,8 +174,8 @@ export default function HeroSection({ onLeadSubmitted }) {
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1.15fr 0.85fr',
-          gap: '56px',
+          gridTemplateColumns: '1.05fr 0.95fr',
+          gap: '44px',
           alignItems: 'center'
         }} className="hero-grid">
 
@@ -381,293 +382,492 @@ export default function HeroSection({ onLeadSubmitted }) {
             </div>
           </div>
 
-          {/* Right Column: Premium Lead Capture Card */}
+          {/* Right Column: Premium Hero Visual Showcase & Lead Capture */}
           <div>
             <div style={{
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              padding: '36px',
-              position: 'relative',
-              borderRadius: 'var(--radius-xl)',
-              boxShadow: '0 24px 64px rgba(10, 22, 40, 0.1), 0 8px 24px rgba(10, 22, 40, 0.06)',
-              border: '1px solid rgba(0, 138, 216, 0.12)',
-              overflow: 'hidden'
+              background: 'rgba(255, 255, 255, 0.98)',
+              borderRadius: '24px',
+              boxShadow: '0 24px 64px rgba(10, 22, 40, 0.1), 0 8px 24px rgba(10, 22, 40, 0.05)',
+              border: '1px solid rgba(0, 138, 216, 0.14)',
+              overflow: 'hidden',
+              position: 'relative'
             }}>
-              {/* Top accent line */}
+              {/* Top accent gradient bar */}
               <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '3px',
-                background: 'linear-gradient(90deg, var(--primary-blue), var(--accent-orange), var(--primary-blue))',
+                height: '4px',
+                background: 'linear-gradient(90deg, #008AD8 0%, #FF6A13 50%, #008AD8 100%)',
                 backgroundSize: '200% 100%',
-                animation: 'gradient-shift 3s ease infinite'
+                animation: 'gradient-shift 4s ease infinite'
               }} />
 
-              {/* Highlight ribbon */}
+              {/* View Switcher Tabs */}
               <div style={{
-                position: 'absolute',
-                top: '16px',
-                right: '20px',
-                background: 'var(--accent-orange-gradient)',
-                color: 'white',
-                fontSize: '11px',
-                fontWeight: 800,
-                padding: '5px 14px',
-                borderRadius: 'var(--radius-full)',
-                letterSpacing: '0.6px',
-                textTransform: 'uppercase',
-                boxShadow: '0 4px 14px rgba(255, 106, 19, 0.35)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '4px'
+                justifyContent: 'space-between',
+                padding: '10px 16px',
+                background: '#F8FAFC',
+                borderBottom: '1px solid rgba(226, 232, 240, 0.8)'
               }}>
-                <Sparkles size={11} />
-                100% Free This Week
-              </div>
-
-              {!submitted ? (
-                <>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '8px 12px',
-                    background: 'rgba(240, 249, 255, 0.75)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(14, 165, 233, 0.25)',
-                    marginBottom: '16px',
-                    marginTop: '8px'
-                  }}>
-                    <div style={{ position: 'relative', width: '42px', height: '42px', flexShrink: 0 }}>
-                      <img 
-                        src="/images/advisor/advisor_portrait.jpg" 
-                        alt="Rajesh Sharma, Senior Wealth Advisor"
-                        style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #0EA5E9' }}
-                      />
-                      <span style={{
-                        position: 'absolute',
-                        bottom: '0',
-                        right: '0',
-                        width: '10px',
-                        height: '10px',
-                        borderRadius: '50%',
-                        background: '#22C55E',
-                        border: '2px solid #FFFFFF'
-                      }} />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                        Rajesh Sharma • AMFI Certified MFD
-                      </div>
-                      <div style={{ fontSize: '11.5px', color: '#0284C7', fontWeight: 700, marginTop: '2px' }}>
-                        🟢 Active Senior Advisor • Desk Review Today
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ marginBottom: '20px' }}>
-                    <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px', lineHeight: 1.3 }}>
-                      Claim Your Free Mutual Fund Portfolio Audit
-                    </h3>
-                    <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Get your existing schemes evaluated for expense ratios, overlapping holdings, and benchmark underperformance.
-                    </p>
-                  </div>
-
-                  {error && (
-                    <div style={{
-                      padding: '10px 14px',
-                      background: 'linear-gradient(135deg, #FEE2E2, #FECACA)',
-                      color: '#B91C1C',
-                      borderRadius: 'var(--radius-sm)',
-                      fontSize: '13px',
-                      marginBottom: '16px',
-                      fontWeight: 500,
-                      border: '1px solid rgba(185, 28, 28, 0.15)'
-                    }}>
-                      {error}
-                    </div>
-                  )}
-
-                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: '6px' }}>
-                        Your Full Name *
-                      </label>
-                      <input 
-                        type="text"
-                        required
-                        placeholder="e.g. Rahul Sharma"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        style={{
-                          width: '100%',
-                          padding: '13px 16px',
-                          borderRadius: 'var(--radius-sm)',
-                          border: '1.5px solid var(--border-subtle)',
-                          fontSize: '14px',
-                          color: 'var(--text-primary)',
-                          background: 'rgba(248, 250, 252, 0.5)',
-                          transition: 'var(--transition-smooth)'
-                        }}
-                        onFocus={(e) => {
-                          e.target.style.borderColor = 'var(--primary-blue)';
-                          e.target.style.boxShadow = '0 0 0 3px rgba(0, 138, 216, 0.08)';
-                          e.target.style.background = 'white';
-                        }}
-                        onBlur={(e) => {
-                          e.target.style.borderColor = 'var(--border-subtle)';
-                          e.target.style.boxShadow = 'none';
-                          e.target.style.background = 'rgba(248, 250, 252, 0.5)';
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: '6px' }}>
-                        10-Digit Mobile / WhatsApp Number *
-                      </label>
-                      <div style={{ display: 'flex' }}>
-                        <span style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          padding: '0 14px',
-                          background: 'linear-gradient(180deg, #F8FAFC, #F1F5F9)',
-                          border: '1.5px solid var(--border-subtle)',
-                          borderRight: 'none',
-                          borderTopLeftRadius: 'var(--radius-sm)',
-                          borderBottomLeftRadius: 'var(--radius-sm)',
-                          fontSize: '14px',
-                          fontWeight: 700,
-                          color: 'var(--text-secondary)'
-                        }}>
-                          +91
-                        </span>
-                        <input 
-                          type="tel"
-                          required
-                          maxLength={10}
-                          placeholder="91020 70777"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
-                          style={{
-                            width: '100%',
-                            padding: '13px 16px',
-                            borderTopRightRadius: 'var(--radius-sm)',
-                            borderBottomRightRadius: 'var(--radius-sm)',
-                            border: '1.5px solid var(--border-subtle)',
-                            fontSize: '14px',
-                            color: 'var(--text-primary)',
-                            background: 'rgba(248, 250, 252, 0.5)',
-                            transition: 'var(--transition-smooth)'
-                          }}
-                          onFocus={(e) => {
-                            e.target.style.borderColor = 'var(--primary-blue)';
-                            e.target.style.boxShadow = '0 0 0 3px rgba(0, 138, 216, 0.08)';
-                            e.target.style.background = 'white';
-                          }}
-                          onBlur={(e) => {
-                            e.target.style.borderColor = 'var(--border-subtle)';
-                            e.target.style.boxShadow = 'none';
-                            e.target.style.background = 'rgba(248, 250, 252, 0.5)';
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: '6px' }}>
-                        Primary Mutual Fund Goal
-                      </label>
-                      <select
-                        value={formData.service}
-                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        style={{
-                          width: '100%',
-                          padding: '13px 16px',
-                          borderRadius: 'var(--radius-sm)',
-                          border: '1.5px solid var(--border-subtle)',
-                          fontSize: '14px',
-                          color: 'var(--text-primary)',
-                          background: 'rgba(248, 250, 252, 0.5)',
-                          cursor: 'pointer',
-                          transition: 'var(--transition-smooth)'
-                        }}
-                      >
-                        <option value="Mutual Funds & SIP Planning">Start New Monthly SIP</option>
-                        <option value="Lumpsum Investment Strategy">Lumpsum Investment (STP)</option>
-                        <option value="Tax-Saving Mutual Funds (ELSS)">Tax-Saving ELSS (Section 80C)</option>
-                        <option value="Free Portfolio Audit & Rebalancing">Existing Portfolio Health Check</option>
-                        <option value="Retirement & Goal Planning">Retirement / Child Education Goal</option>
-                        <option value="Monthly Cashflow via SWP">Monthly Cashflow via SWP</option>
-                      </select>
-                    </div>
-
-                    <button 
-                      type="submit"
-                      disabled={loading}
-                      className="btn-orange"
-                      style={{
-                        width: '100%',
-                        padding: '15px',
-                        fontSize: '15px',
-                        marginTop: '4px',
-                        opacity: loading ? 0.85 : 1
-                      }}
-                    >
-                      {loading ? 'Submitting...' : 'Claim Free Consultation 🚀'}
-                    </button>
-
-                    <div style={{
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button
+                    type="button"
+                    onClick={() => setActiveImageTab('family')}
+                    style={{
+                      padding: '6px 14px',
+                      borderRadius: '9999px',
+                      fontSize: '12px',
+                      fontWeight: 700,
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
                       gap: '6px',
-                      fontSize: '11px',
-                      color: 'var(--text-muted)',
-                      marginTop: '2px'
-                    }}>
-                      <span>🔒</span>
-                      <span>100% Confidential. No Spam. AMFI Reg. ARN-194720.</span>
-                    </div>
-                  </form>
-                </>
-              ) : (
-                <div style={{ textAlign: 'center', padding: '28px 0' }}>
+                      cursor: 'pointer',
+                      transition: 'all 0.25s ease',
+                      background: activeImageTab === 'family' 
+                        ? 'linear-gradient(135deg, #008AD8, #006FB0)' 
+                        : '#FFFFFF',
+                      color: activeImageTab === 'family' ? '#FFFFFF' : '#475569',
+                      border: activeImageTab === 'family' ? '1px solid #008AD8' : '1px solid #CBD5E1',
+                      boxShadow: activeImageTab === 'family' ? '0 2px 8px rgba(0, 138, 216, 0.3)' : 'none'
+                    }}
+                  >
+                    <span>👨‍👩‍👧</span>
+                    <span>Family Wealth & SIP</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveImageTab('advisor')}
+                    style={{
+                      padding: '6px 14px',
+                      borderRadius: '9999px',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      cursor: 'pointer',
+                      transition: 'all 0.25s ease',
+                      background: activeImageTab === 'advisor' 
+                        ? 'linear-gradient(135deg, #FF6A13, #E85B07)' 
+                        : '#FFFFFF',
+                      color: activeImageTab === 'advisor' ? '#FFFFFF' : '#475569',
+                      border: activeImageTab === 'advisor' ? '1px solid #FF6A13' : '1px solid #CBD5E1',
+                      boxShadow: activeImageTab === 'advisor' ? '0 2px 8px rgba(255, 106, 19, 0.3)' : 'none'
+                    }}
+                  >
+                    <span>🤝</span>
+                    <span>1-on-1 AMFI Advisor</span>
+                  </button>
+                </div>
+
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontSize: '11px',
+                  color: '#15803D',
+                  fontWeight: 700
+                }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22C55E' }} />
+                  <span>Verified MFD</span>
+                </div>
+              </div>
+
+              {/* Featured Visual Image Frame */}
+              <div style={{
+                position: 'relative',
+                height: '280px',
+                width: '100%',
+                overflow: 'hidden',
+                backgroundColor: '#0A1628'
+              }}>
+                <img 
+                  src={activeImageTab === 'family' ? '/images/hero/hero_family_wealth.jpg' : '/images/hero/hero_advisor_investor.jpg'}
+                  alt={activeImageTab === 'family' ? 'Happy Indian family building wealth with Investrow Mutual Funds' : 'AMFI Certified Financial Advisor consulting an Indian investor couple'}
+                  key={activeImageTab}
+                  className="hero-display-img"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                />
+
+                {/* Subtle vignette gradient overlays to ensure badges pop */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(180deg, rgba(10, 22, 40, 0.45) 0%, transparent 35%, transparent 60%, rgba(10, 22, 40, 0.6) 100%)',
+                  pointerEvents: 'none'
+                }} />
+
+                {/* Floating Badge Top-Left: AMFI Verified */}
+                <div className="hero-badge-top-left" style={{
+                  position: 'absolute',
+                  top: '12px',
+                  left: '12px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '7px',
+                  padding: '6px 12px',
+                  borderRadius: '9999px',
+                  background: 'rgba(10, 22, 40, 0.82)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: '#FFFFFF',
+                  fontSize: '11.5px',
+                  fontWeight: 700,
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.3)'
+                }}>
+                  <Shield size={13} style={{ color: '#22C55E' }} />
+                  <span>AMFI ARN-194720 • BSE 55533</span>
+                </div>
+
+                {/* Floating Badge Top-Right: Free Offer */}
+                <div className="hero-badge-top-right" style={{
+                  position: 'absolute',
+                  top: '12px',
+                  right: '12px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  padding: '5px 12px',
+                  borderRadius: '9999px',
+                  background: 'var(--accent-orange-gradient)',
+                  color: '#FFFFFF',
+                  fontSize: '11px',
+                  fontWeight: 800,
+                  letterSpacing: '0.4px',
+                  boxShadow: '0 4px 14px rgba(255, 106, 19, 0.45)'
+                }}>
+                  <Sparkles size={11} />
+                  <span>100% Free Audit</span>
+                </div>
+
+                {/* Floating Badge Bottom-Left: SIP Compounding Metric */}
+                <div className="hero-badge-bottom-left" style={{
+                  position: 'absolute',
+                  bottom: '12px',
+                  left: '12px',
+                  background: 'rgba(255, 255, 255, 0.96)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  borderRadius: '12px',
+                  padding: '8px 12px',
+                  boxShadow: '0 8px 24px rgba(10, 22, 40, 0.25)',
+                  border: '1px solid rgba(0, 138, 216, 0.25)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px'
+                }}>
                   <div style={{
-                    width: '68px',
-                    height: '68px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #DCFCE7, #BBF7D0)',
-                    color: '#16A34A',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '8px',
+                    background: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)',
+                    color: '#0284C7',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    margin: '0 auto 18px',
-                    boxShadow: '0 8px 24px rgba(22, 163, 74, 0.15)'
+                    flexShrink: 0
                   }}>
-                    <CheckCircle2 size={36} />
+                    <TrendingUp size={18} />
                   </div>
-                  <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>
-                    Request Received!
-                  </h3>
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '22px', lineHeight: 1.6 }}>
-                    Thank you, <strong>{formData.name}</strong>. Our certified mutual fund advisor will call you at <strong>+91 {formData.phone}</strong> shortly.
-                  </p>
-                  <a 
-                    href={`https://wa.me/919102070777?text=Hi%20Investrow,%20I%20just%20booked%20a%20consultation%20for%20${encodeURIComponent(formData.service)}.%20My%20name%20is%20${encodeURIComponent(formData.name)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-blue"
-                    style={{ width: '100%', padding: '14px' }}
-                  >
-                    💬 Connect on WhatsApp Now
-                  </a>
+                  <div>
+                    <div style={{ fontSize: '9.5px', fontWeight: 800, color: '#0284C7', textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                      SIP Compounding
+                    </div>
+                    <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
+                      ₹10k/mo → ₹1.18 Cr*
+                    </div>
+                    <div style={{ fontSize: '9.5px', color: '#16A34A', fontWeight: 700 }}>
+                      +14.8% Avg. CAGR (20 Yrs)
+                    </div>
+                  </div>
                 </div>
-              )}
+
+                {/* Floating Badge Bottom-Right: Trust Metric */}
+                <div className="hero-badge-bottom-right" style={{
+                  position: 'absolute',
+                  bottom: '12px',
+                  right: '12px',
+                  background: 'rgba(255, 255, 255, 0.96)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  borderRadius: '12px',
+                  padding: '8px 12px',
+                  boxShadow: '0 8px 24px rgba(10, 22, 40, 0.25)',
+                  border: '1px solid rgba(255, 106, 19, 0.25)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '9px'
+                }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '8px',
+                    background: 'linear-gradient(135deg, #FFF1EB, #FFE2D4)',
+                    color: '#FF6A13',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <Users size={17} />
+                  </div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                      <span style={{ color: '#F59E0B', fontSize: '10px' }}>★★★★★</span>
+                      <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--navy-deep)' }}>4.9/5</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
+                      3,000+ Families
+                    </div>
+                    <div style={{ fontSize: '9.5px', color: '#64748B', fontWeight: 600 }}>
+                      Zero Bias Advisory
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Consultation Booking Area */}
+              <div style={{ padding: '20px 24px 22px' }}>
+                {!submitted ? (
+                  <>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginBottom: '14px',
+                      flexWrap: 'wrap',
+                      gap: '8px'
+                    }}>
+                      <div>
+                        <h3 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.25 }}>
+                          Get Your Free Mutual Fund & SIP Blueprint
+                        </h3>
+                        <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                          Personalized scheme recommendations & portfolio health check.
+                        </p>
+                      </div>
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '4px 10px',
+                        background: 'rgba(34, 197, 94, 0.1)',
+                        borderRadius: '9999px',
+                        color: '#15803D',
+                        fontSize: '11px',
+                        fontWeight: 700
+                      }}>
+                        <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E' }} />
+                        <span>Advisor Available</span>
+                      </div>
+                    </div>
+
+                    {error && (
+                      <div style={{
+                        padding: '8px 12px',
+                        background: 'linear-gradient(135deg, #FEE2E2, #FECACA)',
+                        color: '#B91C1C',
+                        borderRadius: 'var(--radius-sm)',
+                        fontSize: '12px',
+                        marginBottom: '12px',
+                        fontWeight: 600,
+                        border: '1px solid rgba(185, 28, 28, 0.15)'
+                      }}>
+                        {error}
+                      </div>
+                    )}
+
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '10px'
+                      }} className="hero-inputs-row">
+                        <div>
+                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--navy-deep)', marginBottom: '4px' }}>
+                            Your Name *
+                          </label>
+                          <input 
+                            type="text"
+                            required
+                            placeholder="e.g. Rahul Sharma"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            style={{
+                              width: '100%',
+                              padding: '11px 14px',
+                              borderRadius: 'var(--radius-sm)',
+                              border: '1.5px solid var(--border-subtle)',
+                              fontSize: '13.5px',
+                              color: 'var(--text-primary)',
+                              background: '#F8FAFC',
+                              transition: 'var(--transition-smooth)'
+                            }}
+                            onFocus={(e) => {
+                              e.target.style.borderColor = 'var(--primary-blue)';
+                              e.target.style.boxShadow = '0 0 0 3px rgba(0, 138, 216, 0.08)';
+                              e.target.style.background = '#FFFFFF';
+                            }}
+                            onBlur={(e) => {
+                              e.target.style.borderColor = 'var(--border-subtle)';
+                              e.target.style.boxShadow = 'none';
+                              e.target.style.background = '#F8FAFC';
+                            }}
+                          />
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--navy-deep)', marginBottom: '4px' }}>
+                            Mobile / WhatsApp *
+                          </label>
+                          <div style={{ display: 'flex' }}>
+                            <span style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              padding: '0 10px',
+                              background: '#F1F5F9',
+                              border: '1.5px solid var(--border-subtle)',
+                              borderRight: 'none',
+                              borderTopLeftRadius: 'var(--radius-sm)',
+                              borderBottomLeftRadius: 'var(--radius-sm)',
+                              fontSize: '13px',
+                              fontWeight: 700,
+                              color: 'var(--text-secondary)'
+                            }}>
+                              +91
+                            </span>
+                            <input 
+                              type="tel"
+                              required
+                              maxLength={10}
+                              placeholder="91020 70777"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
+                              style={{
+                                width: '100%',
+                                padding: '11px 14px',
+                                borderTopRightRadius: 'var(--radius-sm)',
+                                borderBottomRightRadius: 'var(--radius-sm)',
+                                border: '1.5px solid var(--border-subtle)',
+                                fontSize: '13.5px',
+                                color: 'var(--text-primary)',
+                                background: '#F8FAFC',
+                                transition: 'var(--transition-smooth)'
+                              }}
+                              onFocus={(e) => {
+                                e.target.style.borderColor = 'var(--primary-blue)';
+                                e.target.style.boxShadow = '0 0 0 3px rgba(0, 138, 216, 0.08)';
+                                e.target.style.background = '#FFFFFF';
+                              }}
+                              onBlur={(e) => {
+                                e.target.style.borderColor = 'var(--border-subtle)';
+                                e.target.style.boxShadow = 'none';
+                                e.target.style.background = '#F8FAFC';
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--navy-deep)', marginBottom: '4px' }}>
+                          Primary Investment Goal
+                        </label>
+                        <select
+                          value={formData.service}
+                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                          style={{
+                            width: '100%',
+                            padding: '10px 14px',
+                            borderRadius: 'var(--radius-sm)',
+                            border: '1.5px solid var(--border-subtle)',
+                            fontSize: '13px',
+                            color: 'var(--text-primary)',
+                            background: '#F8FAFC',
+                            cursor: 'pointer',
+                            transition: 'var(--transition-smooth)'
+                          }}
+                        >
+                          <option value="Mutual Funds & SIP Planning">Start New Monthly SIP</option>
+                          <option value="Lumpsum Investment Strategy">Lumpsum Investment (STP)</option>
+                          <option value="Tax-Saving Mutual Funds (ELSS)">Tax-Saving ELSS (Section 80C)</option>
+                          <option value="Free Portfolio Audit & Rebalancing">Existing Portfolio Health Check</option>
+                          <option value="Retirement & Goal Planning">Retirement / Child Education Goal</option>
+                          <option value="Monthly Cashflow via SWP">Monthly Cashflow via SWP</option>
+                        </select>
+                      </div>
+
+                      <button 
+                        type="submit"
+                        disabled={loading}
+                        className="btn-orange"
+                        style={{
+                          width: '100%',
+                          padding: '13px',
+                          fontSize: '14.5px',
+                          fontWeight: 800,
+                          marginTop: '2px',
+                          opacity: loading ? 0.85 : 1
+                        }}
+                      >
+                        {loading ? 'Submitting...' : 'Claim Free Consultation 🚀'}
+                      </button>
+
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        fontSize: '11px',
+                        color: 'var(--text-muted)',
+                        marginTop: '1px'
+                      }}>
+                        <span>🔒</span>
+                        <span>100% Confidential • Zero Spam • AMFI Reg. ARN-194720</span>
+                      </div>
+                    </form>
+                  </>
+                ) : (
+                  <div style={{ textAlign: 'center', padding: '24px 0' }}>
+                    <div style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #DCFCE7, #BBF7D0)',
+                      color: '#16A34A',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 16px',
+                      boxShadow: '0 8px 24px rgba(22, 163, 74, 0.15)'
+                    }}>
+                      <CheckCircle2 size={32} />
+                    </div>
+                    <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>
+                      Request Received!
+                    </h3>
+                    <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: 1.5 }}>
+                      Thank you, <strong>{formData.name}</strong>. Our certified mutual fund advisor will reach out to you at <strong>+91 {formData.phone}</strong> shortly.
+                    </p>
+                    <a 
+                      href={`https://wa.me/919102070777?text=Hi%20Investrow,%20I%20just%20booked%20a%20consultation%20for%20${encodeURIComponent(formData.service)}.%20My%20name%20is%20${encodeURIComponent(formData.name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-blue"
+                      style={{ width: '100%', padding: '13px', fontSize: '14px', fontWeight: 700 }}
+                    >
+                      💬 Connect on WhatsApp Now
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -679,6 +879,18 @@ export default function HeroSection({ onLeadSubmitted }) {
           .hero-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .hero-inputs-row {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-badge-top-left, .hero-badge-top-right {
+            font-size: 10px !important;
+            padding: 4px 8px !important;
+          }
+          .hero-badge-bottom-left, .hero-badge-bottom-right {
+            padding: 6px 10px !important;
           }
         }
       `}</style>
