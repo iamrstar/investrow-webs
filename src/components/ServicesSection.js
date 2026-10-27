@@ -179,9 +179,9 @@ const SERVICES = [
 ];
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Visual Strategies (8)' },
-  { id: 'growth', label: 'SIP & Growth (3)' },
-  { id: 'tax-income', label: 'Tax & Income (2)' },
+  { id: 'all', label: 'All Life Milestones (8)' },
+  { id: 'growth', label: 'Family SIP & Growth (3)' },
+  { id: 'tax-income', label: 'Tax Saving & Retirement (2)' },
   { id: 'safety', label: 'Capital Safety & Audit (3)' }
 ];
 
@@ -226,7 +226,7 @@ export default function ServicesSection({ onSelectService }) {
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 48px' }}>
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -242,7 +242,7 @@ export default function ServicesSection({ onSelectService }) {
             textTransform: 'uppercase',
             marginBottom: '16px'
           }}>
-            <Sparkles size={14} style={{ color: '#FF6A13' }} /> Visual Wealth Solutions
+            <Sparkles size={14} style={{ color: '#FF6A13' }} /> Real Life Milestones & Wealth Solutions
           </div>
 
           <h2 style={{
@@ -253,18 +253,18 @@ export default function ServicesSection({ onSelectService }) {
             marginBottom: '16px',
             letterSpacing: '-0.02em'
           }}>
-            See Exactly How Your Money Compounds <br />
+            Every Life Stage Has a Goal. <br />
             <span style={{
               background: 'linear-gradient(135deg, #FF6A13 0%, #FF8A3D 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
-              Through Visual Investment Roadmaps
+              We Have the Right Mutual Fund Strategy for It.
             </span>
           </h2>
 
-          <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.7, maxWidth: '680px', margin: '0 auto' }}>
-            No confusing financial jargon or endless articles. Explore our clear visual strategies for monthly SIPs, strategic lumpsum STP, tax deduction, and retirement income.
+          <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.7, maxWidth: '720px', margin: '0 auto' }}>
+            From young parents starting their child’s first ₹500 SIP, to business owners deploying surplus capital, and retirees securing monthly pension flows — see how real families build lasting financial security with Investrow.
           </p>
         </div>
 
