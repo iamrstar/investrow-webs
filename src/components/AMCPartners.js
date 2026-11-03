@@ -171,7 +171,7 @@ export default function AMCPartners({ onOpenConsultModal }) {
           margin: '0 auto 24px',
           lineHeight: 1.6
         }}>
-          Invest, switch, and track across India’s leading Asset Management Companies (AMCs) from a single unified advisory portal with zero commission bias.
+          Invest, switch, and track across India’s leading Asset Management Companies (AMCs) with dedicated AMFI-certified guidance tailored to your financial goals.
         </p>
 
         {/* Quick Highlights Strip */}
