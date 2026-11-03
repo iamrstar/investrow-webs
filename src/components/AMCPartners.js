@@ -582,14 +582,26 @@ export default function AMCPartners({ onOpenConsultModal }) {
 
       {/* Reverse Marquee CSS */}
       <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
         @keyframes marquee-reverse {
           0% { transform: translateX(-50%); }
           100% { transform: translateX(0%); }
         }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee 55s linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
         .marquee-track-reverse {
           display: flex;
           width: max-content;
-          animation: marquee-reverse 38s linear infinite;
+          animation: marquee-reverse 60s linear infinite;
         }
         .marquee-track-reverse:hover {
           animation-play-state: paused;
