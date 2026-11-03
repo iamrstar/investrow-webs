@@ -215,10 +215,10 @@ export default function AMCPartners({ onOpenConsultModal }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '14px',
-                  padding: '8px 16px 8px 10px',
+                  padding: '10px 18px 10px 12px',
                   background: 'rgba(255, 255, 255, 0.98)',
-                  borderRadius: '14px',
-                  margin: '0 8px',
+                  borderRadius: '16px',
+                  margin: '0 10px',
                   flexShrink: 0,
                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
                   border: '1px solid rgba(226, 232, 240, 0.8)',
@@ -227,8 +227,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
               >
                 {/* Official AMC Logo Badge */}
                 <div style={{
-                  width: '124px',
-                  height: '36px',
+                  width: '160px',
+                  height: '46px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -284,10 +284,10 @@ export default function AMCPartners({ onOpenConsultModal }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '14px',
-                  padding: '8px 16px 8px 10px',
+                  padding: '10px 18px 10px 12px',
                   background: 'rgba(255, 255, 255, 0.98)',
-                  borderRadius: '14px',
-                  margin: '0 8px',
+                  borderRadius: '16px',
+                  margin: '0 10px',
                   flexShrink: 0,
                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
                   border: '1px solid rgba(226, 232, 240, 0.8)',
@@ -296,8 +296,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
               >
                 {/* Official AMC Logo Badge */}
                 <div style={{
-                  width: '124px',
-                  height: '36px',
+                  width: '160px',
+                  height: '46px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -488,8 +488,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
                     {/* Top Row: Logo & Rank Badge */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
                       <div style={{
-                        width: '130px',
-                        height: '38px',
+                        width: '155px',
+                        height: '46px',
                         background: '#FFFFFF',
                         borderRadius: '8px',
                         padding: '2px',

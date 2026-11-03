@@ -121,7 +121,7 @@ export default function Header({ onOpenConsultModal }) {
           <img 
             src="/investrow-logo.png" 
             alt="Investrow Financial Services" 
-            style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
+            style={{ height: '50px', width: 'auto', objectFit: 'contain' }}
           />
         </a>
 
