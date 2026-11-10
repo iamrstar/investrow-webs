@@ -18,30 +18,30 @@ const AMC_PARTNERS = [
   { slug: 'dsp', name: 'DSP Mutual Fund', category: 'Flexi & Small Cap', type: 'Top AMC', rank: 'Global Heritage', popular: 'DSP Flexi Cap Fund' },
   { slug: 'bandhan', name: 'Bandhan Mutual Fund', category: 'Equity & Liquid', type: 'Top AMC', rank: 'Value Focus', popular: 'Bandhan Sterling Value' },
   { slug: 'motilal-oswal', name: 'Motilal Oswal MF', category: 'High Growth Equity', type: 'Top AMC', rank: 'QGLP Pioneer', popular: 'Motilal Midcap Fund' },
-  { slug: 'ppfas', name: 'PPFAS Mutual Fund', category: 'Value & Global Equity', type: 'Specialized', rank: 'Flexi Cap Leader', popular: 'Parag Parikh Flexi Cap' },
-  { slug: 'quant', name: 'Quant Mutual Fund', category: 'Momentum Equity', type: 'Specialized', rank: 'High Alpha', popular: 'Quant Small & Mid Cap' },
+  { slug: 'ppfas', name: 'PPFAS Mutual Fund', category: 'Value & Global Equity', type: 'Focused AMC', rank: 'Flexi Cap Leader', popular: 'Parag Parikh Flexi Cap' },
+  { slug: 'quant', name: 'Quant Mutual Fund', category: 'Momentum Equity', type: 'Growth AMC', rank: 'High Alpha', popular: 'Quant Small & Mid Cap' },
   { slug: 'franklin', name: 'Franklin Templeton MF', category: 'Equity & Debt', type: 'Top AMC', rank: 'Global Brand', popular: 'Franklin India Prima' },
   { slug: 'canara-robeco', name: 'Canara Robeco MF', category: 'Equity & Hybrid', type: 'Top AMC', rank: 'Consistent Performer', popular: 'Canara Robeco Emerging' },
   { slug: 'edelweiss', name: 'Edelweiss Mutual Fund', category: 'Debt & Equity', type: 'Top AMC', rank: 'Debt Innovator', popular: 'Edelweiss Bharat Bond' },
   { slug: 'hsbc', name: 'HSBC Mutual Fund', category: 'Equity & Global', type: 'Top AMC', rank: 'Global MNC', popular: 'HSBC Value Fund' },
   { slug: 'sundaram', name: 'Sundaram Mutual Fund', category: 'Mid & Small Cap', type: 'Top AMC', rank: 'Midcap Pioneer', popular: 'Sundaram Mid Cap' },
   { slug: 'invesco', name: 'Invesco Mutual Fund', category: 'Growth & Multi-Cap', type: 'Top AMC', rank: 'Global AMC', popular: 'Invesco India Growth' },
-  { slug: 'mahindra-manulife', name: 'Mahindra Manulife MF', category: 'Multi-Cap & Rural', type: 'Growth AMC', rank: 'Joint Venture', popular: 'Mahindra Multi Cap' },
+  { slug: 'mahindra-manulife', name: 'Mahindra Manulife MF', category: 'Multi-Cap & Growth', type: 'Growth AMC', rank: 'Joint Venture', popular: 'Mahindra Multi Cap' },
   { slug: 'pgim', name: 'PGIM India MF', category: 'Mid Cap & Global', type: 'Growth AMC', rank: 'Global Giant', popular: 'PGIM India Midcap' },
   { slug: 'union', name: 'Union Mutual Fund', category: 'Equity & Hybrid', type: 'Growth AMC', rank: 'PSU Joint Venture', popular: 'Union Flexi Cap' },
   { slug: 'baroda-bnp', name: 'Baroda BNP Paribas MF', category: 'Balanced Advantage', type: 'Growth AMC', rank: 'Global Alliance', popular: 'Baroda BNP Balanced' },
   { slug: 'bajaj', name: 'Bajaj Finserv MF', category: 'Tech & Multi-Asset', type: 'New Age AMC', rank: 'Fintech Driven', popular: 'Bajaj Finserv Flexi' },
   { slug: 'groww', name: 'Groww Mutual Fund', category: 'Index & Passive', type: 'New Age AMC', rank: 'Digital First', popular: 'Groww Nifty Total Mkt' },
   { slug: 'navi', name: 'Navi Mutual Fund', category: 'Index & FoF', type: 'New Age AMC', rank: 'Low Expense', popular: 'Navi Nifty 50' },
-  { slug: 'whiteoak', name: 'WhiteOak Capital MF', category: 'Factor & Active Equity', type: 'Specialized', rank: 'Institutional Quality', popular: 'WhiteOak Flexi Cap' },
-  { slug: 'trust', name: 'Trust Mutual Fund', category: 'Debt & Liquid', type: 'Specialized', rank: 'Debt Specialist', popular: 'TrustMF Short Term' },
-  { slug: 'samco', name: 'Samco Mutual Fund', category: 'Active Equity', type: 'Specialized', rank: 'Quant Driven', popular: 'Samco Flexi Cap' },
-  { slug: 'nj', name: 'NJ Mutual Fund', category: 'Rule-Based Equity', type: 'Specialized', rank: 'Rules Based', popular: 'NJ Balanced Advantage' },
+  { slug: 'whiteoak', name: 'WhiteOak Capital MF', category: 'Factor & Active Equity', type: 'Focused AMC', rank: 'Institutional Quality', popular: 'WhiteOak Flexi Cap' },
+  { slug: 'trust', name: 'Trust Mutual Fund', category: 'Debt & Liquid', type: 'Debt Specialist', rank: 'Debt Specialist', popular: 'TrustMF Short Term' },
+  { slug: 'samco', name: 'Samco Mutual Fund', category: 'Active Equity', type: 'Focused AMC', rank: 'Quant Driven', popular: 'Samco Flexi Cap' },
+  { slug: 'nj', name: 'NJ Mutual Fund', category: 'Rule-Based Equity', type: 'Focused AMC', rank: 'Rules Based', popular: 'NJ Balanced Advantage' },
   { slug: 'iti', name: 'ITI Mutual Fund', category: 'Small & Mid Cap', type: 'Growth AMC', rank: 'Emerging AMC', popular: 'ITI Small Cap' },
-  { slug: 'helios', name: 'Helios Mutual Fund', category: 'Active Equity', type: 'Specialized', rank: 'Samir Arora Led', popular: 'Helios Flexi Cap' },
+  { slug: 'helios', name: 'Helios Mutual Fund', category: 'Active Equity', type: 'Focused AMC', rank: 'Samir Arora Led', popular: 'Helios Flexi Cap' },
   { slug: 'zerodha', name: 'Zerodha Fund House', category: 'Passive & Index', type: 'New Age AMC', rank: 'Low Cost Pioneer', popular: 'Zerodha Nifty LargeMid' },
-  { slug: 'old-bridge', name: 'Old Bridge Capital MF', category: 'Deep Value Equity', type: 'Specialized', rank: 'Value Specialist', popular: 'Old Bridge Focused' },
-  { slug: 'quantum', name: 'Quantum Mutual Fund', category: 'Value & Liquid', type: 'Specialized', rank: 'Pioneer Value', popular: 'Quantum Long Term' },
+  { slug: 'old-bridge', name: 'Old Bridge Capital MF', category: 'Deep Value Equity', type: 'Focused AMC', rank: 'Value Specialist', popular: 'Old Bridge Focused' },
+  { slug: 'quantum', name: 'Quantum Mutual Fund', category: 'Value & Liquid', type: 'Focused AMC', rank: 'Pioneer Value', popular: 'Quantum Long Term' },
   { slug: 'shriram', name: 'Shriram Mutual Fund', category: 'Equity & Hybrid', type: 'Growth AMC', rank: 'Retail Trusted', popular: 'Shriram Multi Asset' },
   { slug: 'taurus', name: 'Taurus Mutual Fund', category: 'Thematic & Equity', type: 'Growth AMC', rank: 'Thematic Focus', popular: 'Taurus Discovery' },
   // Market Platforms
@@ -205,138 +205,94 @@ export default function AMCPartners({ onOpenConsultModal }) {
       {/* Marquee Row 1: Top AMCs (Scrolls Left) */}
       <div style={{ width: '100%', overflow: 'hidden', marginBottom: '14px', position: 'relative' }}>
         <div className="marquee-track">
-          {repeatedRow1.map((p, idx) => {
-            const badge = getCategoryBadgeStyle(p.category);
-            return (
-              <div 
-                key={`row1-${idx}`}
-                className="amc-marquee-card"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  padding: '10px 18px 10px 12px',
-                  background: 'rgba(255, 255, 255, 0.98)',
-                  borderRadius: '16px',
-                  margin: '0 10px',
-                  flexShrink: 0,
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-                  border: '1px solid rgba(226, 232, 240, 0.8)',
-                  transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-                }}
-              >
-                {/* Official AMC Logo Badge */}
-                <div style={{
-                  width: '160px',
-                  height: '46px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <img 
-                    src={`/images/amc/${p.slug}.svg`} 
-                    alt={`${p.name} Logo`} 
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Category Pill */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start'
-                }}>
-                  <span style={{ 
-                    fontSize: '10.5px', 
-                    padding: '3px 8px', 
-                    background: badge.bg, 
-                    color: badge.color,
-                    border: `1px solid ${badge.border}`,
-                    borderRadius: '9999px', 
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap'
-                  }}>
-                    {p.category}
-                  </span>
-                </div>
+          {repeatedRow1.map((p, idx) => (
+            <div 
+              key={`row1-${idx}`}
+              className="amc-marquee-card"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '8px 14px',
+                background: '#FFFFFF',
+                borderRadius: '16px',
+                margin: '0 10px',
+                flexShrink: 0,
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
+                border: '1px solid rgba(226, 232, 240, 0.9)',
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+              }}
+            >
+              {/* Official AMC Logo Badge */}
+              <div style={{
+                width: '190px',
+                height: '54px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <img 
+                  src={`/images/amc/${p.slug}.svg`} 
+                  alt={`${p.name} Logo`} 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Marquee Row 2: Specialized & Infrastructure AMCs (Scrolls Right) */}
+      {/* Marquee Row 2: Top AMCs (Scrolls Right) */}
       <div style={{ width: '100%', overflow: 'hidden', marginBottom: '32px', position: 'relative' }}>
         <div className="marquee-track-reverse">
-          {repeatedRow2.map((p, idx) => {
-            const badge = getCategoryBadgeStyle(p.category);
-            return (
-              <div 
-                key={`row2-${idx}`}
-                className="amc-marquee-card"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  padding: '10px 18px 10px 12px',
-                  background: 'rgba(255, 255, 255, 0.98)',
-                  borderRadius: '16px',
-                  margin: '0 10px',
-                  flexShrink: 0,
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-                  border: '1px solid rgba(226, 232, 240, 0.8)',
-                  transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-                }}
-              >
-                {/* Official AMC Logo Badge */}
-                <div style={{
-                  width: '160px',
-                  height: '46px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <img 
-                    src={`/images/amc/${p.slug}.svg`} 
-                    alt={`${p.name} Logo`} 
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Category Pill */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start'
-                }}>
-                  <span style={{ 
-                    fontSize: '10.5px', 
-                    padding: '3px 8px', 
-                    background: badge.bg, 
-                    color: badge.color,
-                    border: `1px solid ${badge.border}`,
-                    borderRadius: '9999px', 
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap'
-                  }}>
-                    {p.category}
-                  </span>
-                </div>
+          {repeatedRow2.map((p, idx) => (
+            <div 
+              key={`row2-${idx}`}
+              className="amc-marquee-card"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '8px 14px',
+                background: '#FFFFFF',
+                borderRadius: '16px',
+                margin: '0 10px',
+                flexShrink: 0,
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
+                border: '1px solid rgba(226, 232, 240, 0.9)',
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+              }}
+            >
+              {/* Official AMC Logo Badge */}
+              <div style={{
+                width: '190px',
+                height: '54px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <img 
+                  src={`/images/amc/${p.slug}.svg`} 
+                  alt={`${p.name} Logo`} 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -488,8 +444,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
                     {/* Top Row: Logo & Rank Badge */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
                       <div style={{
-                        width: '155px',
-                        height: '46px',
+                        width: '175px',
+                        height: '50px',
                         background: '#FFFFFF',
                         borderRadius: '8px',
                         padding: '2px',
