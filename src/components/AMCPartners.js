@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { ShieldCheck, Search, ChevronDown, ChevronUp, Sparkles, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
+import { useMemo } from 'react';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 const AMC_PARTNERS = [
   // Top Mega AMCs
@@ -50,50 +50,15 @@ const AMC_PARTNERS = [
   { slug: 'cams-kfin', name: 'CAMS • KFintech', logo: '/images/amc/cams-kfin.svg', category: 'Registrar & Transfer', type: 'Platform', rank: 'Official RTA', popular: 'Centralized Unit Registry' }
 ];
 
-const getCategoryBadgeStyle = (category) => {
-  if (category.includes('Equity')) {
-    return { bg: 'rgba(14, 165, 233, 0.12)', color: '#0284C7', border: 'rgba(14, 165, 233, 0.25)' };
-  }
-  if (category.includes('Debt') || category.includes('Liquid')) {
-    return { bg: 'rgba(16, 185, 129, 0.12)', color: '#10B981', border: 'rgba(16, 185, 129, 0.25)' };
-  }
-  if (category.includes('Hybrid') || category.includes('Balanced')) {
-    return { bg: 'rgba(245, 158, 11, 0.12)', color: '#D97706', border: 'rgba(245, 158, 11, 0.25)' };
-  }
-  if (category.includes('Exchange') || category.includes('Registrar')) {
-    return { bg: 'rgba(139, 92, 246, 0.12)', color: '#8B5CF6', border: 'rgba(139, 92, 246, 0.25)' };
-  }
-  return { bg: 'rgba(255, 106, 19, 0.12)', color: '#FF6A13', border: 'rgba(255, 106, 19, 0.25)' };
-};
-
 export default function AMCPartners({ onOpenConsultModal }) {
-  const [showFullDirectory, setShowFullDirectory] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('All');
-
-  // Split partners for dual-track marquee
-  const row1 = useMemo(() => AMC_PARTNERS.slice(0, 21), []);
-  const row2 = useMemo(() => AMC_PARTNERS.slice(21, 42), []);
+  // Split all 42 partners across 3 synchronized continuous marquee tracks
+  const row1 = useMemo(() => AMC_PARTNERS.slice(0, 14), []);
+  const row2 = useMemo(() => AMC_PARTNERS.slice(14, 28), []);
+  const row3 = useMemo(() => AMC_PARTNERS.slice(28, 42), []);
 
   const repeatedRow1 = useMemo(() => [...row1, ...row1], [row1]);
   const repeatedRow2 = useMemo(() => [...row2, ...row2], [row2]);
-
-  // Filtered list for directory view
-  const filteredAMCs = useMemo(() => {
-    return AMC_PARTNERS.filter((amc) => {
-      const matchesSearch = amc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            amc.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            amc.popular.toLowerCase().includes(searchQuery.toLowerCase());
-      if (!matchesSearch) return false;
-      if (selectedFilter === 'All') return true;
-      if (selectedFilter === 'Mega AMCs') return amc.type === 'Mega AMC';
-      if (selectedFilter === 'Equity & Growth') return amc.category.includes('Equity') || amc.category.includes('Growth');
-      if (selectedFilter === 'Debt & Liquid') return amc.category.includes('Debt') || amc.category.includes('Liquid');
-      if (selectedFilter === 'Hybrid & Balanced') return amc.category.includes('Hybrid') || amc.category.includes('Balanced');
-      if (selectedFilter === 'Platforms') return amc.type === 'Platform';
-      return true;
-    });
-  }, [searchQuery, selectedFilter]);
+  const repeatedRow3 = useMemo(() => [...row3, ...row3], [row3]);
 
   return (
     <section id="partners" style={{
@@ -202,28 +167,21 @@ export default function AMCPartners({ onOpenConsultModal }) {
         </div>
       </div>
 
-      {/* Marquee Row 1: Top AMCs (Scrolls Left) */}
-      <div style={{ width: '100%', overflow: 'hidden', marginBottom: '14px', position: 'relative' }}>
-        <div className="marquee-track">
+      {/* Marquee Row 1: Mega AMCs (Scrolls Left) */}
+      <div style={{
+        width: '100%',
+        overflow: 'hidden',
+        marginBottom: '16px',
+        position: 'relative',
+        maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)'
+      }}>
+        <div className="marquee-track" style={{ display: 'flex', width: 'max-content', flexWrap: 'nowrap' }}>
           {repeatedRow1.map((p, idx) => (
             <div 
               key={`row1-${idx}`}
               className="amc-marquee-card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '8px 14px',
-                background: '#FFFFFF',
-                borderRadius: '16px',
-                margin: '0 10px',
-                flexShrink: 0,
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-                border: '1px solid rgba(226, 232, 240, 0.9)',
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-              }}
             >
-              {/* Official AMC Logo Badge */}
               <div style={{
                 width: '200px',
                 height: '58px',
@@ -251,28 +209,21 @@ export default function AMCPartners({ onOpenConsultModal }) {
         </div>
       </div>
 
-      {/* Marquee Row 2: Top AMCs (Scrolls Right) */}
-      <div style={{ width: '100%', overflow: 'hidden', marginBottom: '32px', position: 'relative' }}>
-        <div className="marquee-track-reverse">
+      {/* Marquee Row 2: Top National AMCs (Scrolls Right) */}
+      <div style={{
+        width: '100%',
+        overflow: 'hidden',
+        marginBottom: '16px',
+        position: 'relative',
+        maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)'
+      }}>
+        <div className="marquee-track-reverse" style={{ display: 'flex', width: 'max-content', flexWrap: 'nowrap' }}>
           {repeatedRow2.map((p, idx) => (
             <div 
               key={`row2-${idx}`}
               className="amc-marquee-card"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '8px 14px',
-                background: '#FFFFFF',
-                borderRadius: '16px',
-                margin: '0 10px',
-                flexShrink: 0,
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-                border: '1px solid rgba(226, 232, 240, 0.9)',
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-              }}
             >
-              {/* Official AMC Logo Badge */}
               <div style={{
                 width: '200px',
                 height: '58px',
@@ -300,278 +251,80 @@ export default function AMCPartners({ onOpenConsultModal }) {
         </div>
       </div>
 
-      {/* Interactive Toggle for Full 40+ AMCs Directory */}
-      <div className="container" style={{ textAlign: 'center' }}>
-        <button
-          type="button"
-          onClick={() => setShowFullDirectory(!showFullDirectory)}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '12px 28px',
-            borderRadius: '9999px',
-            background: showFullDirectory ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.06)',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
-            color: '#FFFFFF',
-            fontSize: '14px',
-            fontWeight: 700,
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-            e.currentTarget.style.borderColor = 'var(--primary-blue)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = showFullDirectory ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.06)';
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
-          }}
-        >
-          <Building2 size={16} style={{ color: '#FF6A13' }} />
-          <span>{showFullDirectory ? 'Hide Partner Directory' : 'Explore All 40+ SEBI-Regulated Mutual Fund Houses'}</span>
-          {showFullDirectory ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
-
-        {/* Collapsible Directory Grid */}
-        {showFullDirectory && (
-          <div style={{
-            marginTop: '32px',
-            padding: '28px',
-            background: 'rgba(255, 255, 255, 0.02)',
-            borderRadius: '24px',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            backdropFilter: 'blur(16px)',
-            animation: 'fadeIn 0.4s ease'
-          }}>
-            {/* Controls Bar: Search & Filter Tabs */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '16px',
-              flexWrap: 'wrap',
-              marginBottom: '28px'
-            }}>
-              {/* Search Input */}
+      {/* Marquee Row 3: Specialized Funds & Platforms (Scrolls Left) */}
+      <div style={{
+        width: '100%',
+        overflow: 'hidden',
+        marginBottom: '32px',
+        position: 'relative',
+        maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)'
+      }}>
+        <div className="marquee-track" style={{ display: 'flex', width: 'max-content', flexWrap: 'nowrap' }}>
+          {repeatedRow3.map((p, idx) => (
+            <div 
+              key={`row3-${idx}`}
+              className="amc-marquee-card"
+            >
               <div style={{
-                position: 'relative',
-                flex: '1',
-                minWidth: '240px',
-                maxWidth: '380px'
+                width: '200px',
+                height: '58px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
               }}>
-                <Search size={16} style={{
-                  position: 'absolute',
-                  left: '14px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#64748B'
-                }} />
-                <input 
-                  type="text"
-                  placeholder="Search AMC (e.g. SBI, HDFC, Mirae...)"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                <img 
+                  src={p.logo || `/images/amc/${p.slug}.svg`} 
+                  alt={`${p.name} Logo`} 
                   style={{
-                    width: '100%',
-                    padding: '11px 16px 11px 40px',
-                    borderRadius: '12px',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    color: '#FFFFFF',
-                    fontSize: '13.5px'
+                    maxWidth: '185px',
+                    maxHeight: '48px',
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    display: 'block'
                   }}
+                  loading="lazy"
                 />
               </div>
-
-              {/* Category Filter Pills */}
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {['All', 'Mega AMCs', 'Equity & Growth', 'Debt & Liquid', 'Hybrid & Balanced', 'Platforms'].map((filter) => (
-                  <button
-                    key={filter}
-                    type="button"
-                    onClick={() => setSelectedFilter(filter)}
-                    style={{
-                      padding: '7px 14px',
-                      borderRadius: '9999px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                      background: selectedFilter === filter ? 'var(--primary-blue-gradient)' : 'rgba(255, 255, 255, 0.05)',
-                      color: selectedFilter === filter ? '#FFFFFF' : '#94A3B8',
-                      border: selectedFilter === filter ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
-                      boxShadow: selectedFilter === filter ? '0 2px 8px rgba(0, 138, 216, 0.3)' : 'none'
-                    }}
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
             </div>
-
-            {/* Results Grid of 40+ AMCs */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-              gap: '16px',
-              textAlign: 'left'
-            }}>
-              {filteredAMCs.map((amc) => {
-                const badge = getCategoryBadgeStyle(amc.category);
-                return (
-                  <div 
-                    key={amc.slug}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.04)',
-                      borderRadius: '16px',
-                      padding: '16px',
-                      border: '1px solid rgba(255, 255, 255, 0.08)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      gap: '12px',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                      e.currentTarget.style.borderColor = 'rgba(0, 138, 216, 0.4)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    {/* Top Row: Logo & Rank Badge */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
-                      <div style={{
-                        width: '180px',
-                        height: '52px',
-                        background: '#FFFFFF',
-                        borderRadius: '10px',
-                        padding: '4px 10px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden'
-                      }}>
-                        <img 
-                          src={amc.logo || `/images/amc/${amc.slug}.svg`} 
-                          alt={`${amc.name} Logo`} 
-                          style={{ maxWidth: '165px', maxHeight: '44px', width: 'auto', height: 'auto', objectFit: 'contain' }}
-                          loading="lazy"
-                        />
-                      </div>
-                      <span style={{
-                        fontSize: '10px',
-                        padding: '3px 8px',
-                        borderRadius: '6px',
-                        background: 'rgba(255, 106, 19, 0.15)',
-                        color: '#FF8A3D',
-                        fontWeight: 700,
-                        whiteSpace: 'nowrap'
-                      }}>
-                        {amc.rank}
-                      </span>
-                    </div>
-
-                    {/* Middle: Name & Popular Schemes */}
-                    <div>
-                      <div style={{ fontSize: '14px', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.3 }}>
-                        {amc.name}
-                      </div>
-                      <div style={{ fontSize: '11px', color: '#94A3B8', marginTop: '3px' }}>
-                        Popular: <span style={{ color: '#E2E8F0', fontWeight: 600 }}>{amc.popular}</span>
-                      </div>
-                    </div>
-
-                    {/* Bottom Row: Category Tag + Action */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      paddingTop: '10px',
-                      borderTop: '1px solid rgba(255, 255, 255, 0.06)'
-                    }}>
-                      <span style={{
-                        fontSize: '10.5px',
-                        padding: '3px 8px',
-                        background: badge.bg,
-                        color: badge.color,
-                        border: `1px solid ${badge.border}`,
-                        borderRadius: '9999px',
-                        fontWeight: 700
-                      }}>
-                        {amc.category}
-                      </span>
-
-                      <a 
-                        href={`https://wa.me/919102070777?text=Hi%20Investrow,%20I%20want%20to%20invest%20in%20schemes%20from%20${encodeURIComponent(amc.name)}.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          fontSize: '11.5px',
-                          color: '#38BDF8',
-                          fontWeight: 700,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '3px',
-                          transition: 'color 0.2s'
-                        }}
-                      >
-                        <span>Start SIP</span>
-                        <ArrowRight size={12} />
-                      </a>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {filteredAMCs.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '36px 0', color: '#94A3B8', fontSize: '14px' }}>
-                No mutual fund house matching "{searchQuery}". Please check the spelling or view all fund houses.
-              </div>
-            )}
-          </div>
-        )}
+          ))}
+        </div>
       </div>
 
-      {/* Reverse Marquee CSS */}
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-reverse {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0%); }
-        }
-        .marquee-track {
-          display: flex;
-          width: max-content;
-          animation: marquee 55s linear infinite;
-        }
-        .marquee-track:hover {
-          animation-play-state: paused;
-        }
-        .marquee-track-reverse {
-          display: flex;
-          width: max-content;
-          animation: marquee-reverse 60s linear infinite;
-        }
-        .marquee-track-reverse:hover {
-          animation-play-state: paused;
-        }
-        .amc-marquee-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0, 138, 216, 0.2) !important;
-          border-color: rgba(0, 138, 216, 0.4) !important;
-        }
-      `}</style>
+      {/* Bottom Trust Credentials Strip */}
+      <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '16px',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          padding: '12px 28px',
+          borderRadius: '9999px',
+          background: 'rgba(255, 255, 255, 0.04)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(10px)',
+          fontSize: '13px',
+          color: '#E2E8F0'
+        }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22C55E' }} />
+            <span>Direct Order Execution: <strong>BSE StAR MF (Member: 55533)</strong></span>
+          </span>
+          <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>•</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <CheckCircle2 size={15} style={{ color: '#0EA5E9' }} />
+            <span>Official Registrars: <strong>CAMS & KFintech Integrated</strong></span>
+          </span>
+          <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>•</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ color: '#F59E0B' }}>★</span>
+            <span>Zero Platform Switching Fee</span>
+          </span>
+        </div>
+      </div>
     </section>
   );
 }

@@ -430,14 +430,50 @@ input, select, textarea {
   100% { transform: translateX(-50%); }
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 55s linear infinite;
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
-.marquee-track:hover {
+.marquee-track {
+  display: flex !important;
+  width: max-content !important;
+  flex-wrap: nowrap !important;
+  animation: marquee 52s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track-reverse {
+  display: flex !important;
+  width: max-content !important;
+  flex-wrap: nowrap !important;
+  animation: marquee-reverse 56s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover,
+.marquee-track-reverse:hover {
   animation-play-state: paused;
+}
+
+.amc-marquee-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  margin: 0 10px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.amc-marquee-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0, 138, 216, 0.25) !important;
+  border-color: rgba(0, 138, 216, 0.45) !important;
 }
 
 /* ============================================
