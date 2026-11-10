@@ -5,49 +5,49 @@ import { ShieldCheck, Search, ChevronDown, ChevronUp, Sparkles, Building2, Check
 
 const AMC_PARTNERS = [
   // Top Mega AMCs
-  { slug: 'sbi', name: 'SBI Mutual Fund', category: 'Equity & Debt', type: 'Mega AMC', rank: 'AUM #1 in India', popular: 'SBI Bluechip & Small Cap' },
-  { slug: 'hdfc', name: 'HDFC Mutual Fund', category: 'Equity & Hybrid', type: 'Mega AMC', rank: 'Top 3 AMC', popular: 'HDFC Top 100 & Mid-Cap' },
-  { slug: 'icici', name: 'ICICI Prudential MF', category: 'Equity & Debt', type: 'Mega AMC', rank: 'Top 3 AMC', popular: 'ICICI Pru Value Discovery' },
-  { slug: 'nippon', name: 'Nippon India MF', category: 'Equity & ETF', type: 'Mega AMC', rank: 'Top 5 AMC', popular: 'Nippon Small Cap Fund' },
-  { slug: 'kotak', name: 'Kotak Mahindra MF', category: 'Equity & Hybrid', type: 'Mega AMC', rank: 'Top 5 AMC', popular: 'Kotak Emerging Equity' },
-  { slug: 'aditya-birla', name: 'Aditya Birla Sun Life', category: 'Debt & Equity', type: 'Mega AMC', rank: 'Top 10 AMC', popular: 'ABSL Frontline Equity' },
-  { slug: 'axis', name: 'Axis Mutual Fund', category: 'Growth & ELSS', type: 'Top AMC', rank: 'Top 10 AMC', popular: 'Axis ELSS Tax Saver' },
-  { slug: 'uti', name: 'UTI Mutual Fund', category: 'Index & Balanced', type: 'Top AMC', rank: 'Pioneer AMC', popular: 'UTI Nifty 50 Index Fund' },
-  { slug: 'tata', name: 'Tata Mutual Fund', category: 'Equity & Thematic', type: 'Top AMC', rank: 'Top 10 AMC', popular: 'Tata Digital & Large Cap' },
-  { slug: 'mirae', name: 'Mirae Asset MF', category: 'Large & Mid Cap', type: 'Top AMC', rank: 'Growth Leader', popular: 'Mirae Large & Midcap' },
-  { slug: 'dsp', name: 'DSP Mutual Fund', category: 'Flexi & Small Cap', type: 'Top AMC', rank: 'Global Heritage', popular: 'DSP Flexi Cap Fund' },
-  { slug: 'bandhan', name: 'Bandhan Mutual Fund', category: 'Equity & Liquid', type: 'Top AMC', rank: 'Value Focus', popular: 'Bandhan Sterling Value' },
-  { slug: 'motilal-oswal', name: 'Motilal Oswal MF', category: 'High Growth Equity', type: 'Top AMC', rank: 'QGLP Pioneer', popular: 'Motilal Midcap Fund' },
-  { slug: 'ppfas', name: 'PPFAS Mutual Fund', category: 'Value & Global Equity', type: 'Focused AMC', rank: 'Flexi Cap Leader', popular: 'Parag Parikh Flexi Cap' },
-  { slug: 'quant', name: 'Quant Mutual Fund', category: 'Momentum Equity', type: 'Growth AMC', rank: 'High Alpha', popular: 'Quant Small & Mid Cap' },
-  { slug: 'franklin', name: 'Franklin Templeton MF', category: 'Equity & Debt', type: 'Top AMC', rank: 'Global Brand', popular: 'Franklin India Prima' },
-  { slug: 'canara-robeco', name: 'Canara Robeco MF', category: 'Equity & Hybrid', type: 'Top AMC', rank: 'Consistent Performer', popular: 'Canara Robeco Emerging' },
-  { slug: 'edelweiss', name: 'Edelweiss Mutual Fund', category: 'Debt & Equity', type: 'Top AMC', rank: 'Debt Innovator', popular: 'Edelweiss Bharat Bond' },
-  { slug: 'hsbc', name: 'HSBC Mutual Fund', category: 'Equity & Global', type: 'Top AMC', rank: 'Global MNC', popular: 'HSBC Value Fund' },
-  { slug: 'sundaram', name: 'Sundaram Mutual Fund', category: 'Mid & Small Cap', type: 'Top AMC', rank: 'Midcap Pioneer', popular: 'Sundaram Mid Cap' },
-  { slug: 'invesco', name: 'Invesco Mutual Fund', category: 'Growth & Multi-Cap', type: 'Top AMC', rank: 'Global AMC', popular: 'Invesco India Growth' },
-  { slug: 'mahindra-manulife', name: 'Mahindra Manulife MF', category: 'Multi-Cap & Growth', type: 'Growth AMC', rank: 'Joint Venture', popular: 'Mahindra Multi Cap' },
-  { slug: 'pgim', name: 'PGIM India MF', category: 'Mid Cap & Global', type: 'Growth AMC', rank: 'Global Giant', popular: 'PGIM India Midcap' },
-  { slug: 'union', name: 'Union Mutual Fund', category: 'Equity & Hybrid', type: 'Growth AMC', rank: 'PSU Joint Venture', popular: 'Union Flexi Cap' },
-  { slug: 'baroda-bnp', name: 'Baroda BNP Paribas MF', category: 'Balanced Advantage', type: 'Growth AMC', rank: 'Global Alliance', popular: 'Baroda BNP Balanced' },
-  { slug: 'bajaj', name: 'Bajaj Finserv MF', category: 'Tech & Multi-Asset', type: 'New Age AMC', rank: 'Fintech Driven', popular: 'Bajaj Finserv Flexi' },
-  { slug: 'groww', name: 'Groww Mutual Fund', category: 'Index & Passive', type: 'New Age AMC', rank: 'Digital First', popular: 'Groww Nifty Total Mkt' },
-  { slug: 'navi', name: 'Navi Mutual Fund', category: 'Index & FoF', type: 'New Age AMC', rank: 'Low Expense', popular: 'Navi Nifty 50' },
-  { slug: 'whiteoak', name: 'WhiteOak Capital MF', category: 'Factor & Active Equity', type: 'Focused AMC', rank: 'Institutional Quality', popular: 'WhiteOak Flexi Cap' },
-  { slug: 'trust', name: 'Trust Mutual Fund', category: 'Debt & Liquid', type: 'Debt Specialist', rank: 'Debt Specialist', popular: 'TrustMF Short Term' },
-  { slug: 'samco', name: 'Samco Mutual Fund', category: 'Active Equity', type: 'Focused AMC', rank: 'Quant Driven', popular: 'Samco Flexi Cap' },
-  { slug: 'nj', name: 'NJ Mutual Fund', category: 'Rule-Based Equity', type: 'Focused AMC', rank: 'Rules Based', popular: 'NJ Balanced Advantage' },
-  { slug: 'iti', name: 'ITI Mutual Fund', category: 'Small & Mid Cap', type: 'Growth AMC', rank: 'Emerging AMC', popular: 'ITI Small Cap' },
-  { slug: 'helios', name: 'Helios Mutual Fund', category: 'Active Equity', type: 'Focused AMC', rank: 'Samir Arora Led', popular: 'Helios Flexi Cap' },
-  { slug: 'zerodha', name: 'Zerodha Fund House', category: 'Passive & Index', type: 'New Age AMC', rank: 'Low Cost Pioneer', popular: 'Zerodha Nifty LargeMid' },
-  { slug: 'old-bridge', name: 'Old Bridge Capital MF', category: 'Deep Value Equity', type: 'Focused AMC', rank: 'Value Specialist', popular: 'Old Bridge Focused' },
-  { slug: 'quantum', name: 'Quantum Mutual Fund', category: 'Value & Liquid', type: 'Focused AMC', rank: 'Pioneer Value', popular: 'Quantum Long Term' },
-  { slug: 'shriram', name: 'Shriram Mutual Fund', category: 'Equity & Hybrid', type: 'Growth AMC', rank: 'Retail Trusted', popular: 'Shriram Multi Asset' },
-  { slug: 'taurus', name: 'Taurus Mutual Fund', category: 'Thematic & Equity', type: 'Growth AMC', rank: 'Thematic Focus', popular: 'Taurus Discovery' },
+  { slug: 'sbi', name: 'SBI Mutual Fund', logo: '/images/amc/sbi.svg', category: 'Equity & Debt', type: 'Mega AMC', rank: 'AUM #1 in India', popular: 'SBI Bluechip & Small Cap' },
+  { slug: 'hdfc', name: 'HDFC Mutual Fund', logo: '/images/amc/hdfc.svg', category: 'Equity & Hybrid', type: 'Mega AMC', rank: 'Top 3 AMC', popular: 'HDFC Top 100 & Mid-Cap' },
+  { slug: 'icici', name: 'ICICI Prudential MF', logo: '/images/amc/icici.png', category: 'Equity & Debt', type: 'Mega AMC', rank: 'Top 3 AMC', popular: 'ICICI Pru Value Discovery' },
+  { slug: 'nippon', name: 'Nippon India MF', logo: '/images/amc/nippon.png', category: 'Equity & ETF', type: 'Mega AMC', rank: 'Top 5 AMC', popular: 'Nippon Small Cap Fund' },
+  { slug: 'kotak', name: 'Kotak Mahindra MF', logo: '/images/amc/kotak.svg', category: 'Equity & Hybrid', type: 'Mega AMC', rank: 'Top 5 AMC', popular: 'Kotak Emerging Equity' },
+  { slug: 'aditya-birla', name: 'Aditya Birla Sun Life', logo: '/images/amc/aditya-birla.png', category: 'Debt & Equity', type: 'Mega AMC', rank: 'Top 10 AMC', popular: 'ABSL Frontline Equity' },
+  { slug: 'axis', name: 'Axis Mutual Fund', logo: '/images/amc/axis.svg', category: 'Growth & ELSS', type: 'Top AMC', rank: 'Top 10 AMC', popular: 'Axis ELSS Tax Saver' },
+  { slug: 'uti', name: 'UTI Mutual Fund', logo: '/images/amc/uti.png', category: 'Index & Balanced', type: 'Top AMC', rank: 'Pioneer AMC', popular: 'UTI Nifty 50 Index Fund' },
+  { slug: 'tata', name: 'Tata Mutual Fund', logo: '/images/amc/png/tata.png', category: 'Equity & Thematic', type: 'Top AMC', rank: 'Top 10 AMC', popular: 'Tata Digital & Large Cap' },
+  { slug: 'mirae', name: 'Mirae Asset MF', logo: '/images/amc/mirae.png', category: 'Large & Mid Cap', type: 'Top AMC', rank: 'Growth Leader', popular: 'Mirae Large & Midcap' },
+  { slug: 'dsp', name: 'DSP Mutual Fund', logo: '/images/amc/dsp.svg', category: 'Flexi & Small Cap', type: 'Top AMC', rank: 'Global Heritage', popular: 'DSP Flexi Cap Fund' },
+  { slug: 'bandhan', name: 'Bandhan Mutual Fund', logo: '/images/amc/bandhan.svg', category: 'Equity & Liquid', type: 'Top AMC', rank: 'Value Focus', popular: 'Bandhan Sterling Value' },
+  { slug: 'motilal-oswal', name: 'Motilal Oswal MF', logo: '/images/amc/png/motilal-oswal.png', category: 'High Growth Equity', type: 'Top AMC', rank: 'QGLP Pioneer', popular: 'Motilal Midcap Fund' },
+  { slug: 'ppfas', name: 'PPFAS Mutual Fund', logo: '/images/amc/ppfas.svg', category: 'Value & Global Equity', type: 'Focused AMC', rank: 'Flexi Cap Leader', popular: 'Parag Parikh Flexi Cap' },
+  { slug: 'quant', name: 'Quant Mutual Fund', logo: '/images/amc/quant.png', category: 'Momentum Equity', type: 'Growth AMC', rank: 'High Alpha', popular: 'Quant Small & Mid Cap' },
+  { slug: 'franklin', name: 'Franklin Templeton MF', logo: '/images/amc/franklin.png', category: 'Equity & Debt', type: 'Top AMC', rank: 'Global Brand', popular: 'Franklin India Prima' },
+  { slug: 'canara-robeco', name: 'Canara Robeco MF', logo: '/images/amc/canara-robeco.png', category: 'Equity & Hybrid', type: 'Top AMC', rank: 'Consistent Performer', popular: 'Canara Robeco Emerging' },
+  { slug: 'edelweiss', name: 'Edelweiss Mutual Fund', logo: '/images/amc/edelweiss.svg', category: 'Debt & Equity', type: 'Top AMC', rank: 'Debt Innovator', popular: 'Edelweiss Bharat Bond' },
+  { slug: 'hsbc', name: 'HSBC Mutual Fund', logo: '/images/amc/hsbc.svg', category: 'Equity & Global', type: 'Top AMC', rank: 'Global MNC', popular: 'HSBC Value Fund' },
+  { slug: 'sundaram', name: 'Sundaram Mutual Fund', logo: '/images/amc/sundaram.svg', category: 'Mid & Small Cap', type: 'Top AMC', rank: 'Midcap Pioneer', popular: 'Sundaram Mid Cap' },
+  { slug: 'invesco', name: 'Invesco Mutual Fund', logo: '/images/amc/png/invesco.png', category: 'Growth & Multi-Cap', type: 'Top AMC', rank: 'Global AMC', popular: 'Invesco India Growth' },
+  { slug: 'mahindra-manulife', name: 'Mahindra Manulife MF', logo: '/images/amc/mahindra-manulife.svg', category: 'Multi-Cap & Growth', type: 'Growth AMC', rank: 'Joint Venture', popular: 'Mahindra Multi Cap' },
+  { slug: 'pgim', name: 'PGIM India MF', logo: '/images/amc/png/pgim.png', category: 'Mid Cap & Global', type: 'Growth AMC', rank: 'Global Giant', popular: 'PGIM India Midcap' },
+  { slug: 'union', name: 'Union Mutual Fund', logo: '/images/amc/union.png', category: 'Equity & Hybrid', type: 'Growth AMC', rank: 'PSU Joint Venture', popular: 'Union Flexi Cap' },
+  { slug: 'baroda-bnp', name: 'Baroda BNP Paribas MF', logo: '/images/amc/png/baroda-bnp.png', category: 'Balanced Advantage', type: 'Growth AMC', rank: 'Global Alliance', popular: 'Baroda BNP Balanced' },
+  { slug: 'bajaj', name: 'Bajaj Finserv MF', logo: '/images/amc/png/bajaj.png', category: 'Tech & Multi-Asset', type: 'New Age AMC', rank: 'Fintech Driven', popular: 'Bajaj Finserv Flexi' },
+  { slug: 'groww', name: 'Groww Mutual Fund', logo: '/images/amc/png/groww.png', category: 'Index & Passive', type: 'New Age AMC', rank: 'Digital First', popular: 'Groww Nifty Total Mkt' },
+  { slug: 'navi', name: 'Navi Mutual Fund', logo: '/images/amc/png/navi.png', category: 'Index & FoF', type: 'New Age AMC', rank: 'Low Expense', popular: 'Navi Nifty 50' },
+  { slug: 'whiteoak', name: 'WhiteOak Capital MF', logo: '/images/amc/png/whiteoak.png', category: 'Factor & Active Equity', type: 'Focused AMC', rank: 'Institutional Quality', popular: 'WhiteOak Flexi Cap' },
+  { slug: 'trust', name: 'Trust Mutual Fund', logo: '/images/amc/png/trust.png', category: 'Debt & Liquid', type: 'Debt Specialist', rank: 'Debt Specialist', popular: 'TrustMF Short Term' },
+  { slug: 'samco', name: 'Samco Mutual Fund', logo: '/images/amc/png/samco.png', category: 'Active Equity', type: 'Focused AMC', rank: 'Quant Driven', popular: 'Samco Flexi Cap' },
+  { slug: 'nj', name: 'NJ Mutual Fund', logo: '/images/amc/png/nj.png', category: 'Rule-Based Equity', type: 'Focused AMC', rank: 'Rules Based', popular: 'NJ Balanced Advantage' },
+  { slug: 'iti', name: 'ITI Mutual Fund', logo: '/images/amc/png/iti.png', category: 'Small & Mid Cap', type: 'Growth AMC', rank: 'Emerging AMC', popular: 'ITI Small Cap' },
+  { slug: 'helios', name: 'Helios Mutual Fund', logo: '/images/amc/png/helios.png', category: 'Active Equity', type: 'Focused AMC', rank: 'Samir Arora Led', popular: 'Helios Flexi Cap' },
+  { slug: 'zerodha', name: 'Zerodha Fund House', logo: '/images/amc/png/zerodha.png', category: 'Passive & Index', type: 'New Age AMC', rank: 'Low Cost Pioneer', popular: 'Zerodha Nifty LargeMid' },
+  { slug: 'old-bridge', name: 'Old Bridge Capital MF', logo: '/images/amc/png/old-bridge.png', category: 'Deep Value Equity', type: 'Focused AMC', rank: 'Value Specialist', popular: 'Old Bridge Focused' },
+  { slug: 'quantum', name: 'Quantum Mutual Fund', logo: '/images/amc/png/quantum.png', category: 'Value & Liquid', type: 'Focused AMC', rank: 'Pioneer Value', popular: 'Quantum Long Term' },
+  { slug: 'shriram', name: 'Shriram Mutual Fund', logo: '/images/amc/png/shriram.png', category: 'Equity & Hybrid', type: 'Growth AMC', rank: 'Retail Trusted', popular: 'Shriram Multi Asset' },
+  { slug: 'taurus', name: 'Taurus Mutual Fund', logo: '/images/amc/png/taurus.png', category: 'Thematic & Equity', type: 'Growth AMC', rank: 'Thematic Focus', popular: 'Taurus Discovery' },
   // Market Platforms
-  { slug: 'bse-star', name: 'BSE StAR MF', category: 'Execution Exchange', type: 'Platform', rank: 'Member: 55533', popular: 'National Order Routing' },
-  { slug: 'nse', name: 'NSE NMF II', category: 'Execution Exchange', type: 'Platform', rank: 'Exchange Partner', popular: 'Order Routing System' },
-  { slug: 'cams-kfin', name: 'CAMS • KFintech', category: 'Registrar & Transfer', type: 'Platform', rank: 'Official RTA', popular: 'Centralized Unit Registry' }
+  { slug: 'bse-star', name: 'BSE StAR MF', logo: '/images/amc/png/bse-star.png', category: 'Execution Exchange', type: 'Platform', rank: 'Member: 55533', popular: 'National Order Routing' },
+  { slug: 'nse', name: 'NSE NMF II', logo: '/images/amc/png/nse.png', category: 'Execution Exchange', type: 'Platform', rank: 'Exchange Partner', popular: 'Order Routing System' },
+  { slug: 'cams-kfin', name: 'CAMS • KFintech', logo: '/images/amc/cams-kfin.svg', category: 'Registrar & Transfer', type: 'Platform', rank: 'Official RTA', popular: 'Centralized Unit Registry' }
 ];
 
 const getCategoryBadgeStyle = (category) => {
@@ -225,19 +225,21 @@ export default function AMCPartners({ onOpenConsultModal }) {
             >
               {/* Official AMC Logo Badge */}
               <div style={{
-                width: '190px',
-                height: '54px',
+                width: '200px',
+                height: '58px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0
               }}>
                 <img 
-                  src={`/images/amc/${p.slug}.svg`} 
+                  src={p.logo || `/images/amc/${p.slug}.svg`} 
                   alt={`${p.name} Logo`} 
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    maxWidth: '185px',
+                    maxHeight: '48px',
+                    width: 'auto',
+                    height: 'auto',
                     objectFit: 'contain',
                     display: 'block'
                   }}
@@ -272,19 +274,21 @@ export default function AMCPartners({ onOpenConsultModal }) {
             >
               {/* Official AMC Logo Badge */}
               <div style={{
-                width: '190px',
-                height: '54px',
+                width: '200px',
+                height: '58px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0
               }}>
                 <img 
-                  src={`/images/amc/${p.slug}.svg`} 
+                  src={p.logo || `/images/amc/${p.slug}.svg`} 
                   alt={`${p.name} Logo`} 
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    maxWidth: '185px',
+                    maxHeight: '48px',
+                    width: 'auto',
+                    height: 'auto',
                     objectFit: 'contain',
                     display: 'block'
                   }}
@@ -444,20 +448,20 @@ export default function AMCPartners({ onOpenConsultModal }) {
                     {/* Top Row: Logo & Rank Badge */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
                       <div style={{
-                        width: '175px',
-                        height: '50px',
+                        width: '180px',
+                        height: '52px',
                         background: '#FFFFFF',
-                        borderRadius: '8px',
-                        padding: '2px',
+                        borderRadius: '10px',
+                        padding: '4px 10px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         overflow: 'hidden'
                       }}>
                         <img 
-                          src={`/images/amc/${amc.slug}.svg`} 
+                          src={amc.logo || `/images/amc/${amc.slug}.svg`} 
                           alt={`${amc.name} Logo`} 
-                          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                          style={{ maxWidth: '165px', maxHeight: '44px', width: 'auto', height: 'auto', objectFit: 'contain' }}
                           loading="lazy"
                         />
                       </div>
