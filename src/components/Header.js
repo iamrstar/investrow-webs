@@ -121,7 +121,7 @@ export default function Header({ onOpenConsultModal }) {
           <img 
             src="/investrow-logo.png" 
             alt="Investrow Financial Services" 
-            style={{ height: '50px', width: 'auto', objectFit: 'contain' }}
+            style={{ maxHeight: '46px', width: 'auto', objectFit: 'contain' }}
           />
         </a>
 
@@ -177,16 +177,24 @@ export default function Header({ onOpenConsultModal }) {
 
           {/* Mobile Menu Toggle */}
           <button 
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             style={{
               display: 'none',
-              background: 'none',
-              padding: '6px',
-              color: 'var(--navy-deep)'
+              background: 'rgba(0, 138, 216, 0.08)',
+              border: '1px solid rgba(0, 138, 216, 0.15)',
+              borderRadius: '10px',
+              width: '42px',
+              height: '42px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--navy-deep)',
+              cursor: 'pointer'
             }}
             className="mobile-toggle-btn"
           >
-            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            {mobileMenuOpen ? <X size={24} style={{ color: 'var(--accent-orange)' }} /> : <Menu size={24} style={{ color: 'var(--navy-deep)' }} />}
           </button>
         </div>
       </div>
@@ -196,46 +204,120 @@ export default function Header({ onOpenConsultModal }) {
         <div style={{
           background: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           borderBottom: '2px solid var(--primary-blue)',
-          padding: '20px 24px',
+          padding: '20px 20px 24px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '16px'
+          gap: '4px',
+          maxHeight: 'calc(100vh - 120px)',
+          overflowY: 'auto',
+          boxShadow: '0 20px 40px rgba(10, 22, 40, 0.12)'
         }}>
-          <a href="/about" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            About Us
-          </a>
-          <a href="/team" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            Our Team
-          </a>
-          <a href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            Services
-          </a>
-          <a href="/#calculators" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            Goal Calculators
-          </a>
-          <a href="/#testimonials" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            Client Stories
-          </a>
-          <a href="/awards" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            Awards & Honors
-          </a>
-          <a href="/#why-us" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            Why Investrow
-          </a>
-          <a href="/#partners" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            AMC Partners
-          </a>
-          <a href="/#faq" onClick={() => setMobileMenuOpen(false)} style={{ fontWeight: 600, fontSize: '16px', color: 'var(--navy-deep)' }}>
-            FAQs
-          </a>
+          {[
+            { label: 'About Us', href: '/about', badge: null },
+            { label: 'Our Team', href: '/team', badge: 'Leadership' },
+            { label: 'Mutual Fund Services', href: '/#services', badge: null },
+            { label: 'Smart Goal Calculators', href: '/#calculators', badge: 'Interactive' },
+            { label: 'Client Stories & Reviews', href: '/#testimonials', badge: '3k+ Families' },
+            { label: 'Awards & Honors', href: '/awards', badge: null },
+            { label: 'Why Investrow', href: '/#why-us', badge: null },
+            { label: '40+ AMC Partners', href: '/#partners', badge: 'SEBI Regulated' },
+            { label: 'Frequently Asked Questions', href: '/#faq', badge: null }
+          ].map((item) => (
+            <a 
+              key={item.label}
+              href={item.href} 
+              onClick={() => setMobileMenuOpen(false)} 
+              style={{ 
+                fontWeight: 600, 
+                fontSize: '15px', 
+                color: 'var(--navy-deep)',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                transition: 'background 0.2s ease',
+                textDecoration: 'none'
+              }}
+              onTouchStart={(e) => e.currentTarget.style.background = '#F1F5F9'}
+              onTouchEnd={(e) => e.currentTarget.style.background = 'transparent'}
+            >
+              <span>{item.label}</span>
+              {item.badge ? (
+                <span style={{
+                  fontSize: '10.5px',
+                  fontWeight: 700,
+                  padding: '2px 8px',
+                  borderRadius: '9999px',
+                  background: 'rgba(0, 138, 216, 0.1)',
+                  color: 'var(--primary-blue-dark)'
+                }}>
+                  {item.badge}
+                </span>
+              ) : (
+                <ArrowRight size={14} style={{ color: '#94A3B8' }} />
+              )}
+            </a>
+          ))}
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '10px',
+            marginTop: '12px',
+            paddingTop: '14px',
+            borderTop: '1px solid #E2E8F0'
+          }}>
+            <a 
+              href="tel:+919102070777"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '11px',
+                borderRadius: '10px',
+                background: '#F1F5F9',
+                color: 'var(--navy-deep)',
+                fontSize: '13px',
+                fontWeight: 700,
+                textDecoration: 'none'
+              }}
+            >
+              <Phone size={14} style={{ color: 'var(--accent-orange)' }} /> Call Advisor
+            </a>
+            <a 
+              href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20mutual%20fund%20planning"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '11px',
+                borderRadius: '10px',
+                background: '#ECFDF5',
+                color: '#15803D',
+                fontSize: '13px',
+                fontWeight: 700,
+                textDecoration: 'none'
+              }}
+            >
+              <MessageSquare size={14} /> WhatsApp
+            </a>
+          </div>
+
           <button 
+            type="button"
             onClick={() => {
               setMobileMenuOpen(false);
               onOpenConsultModal('Mobile Header Consultation');
             }}
             className="btn-orange"
-            style={{ width: '100%', marginTop: '8px' }}
+            style={{ width: '100%', marginTop: '10px', padding: '13px' }}
           >
             Book Free Advisory Call <ArrowRight size={16} />
           </button>

@@ -12,16 +12,16 @@ export default function StickyMobileBar({ onOpenCallbackModal }) {
         bottom: 0,
         left: 0,
         right: 0,
-        background: 'rgba(255, 255, 255, 0.95)',
+        background: 'rgba(255, 255, 255, 0.96)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(226, 232, 240, 0.8)',
-        padding: '12px 16px',
+        borderTop: '1px solid rgba(226, 232, 240, 0.85)',
+        padding: '10px 16px calc(10px + env(safe-area-inset-bottom, 0px))',
         zIndex: 99,
-        boxShadow: '0 -8px 24px rgba(10, 22, 40, 0.08)'
+        boxShadow: '0 -8px 24px rgba(10, 22, 40, 0.1)'
       }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
         <a 
           href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20your%20services"
           target="_blank"
@@ -35,7 +35,8 @@ export default function StickyMobileBar({ onOpenCallbackModal }) {
             color: 'white',
             fontWeight: 700,
             fontSize: '13.5px',
-            padding: '12px',
+            padding: '11px',
+            minHeight: '46px',
             borderRadius: 'var(--radius-full)',
             textDecoration: 'none',
             boxShadow: '0 4px 12px rgba(34, 197, 94, 0.3)',
@@ -64,7 +65,8 @@ export default function StickyMobileBar({ onOpenCallbackModal }) {
             color: 'white',
             fontWeight: 700,
             fontSize: '13.5px',
-            padding: '12px',
+            padding: '11px',
+            minHeight: '46px',
             borderRadius: 'var(--radius-full)',
             border: 'none',
             cursor: 'pointer',

@@ -195,7 +195,7 @@ export default function HeroSection({ onLeadSubmitted }) {
   return (
     <section style={{
       background: 'linear-gradient(145deg, #FAFCFF 0%, #FFFFFF 30%, #FFFBF5 70%, #F8FAFC 100%)',
-      padding: '72px 0 88px',
+      padding: 'clamp(40px, 6vw, 72px) 0 clamp(44px, 8vw, 88px)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -352,22 +352,22 @@ export default function HeroSection({ onLeadSubmitted }) {
             </div>
 
             <h1 style={{
-              fontSize: 'clamp(32px, 5vw, 48px)',
+              fontSize: 'clamp(26px, 5vw, 48px)',
               fontWeight: 800,
               letterSpacing: '-0.03em',
-              marginBottom: '22px',
+              marginBottom: '20px',
               color: 'var(--navy-deep)',
-              lineHeight: 1.15
+              lineHeight: 1.18
             }}>
               Make Your Money Work Harder. <br />
               <span className="gradient-text-orange">Build Wealth with Smart Mutual Fund Investing.</span>
             </h1>
 
             <p style={{
-              fontSize: '18px',
+              fontSize: 'clamp(15px, 2.5vw, 18px)',
               color: 'var(--text-secondary)',
-              lineHeight: 1.7,
-              marginBottom: '36px',
+              lineHeight: 1.65,
+              marginBottom: '32px',
               maxWidth: '540px'
             }}>
               Move beyond idle savings — get personalized Mutual Fund SIPs, disciplined compounding, and expert AMFI certified guidance tailored to your family's future milestones.
@@ -376,9 +376,9 @@ export default function HeroSection({ onLeadSubmitted }) {
             {/* Quick Feature Checklist */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '12px 16px',
-              marginBottom: '40px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '10px 14px',
+              marginBottom: '32px'
             }}>
               {[
                 'Goal-Based Scheme Selection',
@@ -390,10 +390,10 @@ export default function HeroSection({ onLeadSubmitted }) {
                   display: 'flex', 
                   alignItems: 'center', 
                   gap: '10px', 
-                  fontSize: '14px', 
+                  fontSize: '13.5px', 
                   fontWeight: 600, 
                   color: 'var(--navy-deep)',
-                  padding: '8px 0'
+                  padding: '4px 0'
                 }}>
                   <div style={{
                     width: '22px',
@@ -414,23 +414,21 @@ export default function HeroSection({ onLeadSubmitted }) {
 
             {/* Stats Row */}
             <div style={{
-              display: 'flex',
-              alignItems: 'stretch',
-              gap: '16px',
-              paddingTop: '28px',
-              borderTop: '1px solid var(--border-subtle)',
-              flexWrap: 'wrap'
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '12px',
+              paddingTop: '24px',
+              borderTop: '1px solid var(--border-subtle)'
             }}>
               <div style={{
                 background: 'rgba(0, 138, 216, 0.04)',
                 border: '1px solid rgba(0, 138, 216, 0.1)',
                 borderRadius: 'var(--radius-md)',
-                padding: '16px 20px',
-                flex: '1',
-                minWidth: '110px'
+                padding: '14px 12px',
+                textAlign: 'center'
               }}>
                 <div style={{ 
-                  fontSize: '30px', 
+                  fontSize: 'clamp(22px, 3.5vw, 30px)', 
                   fontWeight: 800, 
                   background: 'linear-gradient(135deg, #0284C7, #0EA5E9)',
                   WebkitBackgroundClip: 'text',
@@ -439,19 +437,18 @@ export default function HeroSection({ onLeadSubmitted }) {
                 }}>
                   {yearsCount}+
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Years Advisory Exp.</div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Years Advisory</div>
               </div>
               
               <div style={{
                 background: 'rgba(255, 106, 19, 0.04)',
                 border: '1px solid rgba(255, 106, 19, 0.1)',
                 borderRadius: 'var(--radius-md)',
-                padding: '16px 20px',
-                flex: '1',
-                minWidth: '110px'
+                padding: '14px 12px',
+                textAlign: 'center'
               }}>
                 <div style={{ 
-                  fontSize: '30px', 
+                  fontSize: 'clamp(22px, 3.5vw, 30px)', 
                   fontWeight: 800, 
                   background: 'linear-gradient(135deg, #FF8A3D, #E85B07)',
                   WebkitBackgroundClip: 'text',
@@ -460,26 +457,25 @@ export default function HeroSection({ onLeadSubmitted }) {
                 }}>
                   ₹{aumCount}+ Cr
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Total AUM Advised</div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Advised AUM</div>
               </div>
               
               <div style={{
                 background: 'rgba(16, 185, 129, 0.04)',
                 border: '1px solid rgba(16, 185, 129, 0.1)',
                 borderRadius: 'var(--radius-md)',
-                padding: '16px 20px',
-                flex: '1',
-                minWidth: '110px'
+                padding: '14px 12px',
+                textAlign: 'center'
               }}>
                 <div style={{ 
-                  fontSize: '30px', 
+                  fontSize: 'clamp(22px, 3.5vw, 30px)', 
                   fontWeight: 800, 
                   color: 'var(--navy-deep)',
                   lineHeight: 1 
                 }}>
                   {familyCount.toLocaleString('en-IN')}+
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Happy Investors</div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Happy Families</div>
               </div>
             </div>
           </div>
@@ -503,15 +499,20 @@ export default function HeroSection({ onLeadSubmitted }) {
               }} />
 
               {/* View Switcher Tabs (Equal Flex Proportions) */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '8px 14px',
-                background: '#F8FAFC',
-                borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
-                overflowX: 'auto'
-              }}>
+              <div 
+                className="hero-slider-tabs"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 12px',
+                  background: '#F8FAFC',
+                  borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
+                  overflowX: 'auto',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'none'
+                }}
+              >
                 {HERO_SLIDES.map((slide, idx) => (
                   <button
                     key={slide.id}
@@ -554,7 +555,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                 onMouseLeave={() => setIsPaused(false)}
                 style={{
                   position: 'relative',
-                  height: '290px',
+                  height: 'clamp(230px, 46vw, 290px)',
                   width: '100%',
                   overflow: 'hidden',
                   backgroundColor: '#0A1628'
@@ -718,6 +719,8 @@ export default function HeroSection({ onLeadSubmitted }) {
                   position: 'absolute',
                   bottom: '12px',
                   left: '12px',
+                  maxWidth: '47%',
+                  overflow: 'hidden',
                   background: 'rgba(255, 255, 255, 0.96)',
                   backdropFilter: 'blur(12px)',
                   WebkitBackdropFilter: 'blur(12px)',
@@ -765,6 +768,8 @@ export default function HeroSection({ onLeadSubmitted }) {
                   position: 'absolute',
                   bottom: '12px',
                   right: '12px',
+                  maxWidth: '47%',
+                  overflow: 'hidden',
                   background: 'rgba(255, 255, 255, 0.96)',
                   backdropFilter: 'blur(12px)',
                   WebkitBackdropFilter: 'blur(12px)',
@@ -847,7 +852,7 @@ export default function HeroSection({ onLeadSubmitted }) {
               </div>
 
               {/* Consultation Booking Area */}
-              <div style={{ padding: '20px 24px 22px' }}>
+              <div style={{ padding: 'clamp(16px, 4vw, 22px)' }}>
                 {!submitted ? (
                   <>
                     <div style={{

@@ -317,7 +317,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
 
   return (
     <section id="calculators" style={{
-      padding: '96px 0',
+      padding: 'clamp(48px, 6vw, 96px) 0',
       background: 'linear-gradient(180deg, #F1F5F9 0%, #F8FAFC 50%, #FFFFFF 100%)',
       position: 'relative'
     }}>
@@ -393,16 +393,19 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
         </div>
 
         {/* 4-Tab Mode Switcher */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          maxWidth: '680px',
-          margin: '0 auto 36px',
-          background: 'rgba(226, 232, 240, 0.6)',
-          padding: '4px',
-          borderRadius: 'var(--radius-full)',
-          boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
-        }}>
+        <div 
+          className="calc-tab-switcher"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            maxWidth: '680px',
+            margin: '0 auto 36px',
+            background: 'rgba(226, 232, 240, 0.6)',
+            padding: '4px',
+            borderRadius: 'var(--radius-full)',
+            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
+          }}
+        >
           {[
             { id: 'sip', label: 'Monthly SIP', icon: TrendingUp },
             { id: 'stepup', label: 'Step-Up SIP', icon: Flame, badge: 'Popular' },
@@ -462,7 +465,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
           
           {/* Left Column: Sliders Card */}
           <div style={{
-            padding: '36px',
+            padding: 'clamp(18px, 4vw, 36px)',
             background: '#FFFFFF',
             borderRadius: 'var(--radius-xl)',
             border: '1px solid rgba(226, 232, 240, 0.9)',
@@ -843,7 +846,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
           <div style={{
             background: 'linear-gradient(155deg, #0A1628 0%, #0F1E36 50%, #0A1628 100%)',
             borderRadius: 'var(--radius-xl)',
-            padding: '32px',
+            padding: 'clamp(18px, 4vw, 32px)',
             color: '#FFFFFF',
             display: 'flex',
             flexDirection: 'column',

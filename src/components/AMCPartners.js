@@ -62,7 +62,7 @@ export default function AMCPartners({ onOpenConsultModal }) {
 
   return (
     <section id="partners" style={{
-      padding: '56px 0 64px',
+      padding: 'clamp(44px, 6vw, 56px) 0 clamp(48px, 6vw, 64px)',
       background: 'linear-gradient(180deg, #060E1A 0%, #0A1628 50%, #0D1B2A 100%)',
       color: 'white',
       overflow: 'hidden',
@@ -143,10 +143,10 @@ export default function AMCPartners({ onOpenConsultModal }) {
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '24px',
+          gap: '12px 20px',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          padding: '10px 24px',
+          padding: '10px 18px',
           background: 'rgba(255, 255, 255, 0.03)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '16px',
@@ -173,8 +173,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
         overflow: 'hidden',
         marginBottom: '16px',
         position: 'relative',
-        maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)'
+        maskImage: 'linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%)'
       }}>
         <div className="marquee-track" style={{ display: 'flex', width: 'max-content', flexWrap: 'nowrap' }}>
           {repeatedRow1.map((p, idx) => (
@@ -215,8 +215,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
         overflow: 'hidden',
         marginBottom: '16px',
         position: 'relative',
-        maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)'
+        maskImage: 'linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%)'
       }}>
         <div className="marquee-track-reverse" style={{ display: 'flex', width: 'max-content', flexWrap: 'nowrap' }}>
           {repeatedRow2.map((p, idx) => (
@@ -257,8 +257,8 @@ export default function AMCPartners({ onOpenConsultModal }) {
         overflow: 'hidden',
         marginBottom: '32px',
         position: 'relative',
-        maskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 48px, black calc(100% - 48px), transparent 100%)'
+        maskImage: 'linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%)'
       }}>
         <div className="marquee-track" style={{ display: 'flex', width: 'max-content', flexWrap: 'nowrap' }}>
           {repeatedRow3.map((p, idx) => (

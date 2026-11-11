@@ -62,7 +62,10 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
         background: 'rgba(255, 255, 255, 0.98)',
         width: '100%',
         maxWidth: '500px',
-        padding: '40px',
+        maxHeight: '92vh',
+        overflowY: 'auto',
+        WebkitOverflowScrolling: 'touch',
+        padding: 'clamp(20px, 4vw, 36px)',
         position: 'relative'
       }}>
         {/* Top accent line */}

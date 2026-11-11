@@ -195,7 +195,7 @@ export default function ServicesSection({ onSelectService }) {
 
   return (
     <section id="services" style={{ 
-      padding: '96px 0 104px', 
+      padding: 'clamp(48px, 6vw, 96px) 0 clamp(56px, 8vw, 104px)', 
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%)',
       position: 'relative'
     }}>
@@ -269,13 +269,16 @@ export default function ServicesSection({ onSelectService }) {
         </div>
 
         {/* Category Filter Tabs */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: '10px',
-          marginBottom: '44px'
-        }}>
+        <div 
+          className="services-filter-tabs"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '10px',
+            marginBottom: '40px'
+          }}
+        >
           {CATEGORIES.map(cat => {
             const isActive = activeCategory === cat.id;
             return (
@@ -283,15 +286,17 @@ export default function ServicesSection({ onSelectService }) {
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 style={{
-                  padding: '9px 20px',
+                  padding: '9px 18px',
                   borderRadius: '9999px',
-                  fontSize: '13.5px',
+                  fontSize: '13px',
                   fontWeight: 700,
                   border: '1.5px solid',
                   borderColor: isActive ? 'var(--primary-blue)' : '#E2E8F0',
                   background: isActive ? 'var(--primary-blue)' : '#FFFFFF',
                   color: isActive ? '#FFFFFF' : '#475569',
                   cursor: 'pointer',
+                  flexShrink: 0,
+                  whiteSpace: 'nowrap',
                   transition: 'all 0.2s ease',
                   boxShadow: isActive ? '0 4px 14px rgba(0, 138, 216, 0.25)' : '0 2px 6px rgba(0,0,0,0.02)'
                 }}
@@ -317,8 +322,8 @@ export default function ServicesSection({ onSelectService }) {
         {/* Visual Cards Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '28px'
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
+          gap: '24px'
         }}>
           {filteredServices.map((s) => (
             <div 

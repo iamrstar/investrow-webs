@@ -529,7 +529,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* ============================================
-   MOBILE RESPONSIVE UTILITIES
+   MOBILE RESPONSIVE UTILITIES & ENHANCEMENTS
    ============================================ */
 @media (max-width: 1024px) {
   .hide-mobile {
@@ -539,6 +539,163 @@ input[type="range"]::-webkit-slider-thumb:hover {
     display: flex !important;
     align-items: center;
     justify-content: center;
+  }
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .milestone-item {
+    border-right: none !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .calc-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Prevent iOS auto-zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Compact container padding on mobile for maximum usable width */
+  .container {
+    padding: 0 16px !important;
+  }
+
+  /* Show sticky bottom bar & reserve padding so footer/content is never covered */
+  .mobile-sticky-bar {
+    display: block !important;
+  }
+  body {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* Mobile range slider thumb touch ergonomics */
+  input[type="range"]::-webkit-slider-thumb {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* AMC marquee cards tuned for mobile screen density */
+  .amc-marquee-card {
+    margin: 0 6px !important;
+    padding: 6px 10px !important;
+    border-radius: 12px !important;
+  }
+  .amc-marquee-card > div {
+    width: 155px !important;
+    height: 48px !important;
+  }
+  .amc-marquee-card img {
+    max-width: 140px !important;
+    max-height: 38px !important;
+  }
+
+  /* AI Wealth Advisor FAB floating position above sticky bar */
+  .ai-advisor-fab-container {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 14px !important;
+  }
+  .ai-advisor-fab-btn {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    box-shadow: 0 8px 24px rgba(255, 106, 19, 0.45) !important;
+  }
+  .ai-chat-modal {
+    bottom: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: calc(100vh - 56px) !important;
+    max-height: calc(100vh - 56px) !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-inputs-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .alpha-columns {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .calc-tab-switcher {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    border-radius: 14px !important;
+    padding: 6px !important;
+  }
+  .calc-tab-switcher button {
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-badge-top-left, .hero-badge-top-right {
+    font-size: 10px !important;
+    padding: 4px 8px !important;
+  }
+  .hero-badge-bottom-left, .hero-badge-bottom-right {
+    padding: 6px 10px !important;
+  }
+  .services-filter-tabs {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  .services-filter-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0 12px !important;
+  }
+}
+
+/* Touch feedback for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .btn-orange:active, .btn-blue:active, .btn-outline:active {
+    transform: scale(0.97) !important;
   }
 }
 

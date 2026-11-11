@@ -56,7 +56,7 @@ const testimonials = [
 export default function TestimonialsSection({ onOpenConsultModal }) {
   return (
     <section id="testimonials" style={{
-      padding: '96px 0',
+      padding: 'clamp(48px, 6vw, 96px) 0',
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%)',
       position: 'relative',
       overflow: 'hidden'
@@ -246,13 +246,13 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
         <div style={{
           background: 'linear-gradient(135deg, #0A1628 0%, #0F1E36 100%)',
           borderRadius: 'var(--radius-xl)',
-          padding: '36px 40px',
+          padding: 'clamp(22px, 4vw, 36px) clamp(18px, 4vw, 40px)',
           color: '#FFFFFF',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '24px',
+          gap: '20px',
           boxShadow: '0 20px 50px rgba(10, 22, 40, 0.2)',
           border: '1px solid rgba(255, 255, 255, 0.08)'
         }}>

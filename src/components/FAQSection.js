@@ -31,7 +31,7 @@ export default function FAQSection() {
 
   return (
     <section id="faq" style={{ 
-      padding: '100px 0', 
+      padding: 'clamp(48px, 6vw, 100px) 0', 
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%)',
       position: 'relative'
     }}>
@@ -51,14 +51,14 @@ export default function FAQSection() {
 
       <div className="container" style={{ maxWidth: '820px', position: 'relative', zIndex: 2 }}>
         
-        <div style={{ textAlign: 'center', marginBottom: '52px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 5vw, 52px)' }}>
           <div className="badge-blue" style={{ marginBottom: '16px' }}>
             <HelpCircle size={14} /> Clear Answers & Transparency
           </div>
-          <h2 style={{ fontSize: '38px', fontWeight: 800, marginBottom: '16px', color: 'var(--navy-deep)', letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: 'clamp(24px, 5vw, 36px)', fontWeight: 800, marginBottom: '16px', color: 'var(--navy-deep)', letterSpacing: '-0.02em', lineHeight: 1.25 }}>
             Frequently Asked Questions on Mutual Funds
           </h2>
-          <p style={{ fontSize: '16px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '15.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
             Everything you need to know about disciplined SIP compounding, taxation, scheme selection, and our advisory process.
           </p>
         </div>
@@ -99,14 +99,14 @@ export default function FAQSection() {
                   onClick={() => setOpenIndex(isOpen ? -1 : idx)}
                   style={{
                     width: '100%',
-                    padding: '22px 24px',
-                    paddingLeft: isOpen ? '28px' : '24px',
+                    padding: 'clamp(14px, 3vw, 20px) clamp(16px, 3vw, 24px)',
+                    paddingLeft: isOpen ? 'clamp(20px, 3.5vw, 28px)' : 'clamp(16px, 3vw, 24px)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     background: 'none',
                     textAlign: 'left',
-                    fontSize: '15.5px',
+                    fontSize: 'clamp(14px, 2.5vw, 15.5px)',
                     fontWeight: 700,
                     color: isOpen ? 'var(--primary-blue)' : 'var(--navy-deep)',
                     transition: 'var(--transition-smooth)',

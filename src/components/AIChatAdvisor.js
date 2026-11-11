@@ -114,12 +114,15 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
   return (
     <>
       {/* Floating Toggle Button */}
-      <div style={{
-        position: 'fixed',
-        bottom: '28px',
-        right: '28px',
-        zIndex: 150
-      }}>
+      <div 
+        className="ai-advisor-fab-container"
+        style={{
+          position: 'fixed',
+          bottom: '28px',
+          right: '28px',
+          zIndex: 150
+        }}
+      >
         {!isOpen ? (
           <button
             onClick={() => setIsOpen(true)}
@@ -139,7 +142,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
               position: 'relative',
               overflow: 'hidden'
             }}
-            className="chat-toggle-btn animate-float"
+            className="chat-toggle-btn ai-advisor-fab-btn animate-float"
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
               e.currentTarget.style.boxShadow = '0 16px 40px rgba(255, 106, 19, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3)';
@@ -150,7 +153,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
             }}
           >
             <Sparkles size={18} />
-            <span>AI Wealth Advisor</span>
+            <span className="ai-advisor-fab-text">AI Wealth Advisor</span>
             <div className="pulse-dot" style={{ background: '#FFFFFF' }} />
           </button>
         ) : null}
@@ -158,7 +161,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
 
       {/* Chat Window Modal */}
       {isOpen && (
-        <div className="animate-fade-in" style={{
+        <div className="animate-fade-in ai-chat-modal" style={{
           position: 'fixed',
           bottom: '24px',
           right: '24px',

@@ -48,15 +48,15 @@ export default function Footer() {
       {/* Top Credentials Ribbon */}
       <div style={{
         borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-        padding: '32px 0',
+        padding: 'clamp(20px, 4vw, 32px) 0',
         background: 'rgba(255, 255, 255, 0.01)',
         position: 'relative',
         zIndex: 2
       }}>
         <div className="container" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '24px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+          gap: '20px',
           alignItems: 'center'
         }}>
           {[
