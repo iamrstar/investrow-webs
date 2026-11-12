@@ -72,21 +72,33 @@ export default function Header({ onOpenConsultModal }) {
             <span className="hide-mobile" style={{ fontSize: '11px' }}>CIN: U67190JH2021PTC016813</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <a 
-              href="tel:+919102070777" 
-              style={{ 
-                color: '#F8FAFC', 
-                fontWeight: 600, 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '6px',
-                fontSize: '12px',
-                transition: 'color 0.2s'
-              }}
-            >
-              <Phone size={12} style={{ color: 'var(--accent-orange)' }} /> +91 91020 70777
-            </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Phone size={12} style={{ color: 'var(--accent-orange)' }} />
+              <a 
+                href="tel:+919102070777" 
+                style={{ 
+                  color: '#F8FAFC', 
+                  fontWeight: 600, 
+                  fontSize: '12px',
+                  transition: 'color 0.2s'
+                }}
+              >
+                +91 91020 70777
+              </a>
+              <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '11px' }}>/</span>
+              <a 
+                href="tel:+919102050555" 
+                style={{ 
+                  color: '#F8FAFC', 
+                  fontWeight: 600, 
+                  fontSize: '12px',
+                  transition: 'color 0.2s'
+                }}
+              >
+                +91 91020 50555
+              </a>
+            </div>
             <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
             <a 
               href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20financial%20planning"
@@ -274,19 +286,23 @@ export default function Header({ onOpenConsultModal }) {
               href="tel:+919102070777"
               style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '6px',
-                padding: '11px',
+                gap: '2px',
+                padding: '10px 8px',
                 borderRadius: '10px',
                 background: '#F1F5F9',
                 color: 'var(--navy-deep)',
-                fontSize: '13px',
+                fontSize: '12.5px',
                 fontWeight: 700,
                 textDecoration: 'none'
               }}
             >
-              <Phone size={14} style={{ color: 'var(--accent-orange)' }} /> Call Advisor
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <Phone size={13} style={{ color: 'var(--accent-orange)' }} /> Call Desk
+              </span>
+              <span style={{ fontSize: '11px', color: '#64748B', fontWeight: 600 }}>91020 70777 / 50555</span>
             </a>
             <a 
               href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20mutual%20fund%20planning"
@@ -294,19 +310,23 @@ export default function Header({ onOpenConsultModal }) {
               rel="noopener noreferrer"
               style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '6px',
-                padding: '11px',
+                gap: '2px',
+                padding: '10px 8px',
                 borderRadius: '10px',
                 background: '#ECFDF5',
                 color: '#15803D',
-                fontSize: '13px',
+                fontSize: '12.5px',
                 fontWeight: 700,
                 textDecoration: 'none'
               }}
             >
-              <MessageSquare size={14} /> WhatsApp
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <MessageSquare size={13} /> WhatsApp
+              </span>
+              <span style={{ fontSize: '11px', color: '#059669', fontWeight: 600 }}>Instant Chat</span>
             </a>
           </div>
 

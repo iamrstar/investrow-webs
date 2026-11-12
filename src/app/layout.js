@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
     url: 'https://www.investrow.in',
     logo: 'https://www.investrow.in/investrow-logo.png',
     description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) and BSE Member (55533) providing disciplined mutual fund SIP planning, goal-based portfolio allocation, and tax-saving ELSS solutions.',
-    telephone: '+919102070777',
+    telephone: ['+919102070777', '+919102050555'],
     email: 'info@investrow.in',
     address: {
       '@type': 'PostalAddress',
