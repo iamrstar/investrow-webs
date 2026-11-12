@@ -553,7 +553,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 @media (max-width: 960px) {
-  .about-hero-grid {
+  .about-hero-grid,
+  .privacy-grid,
+  .terms-grid {
     grid-template-columns: 1fr !important;
   }
   .milestone-item {
