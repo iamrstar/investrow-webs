@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
       {/* Navigation Header */}
       <Header onOpenConsultModal={handleOpenConsultModal} />
 

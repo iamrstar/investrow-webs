@@ -374,7 +374,7 @@ export default function HeroSection({ onLeadSubmitted }) {
             </p>
 
             {/* Quick Feature Checklist */}
-            <div style={{
+            <div className="hero-checklist-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: '10px 14px',
@@ -413,7 +413,7 @@ export default function HeroSection({ onLeadSubmitted }) {
             </div>
 
             {/* Stats Row */}
-            <div style={{
+            <div className="hero-stats-row" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '12px',
@@ -510,7 +510,9 @@ export default function HeroSection({ onLeadSubmitted }) {
                   borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
                   overflowX: 'auto',
                   WebkitOverflowScrolling: 'touch',
-                  scrollbarWidth: 'none'
+                  scrollbarWidth: 'none',
+                  maxWidth: '100%',
+                  minWidth: 0
                 }}
               >
                 {HERO_SLIDES.map((slide, idx) => (
@@ -519,7 +521,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                     type="button"
                     onClick={() => setCurrentSlide(idx)}
                     style={{
-                      flex: '1',
+                      flex: '0 0 auto',
                       padding: '7px 12px',
                       borderRadius: '9999px',
                       fontSize: '12px',

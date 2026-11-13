@@ -94,10 +94,10 @@ export default function DhanbadClient() {
 
       <main style={{ flex: 1 }}>
         {/* HERO SECTION */}
-        <section style={{
+        <section className="compact-mobile-hero" style={{
           background: 'linear-gradient(145deg, #071224 0%, #0A1628 50%, #061122 100%)',
           color: '#FFFFFF',
-          padding: 'clamp(48px, 6vw, 76px) 0 clamp(44px, 6vw, 68px)',
+          padding: 'clamp(36px, 5vw, 68px) 0 clamp(32px, 5vw, 60px)',
           position: 'relative',
           overflow: 'hidden',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
@@ -129,20 +129,20 @@ export default function DhanbadClient() {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              fontSize: '13px',
+              gap: '6px',
+              fontSize: '12px',
               color: '#94A3B8',
-              marginBottom: '20px'
+              marginBottom: '14px'
             }}>
               <Link href="/" style={{ color: '#94A3B8', textDecoration: 'none' }}>Home</Link>
-              <ChevronRight size={13} />
-              <span style={{ color: '#38BDF8', fontWeight: 600 }}>Mutual Fund Consultant in Dhanbad</span>
+              <ChevronRight size={12} />
+              <span style={{ color: '#38BDF8', fontWeight: 600 }}>Dhanbad Mutual Fund Desk</span>
             </div>
 
             <div style={{
               display: 'grid',
               gridTemplateColumns: '1.15fr 0.85fr',
-              gap: '40px',
+              gap: '32px',
               alignItems: 'center'
             }} className="hero-grid">
               
@@ -151,25 +151,25 @@ export default function DhanbadClient() {
                 <div style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '6px 14px',
+                  gap: '6px',
+                  padding: '5px 12px',
                   borderRadius: '9999px',
-                  background: 'rgba(0, 138, 216, 0.15)',
-                  border: '1px solid rgba(0, 138, 216, 0.35)',
+                  background: 'rgba(0, 138, 216, 0.2)',
+                  border: '1px solid rgba(56, 189, 248, 0.4)',
                   color: '#38BDF8',
-                  fontSize: '12px',
+                  fontSize: '11.5px',
                   fontWeight: 700,
-                  marginBottom: '16px'
+                  marginBottom: '14px'
                 }}>
-                  <MapPin size={13} style={{ color: '#FF6A13' }} />
-                  <span>Dhanbad’s Premier AMFI Registered MFD • ARN-194720</span>
+                  <MapPin size={12} style={{ color: '#FF6A13' }} />
+                  <span>Dhanbad’s Premier AMFI MFD • ARN-194720</span>
                 </div>
 
                 <h1 style={{
-                  fontSize: 'clamp(28px, 4.5vw, 44px)',
+                  fontSize: 'clamp(24px, 4.5vw, 42px)',
                   fontWeight: 800,
                   lineHeight: 1.2,
-                  marginBottom: '18px',
+                  marginBottom: '14px',
                   letterSpacing: '-0.02em',
                   color: '#FFFFFF'
                 }}>
@@ -181,44 +181,44 @@ export default function DhanbadClient() {
                 </h1>
 
                 <p style={{
-                  fontSize: 'clamp(15px, 2.5vw, 17px)',
-                  lineHeight: 1.65,
+                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  lineHeight: 1.6,
                   color: '#CBD5E1',
-                  marginBottom: '28px'
+                  marginBottom: '20px'
                 }}>
-                  Looking for trusted, certified mutual fund advisory in Dhanbad? Investrow Financial Services Pvt. Ltd. helps local doctors, mining executives, business owners, and salaried families compound wealth with goal-based SIPs, tax-saving ELSS, and disciplined portfolio rebalancing.
+                  Looking for trusted, certified mutual fund advisory in Dhanbad? Investrow Financial Services helps local doctors, mining executives, business owners, and salaried families compound wealth with goal-based SIPs, tax-saving ELSS, and disciplined portfolio rebalancing.
                 </p>
 
                 {/* Highlights Grid */}
-                <div style={{
+                <div className="dhanbad-highlights-grid" style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: '12px',
-                  marginBottom: '32px'
+                  gap: '10px',
+                  marginBottom: '24px'
                 }}>
                   {[
                     'SEBI & AMFI Registered (ARN-194720)',
                     'BSE StAR MF Member (Code 55533)',
                     '₹250+ Cr AUM & 3,000+ Families',
-                    '23+ Years Combined Financial Expertise',
+                    '23+ Years Financial Expertise',
                     '₹0 Upfront Advisory Fees',
                     'Doorstep & In-Person Dhanbad Desk'
                   ].map((feat, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#F1F5F9', fontWeight: 600 }}>
-                      <CheckCircle2 size={16} style={{ color: '#22C55E', flexShrink: 0 }} />
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', color: '#F1F5F9', fontWeight: 600 }}>
+                      <CheckCircle2 size={15} style={{ color: '#22C55E', flexShrink: 0 }} />
                       <span>{feat}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Direct Action Buttons */}
-                <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+                <div className="hero-action-buttons" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '8px' }}>
                   <button
                     onClick={() => handleOpenConsultModal('Dhanbad Top Consultation')}
                     className="btn-orange"
-                    style={{ padding: '13px 28px', fontSize: '14.5px' }}
+                    style={{ padding: '12px 24px', fontSize: '14px' }}
                   >
-                    Book Free Dhanbad Consultation <ArrowRight size={15} />
+                    Book Free Dhanbad Consultation <ArrowRight size={14} />
                   </button>
                   <a
                     href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20am%20from%20Dhanbad%20and%20looking%20for%20Mutual%20Fund%20advisory"
@@ -226,55 +226,59 @@ export default function DhanbadClient() {
                     rel="noopener noreferrer"
                     className="btn-outline"
                     style={{
-                      padding: '12px 24px',
-                      fontSize: '14px',
+                      padding: '11px 20px',
+                      fontSize: '13.5px',
                       color: '#FFFFFF',
-                      borderColor: 'rgba(255, 255, 255, 0.25)',
-                      textDecoration: 'none'
+                      borderColor: 'rgba(255, 255, 255, 0.3)',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px'
                     }}
                   >
-                    💬 WhatsApp Advisor
+                    <span>💬 WhatsApp Advisor</span>
                   </a>
                 </div>
               </div>
 
               {/* Right Column: Instant Dhanbad Lead Capture Card */}
               <div>
-                <div style={{
+                <div className="compact-mobile-card" style={{
                   background: 'rgba(255, 255, 255, 0.98)',
                   borderRadius: '20px',
-                  padding: 'clamp(20px, 4vw, 32px)',
+                  padding: 'clamp(18px, 4vw, 30px)',
                   color: 'var(--navy-deep)',
                   boxShadow: '0 24px 60px rgba(0, 0, 0, 0.35)',
                   border: '1px solid rgba(0, 138, 216, 0.2)'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
                     <div style={{
-                      width: '40px',
-                      height: '40px',
+                      width: '38px',
+                      height: '38px',
                       borderRadius: '10px',
                       background: 'rgba(0, 138, 216, 0.1)',
                       color: 'var(--primary-blue)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      flexShrink: 0
                     }}>
-                      <Building2 size={20} />
+                      <Building2 size={19} />
                     </div>
                     <div>
-                      <h3 style={{ fontSize: '17px', fontWeight: 800, margin: 0, color: 'var(--navy-deep)' }}>
+                      <h3 style={{ fontSize: '16.5px', fontWeight: 800, margin: 0, color: 'var(--navy-deep)' }}>
                         Connect with Dhanbad Desk
                       </h3>
-                      <p style={{ fontSize: '12px', color: '#64748B', margin: 0 }}>
+                      <p style={{ fontSize: '11.5px', color: '#64748B', margin: 0 }}>
                         Get customized scheme recommendation within 2 hours
                       </p>
                     </div>
                   </div>
 
                   {!leadSubmitted ? (
-                    <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px', color: 'var(--navy-deep)' }}>
+                        <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
                           Your Name *
                         </label>
                         <input
@@ -285,7 +289,7 @@ export default function DhanbadClient() {
                           onChange={(e) => setLeadName(e.target.value)}
                           style={{
                             width: '100%',
-                            padding: '11px 14px',
+                            padding: '10px 12px',
                             borderRadius: '8px',
                             border: '1.5px solid #E2E8F0',
                             fontSize: '14px',
@@ -295,7 +299,7 @@ export default function DhanbadClient() {
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px', color: 'var(--navy-deep)' }}>
+                        <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
                           Mobile / WhatsApp *
                         </label>
                         <div style={{ display: 'flex' }}>
@@ -323,7 +327,7 @@ export default function DhanbadClient() {
                             onChange={(e) => setLeadPhone(e.target.value.replace(/\D/g, ''))}
                             style={{
                               width: '100%',
-                              padding: '11px 14px',
+                              padding: '10px 12px',
                               borderTopRightRadius: '8px',
                               borderBottomRightRadius: '8px',
                               border: '1.5px solid #E2E8F0',
@@ -335,7 +339,7 @@ export default function DhanbadClient() {
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '4px', color: 'var(--navy-deep)' }}>
+                        <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
                           Your Dhanbad Location / Area
                         </label>
                         <select
@@ -343,7 +347,7 @@ export default function DhanbadClient() {
                           onChange={(e) => setLeadArea(e.target.value)}
                           style={{
                             width: '100%',
-                            padding: '11px 14px',
+                            padding: '10px 12px',
                             borderRadius: '8px',
                             border: '1.5px solid #E2E8F0',
                             fontSize: '13.5px',
@@ -365,34 +369,34 @@ export default function DhanbadClient() {
                         type="submit"
                         disabled={leadLoading}
                         className="btn-orange"
-                        style={{ width: '100%', padding: '13px', fontSize: '14.5px', marginTop: '6px' }}
+                        style={{ width: '100%', padding: '12px', fontSize: '14px', marginTop: '4px' }}
                       >
                         {leadLoading ? 'Connecting...' : 'Request Free Dhanbad Call 🚀'}
                       </button>
 
-                      <div style={{ fontSize: '11px', color: '#64748B', textAlign: 'center', marginTop: '4px' }}>
+                      <div style={{ fontSize: '11px', color: '#64748B', textAlign: 'center', marginTop: '2px' }}>
                         🔒 100% Confidential • Official AMFI Registered MFD (ARN-194720)
                       </div>
                     </form>
                   ) : (
-                    <div style={{ textAlign: 'center', padding: '24px 0' }}>
+                    <div style={{ textAlign: 'center', padding: '20px 0' }}>
                       <div style={{
-                        width: '54px',
-                        height: '54px',
+                        width: '50px',
+                        height: '50px',
                         borderRadius: '50%',
                         background: '#DCFCE7',
                         color: '#16A34A',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        margin: '0 auto 14px'
+                        margin: '0 auto 12px'
                       }}>
-                        <CheckCircle2 size={30} />
+                        <CheckCircle2 size={28} />
                       </div>
-                      <h4 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '6px' }}>
+                      <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '6px' }}>
                         Request Received!
                       </h4>
-                      <p style={{ fontSize: '13px', color: '#64748B', marginBottom: '16px' }}>
+                      <p style={{ fontSize: '12.5px', color: '#64748B', marginBottom: '14px' }}>
                         Our senior Dhanbad advisor will call you at <strong>+91 {leadPhone}</strong> shortly.
                       </p>
                       <a
@@ -400,7 +404,7 @@ export default function DhanbadClient() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-blue"
-                        style={{ width: '100%', padding: '12px', fontSize: '13px', display: 'inline-flex', justifyContent: 'center' }}
+                        style={{ width: '100%', padding: '11px', fontSize: '13px', display: 'inline-flex', justifyContent: 'center' }}
                       >
                         Connect Directly on WhatsApp
                       </a>
@@ -414,13 +418,13 @@ export default function DhanbadClient() {
         </section>
 
         {/* LOCAL DHANBAD NEIGHBORHOODS SERVED */}
-        <section style={{ padding: '24px 0', background: '#F1F5F9', borderBottom: '1px solid #E2E8F0' }}>
-          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 700, color: 'var(--navy-deep)' }}>
-              <MapPin size={16} style={{ color: 'var(--primary-blue)' }} />
-              <span>Serving Investors Across Dhanbad:</span>
+        <section style={{ padding: '18px 0', background: '#F1F5F9', borderBottom: '1px solid #E2E8F0' }}>
+          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12.5px', fontWeight: 700, color: 'var(--navy-deep)', whiteSpace: 'nowrap' }}>
+              <MapPin size={15} style={{ color: 'var(--primary-blue)' }} />
+              <span>Serving Across Dhanbad:</span>
             </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <div className="neighborhood-tags-scroll" style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
               {[
                 'Bank More',
                 'Saraidhela',
@@ -436,7 +440,7 @@ export default function DhanbadClient() {
                   borderRadius: '9999px',
                   background: '#FFFFFF',
                   border: '1px solid #CBD5E1',
-                  fontSize: '12px',
+                  fontSize: '11.5px',
                   color: '#475569',
                   fontWeight: 600
                 }}>

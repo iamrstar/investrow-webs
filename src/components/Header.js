@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Phone, MessageSquare, ArrowRight, Menu, X, ShieldCheck } from 'lucide-react';
 
 export default function Header({ onOpenConsultModal }) {
@@ -18,7 +19,7 @@ export default function Header({ onOpenConsultModal }) {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: scrolled ? 'rgba(255, 255, 255, 0.92)' : 'rgba(255, 255, 255, 0.98)',
+      background: scrolled ? 'rgba(255, 255, 255, 0.94)' : 'rgba(255, 255, 255, 0.98)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       borderBottom: scrolled ? '1px solid rgba(226, 232, 240, 0.6)' : '1px solid rgba(226, 232, 240, 0.3)',
@@ -30,7 +31,7 @@ export default function Header({ onOpenConsultModal }) {
         background: 'linear-gradient(135deg, #0A1628 0%, #0D1B2A 50%, #0A1628 100%)',
         color: '#94A3B8',
         fontSize: '12px',
-        padding: '7px 0',
+        padding: '6px 0',
         borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
         position: 'relative',
         overflow: 'hidden'
@@ -47,95 +48,148 @@ export default function Header({ onOpenConsultModal }) {
           animation: 'shimmer 4s linear infinite'
         }} />
 
-        <div className="container" style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '8px'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <div className="container">
+          {/* Desktop Top Bar View (>= 768px) */}
+          <div className="top-bar-desktop" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <span style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '6px', 
+                fontWeight: 700,
+                background: 'linear-gradient(135deg, #38BDF8, #0EA5E9)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>
+                <ShieldCheck size={14} style={{ color: '#38BDF8' }} /> AMFI Registered MFD (ARN-194720)
+              </span>
+              <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
+              <span style={{ fontSize: '11.5px' }}>BSE Member Code: 55533</span>
+              <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
+              <span style={{ fontSize: '11.5px' }}>CIN: U67190JH2021PTC016813</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <Phone size={12} style={{ color: 'var(--accent-orange)' }} />
+                <a 
+                  href="tel:+919102070777" 
+                  style={{ 
+                    color: '#F8FAFC', 
+                    fontWeight: 600, 
+                    fontSize: '12px',
+                    transition: 'color 0.2s'
+                  }}
+                >
+                  +91 91020 70777
+                </a>
+                <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '11px' }}>/</span>
+                <a 
+                  href="tel:+919102050555" 
+                  style={{ 
+                    color: '#F8FAFC', 
+                    fontWeight: 600, 
+                    fontSize: '12px',
+                    transition: 'color 0.2s'
+                  }}
+                >
+                  +91 91020 50555
+                </a>
+              </div>
+              <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
+              <a 
+                href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20financial%20planning"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ 
+                  color: '#22C55E', 
+                  fontWeight: 600, 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '5px',
+                  fontSize: '12px',
+                  transition: 'color 0.2s'
+                }}
+              >
+                <MessageSquare size={12} /> WhatsApp
+              </a>
+            </div>
+          </div>
+
+          {/* Dedicated Mobile Top Bar View (< 768px) - 1 Clean Line */}
+          <div className="top-bar-mobile" style={{
+            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            fontSize: '11px',
+            lineHeight: 1.2
+          }}>
             <span style={{ 
               display: 'inline-flex', 
               alignItems: 'center', 
-              gap: '6px', 
+              gap: '4px', 
               fontWeight: 700,
-              background: 'linear-gradient(135deg, #38BDF8, #0EA5E9)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
+              color: '#38BDF8'
             }}>
-              <ShieldCheck size={14} style={{ color: '#38BDF8' }} /> AMFI Registered MFD (ARN-194720)
+              <ShieldCheck size={12} style={{ color: '#38BDF8' }} /> AMFI ARN-194720
             </span>
-            <span className="hide-mobile" style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <span className="hide-mobile" style={{ fontSize: '11px' }}>BSE Member Code: 55533</span>
-            <span className="hide-mobile" style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <span className="hide-mobile" style={{ fontSize: '11px' }}>CIN: U67190JH2021PTC016813</span>
-          </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              <Phone size={12} style={{ color: 'var(--accent-orange)' }} />
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <a 
                 href="tel:+919102070777" 
                 style={{ 
                   color: '#F8FAFC', 
                   fontWeight: 600, 
-                  fontSize: '12px',
-                  transition: 'color 0.2s'
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '4px' 
                 }}
               >
-                +91 91020 70777
+                <Phone size={10} style={{ color: 'var(--accent-orange)' }} />
+                <span>+91 91020 70777</span>
               </a>
-              <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '11px' }}>/</span>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>|</span>
               <a 
-                href="tel:+919102050555" 
+                href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20financial%20planning"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{ 
-                  color: '#F8FAFC', 
-                  fontWeight: 600, 
-                  fontSize: '12px',
-                  transition: 'color 0.2s'
+                  color: '#22C55E', 
+                  fontWeight: 700, 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '3px' 
                 }}
               >
-                +91 91020 50555
+                <MessageSquare size={11} /> WhatsApp
               </a>
             </div>
-            <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <a 
-              href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20financial%20planning"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ 
-                color: '#22C55E', 
-                fontWeight: 600, 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '5px',
-                fontSize: '12px',
-                transition: 'color 0.2s'
-              }}
-            >
-              <MessageSquare size={12} /> WhatsApp
-            </a>
           </div>
         </div>
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="container" style={{
+      <div className="container header-nav-container" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '14px 24px',
-        minHeight: '72px'
+        padding: '12px 24px',
+        minHeight: '68px'
       }}>
         {/* Brand Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img 
             src="/investrow-logo.png" 
             alt="Investrow Financial Services" 
-            style={{ maxHeight: '46px', width: 'auto', objectFit: 'contain' }}
+            className="brand-logo-img"
+            style={{ maxHeight: '44px', width: 'auto', objectFit: 'contain' }}
           />
-        </a>
+        </Link>
 
         {/* Desktop Nav Links */}
         <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'nowrap' }}>
@@ -177,17 +231,17 @@ export default function Header({ onOpenConsultModal }) {
           })}
         </nav>
 
-        {/* Action Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Action Button & Mobile Toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button 
             onClick={() => onOpenConsultModal('Header Consultation')}
             className="btn-orange hide-mobile"
-            style={{ padding: '11px 24px', fontSize: '14px' }}
+            style={{ padding: '10px 22px', fontSize: '13.5px' }}
           >
-            Book Free Advisory Call <ArrowRight size={15} />
+            Book Free Advisory Call <ArrowRight size={14} />
           </button>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle Button */}
           <button 
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -195,7 +249,7 @@ export default function Header({ onOpenConsultModal }) {
             style={{
               display: 'none',
               background: 'rgba(0, 138, 216, 0.08)',
-              border: '1px solid rgba(0, 138, 216, 0.15)',
+              border: '1px solid rgba(0, 138, 216, 0.18)',
               borderRadius: '10px',
               width: '42px',
               height: '42px',
@@ -206,23 +260,23 @@ export default function Header({ onOpenConsultModal }) {
             }}
             className="mobile-toggle-btn"
           >
-            {mobileMenuOpen ? <X size={24} style={{ color: 'var(--accent-orange)' }} /> : <Menu size={24} style={{ color: 'var(--navy-deep)' }} />}
+            {mobileMenuOpen ? <X size={22} style={{ color: 'var(--accent-orange)' }} /> : <Menu size={22} style={{ color: 'var(--navy-deep)' }} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div style={{
           background: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           borderBottom: '2px solid var(--primary-blue)',
-          padding: '20px 20px 24px',
+          padding: '16px 16px 24px',
           display: 'flex',
           flexDirection: 'column',
           gap: '4px',
-          maxHeight: 'calc(100vh - 120px)',
+          maxHeight: 'calc(100vh - 110px)',
           overflowY: 'auto',
           boxShadow: '0 20px 40px rgba(10, 22, 40, 0.12)'
         }}>
@@ -230,11 +284,14 @@ export default function Header({ onOpenConsultModal }) {
             { label: 'About Us', href: '/about', badge: null },
             { label: 'Our Team', href: '/team', badge: 'Leadership' },
             { label: 'Mutual Fund Services', href: '/#services', badge: null },
+            { label: 'Dhanbad Advisory Desk', href: '/mutual-fund-consultant-in-dhanbad', badge: 'Local Desk' },
+            { label: 'Investor Services Desk', href: '/investor-services', badge: 'CAMS / KFin' },
+            { label: 'NPS Pension Advisory', href: '/nps-consultant-in-jharkhand', badge: 'Tax Saving' },
+            { label: 'Wealth Creation Blueprint', href: '/wealth-creation', badge: 'FIRE / SIP' },
             { label: 'Smart Goal Calculators', href: '/#calculators', badge: 'Interactive' },
             { label: 'Client Stories & Reviews', href: '/#testimonials', badge: '3k+ Families' },
             { label: 'Awards & Honors', href: '/awards', badge: null },
             { label: 'Why Investrow', href: '/#why-us', badge: null },
-            { label: '40+ AMC Partners', href: '/#partners', badge: 'SEBI Regulated' },
             { label: 'Frequently Asked Questions', href: '/#faq', badge: null }
           ].map((item) => (
             <a 
@@ -243,10 +300,10 @@ export default function Header({ onOpenConsultModal }) {
               onClick={() => setMobileMenuOpen(false)} 
               style={{ 
                 fontWeight: 600, 
-                fontSize: '15px', 
+                fontSize: '14.5px', 
                 color: 'var(--navy-deep)',
-                padding: '12px 14px',
-                borderRadius: '10px',
+                padding: '10px 12px',
+                borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -269,17 +326,18 @@ export default function Header({ onOpenConsultModal }) {
                   {item.badge}
                 </span>
               ) : (
-                <ArrowRight size={14} style={{ color: '#94A3B8' }} />
+                <ArrowRight size={13} style={{ color: '#94A3B8' }} />
               )}
             </a>
           ))}
 
+          {/* Quick Contact Grid in Drawer */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '10px',
-            marginTop: '12px',
-            paddingTop: '14px',
+            marginTop: '10px',
+            paddingTop: '12px',
             borderTop: '1px solid #E2E8F0'
           }}>
             <a 
@@ -302,7 +360,7 @@ export default function Header({ onOpenConsultModal }) {
               <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <Phone size={13} style={{ color: 'var(--accent-orange)' }} /> Call Desk
               </span>
-              <span style={{ fontSize: '11px', color: '#64748B', fontWeight: 600 }}>91020 70777 / 50555</span>
+              <span style={{ fontSize: '10.5px', color: '#64748B', fontWeight: 600 }}>91020 70777 / 50555</span>
             </a>
             <a 
               href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20know%20more%20about%20mutual%20fund%20planning"
@@ -326,7 +384,7 @@ export default function Header({ onOpenConsultModal }) {
               <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <MessageSquare size={13} /> WhatsApp
               </span>
-              <span style={{ fontSize: '11px', color: '#059669', fontWeight: 600 }}>Instant Chat</span>
+              <span style={{ fontSize: '10.5px', color: '#059669', fontWeight: 600 }}>Instant Chat</span>
             </a>
           </div>
 
@@ -337,17 +395,30 @@ export default function Header({ onOpenConsultModal }) {
               onOpenConsultModal('Mobile Header Consultation');
             }}
             className="btn-orange"
-            style={{ width: '100%', marginTop: '10px', padding: '13px' }}
+            style={{ width: '100%', marginTop: '8px', padding: '12px', fontSize: '14px' }}
           >
-            Book Free Advisory Call <ArrowRight size={16} />
+            Book Free Advisory Call <ArrowRight size={15} />
           </button>
         </div>
       )}
 
       <style jsx>{`
         @media (max-width: 768px) {
+          .top-bar-desktop {
+            display: none !important;
+          }
+          .top-bar-mobile {
+            display: flex !important;
+          }
+          .header-nav-container {
+            padding: 8px 16px !important;
+            min-height: 56px !important;
+          }
+          .brand-logo-img {
+            max-height: 38px !important;
+          }
           .mobile-toggle-btn {
-            display: block !important;
+            display: flex !important;
           }
         }
       `}</style>

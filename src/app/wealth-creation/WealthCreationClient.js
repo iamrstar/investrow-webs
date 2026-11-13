@@ -15,19 +15,15 @@ import {
   CheckCircle2, 
   Sparkles, 
   Target, 
-  PieChart, 
   Clock, 
   Zap, 
   HelpCircle, 
   Phone, 
-  Calendar, 
   Flame, 
-  BarChart3, 
-  Lock, 
   Coins, 
   Building2,
   ChevronRight,
-  ChevronDown
+  Lock
 } from 'lucide-react';
 
 export default function WealthCreationClient() {
@@ -91,7 +87,7 @@ export default function WealthCreationClient() {
     }
   };
 
-  // Regular SIP Math
+  // Compounding Math
   const months = years * 12;
   const monthlyRate = expectedReturn / 100 / 12;
   const regularTotalInvested = monthlyInvestment * months;
@@ -99,7 +95,6 @@ export default function WealthCreationClient() {
     monthlyInvestment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate)
   );
 
-  // Step-Up SIP Math (Annual Increase)
   let stepUpTotalInvested = 0;
   let stepUpMaturity = 0;
   const currentStepUpRate = enableStepUp ? stepUpPercent / 100 : 0;
@@ -107,7 +102,6 @@ export default function WealthCreationClient() {
   for (let y = 1; y <= years; y++) {
     const currentYearMonthly = monthlyInvestment * Math.pow(1 + currentStepUpRate, y - 1);
     stepUpTotalInvested += currentYearMonthly * 12;
-    // Each month of this year compounds until the end of year `years`
     for (let m = 1; m <= 12; m++) {
       const remainingMonths = (years - y) * 12 + (12 - m + 1);
       stepUpMaturity += currentYearMonthly * Math.pow(1 + monthlyRate, remainingMonths);
@@ -150,191 +144,294 @@ export default function WealthCreationClient() {
   ];
 
   return (
-    <>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#FFFFFF' }}>
       <Header onOpenConsultModal={handleOpenConsultModal} />
 
-      <main className="min-h-screen bg-[#F8FAFC]">
-        {/* Breadcrumb & AMFI Trust Strip */}
-        <section className="bg-[#0A1628] text-white py-3 border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between text-xs sm:text-sm gap-2">
-            <div className="flex items-center gap-2 text-slate-400">
-              <Link href="/" className="hover:text-white transition">Home</Link>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <span className="text-[#008AD8] font-medium">Wealth Creation</span>
-            </div>
-            <div className="flex items-center gap-4 text-slate-300">
-              <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" /> AMFI Regd. ARN-194720
-              </span>
-              <span className="hidden sm:inline text-slate-500">|</span>
-              <span className="hidden sm:inline">BSE StAR MF Member 55533</span>
-            </div>
-          </div>
-        </section>
+      <main style={{ flex: 1 }}>
+        {/* HERO SECTION */}
+        <section className="compact-mobile-hero" style={{
+          background: 'linear-gradient(145deg, #071224 0%, #0A1628 50%, #061122 100%)',
+          color: '#FFFFFF',
+          padding: 'clamp(36px, 5vw, 68px) 0 clamp(32px, 5vw, 60px)',
+          position: 'relative',
+          overflow: 'hidden',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        }}>
+          {/* Subtle Ambient Glows */}
+          <div style={{
+            position: 'absolute',
+            top: '-20%',
+            right: '10%',
+            width: '550px',
+            height: '550px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(0, 138, 216, 0.18) 0%, transparent 70%)',
+            pointerEvents: 'none'
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '-20%',
+            left: '5%',
+            width: '500px',
+            height: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(255, 106, 19, 0.12) 0%, transparent 70%)',
+            pointerEvents: 'none'
+          }} />
 
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#0A1628] via-[#0D203D] to-[#0A1628] text-white py-16 sm:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(#008AD8_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            {/* Breadcrumb */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '12px',
+              color: '#94A3B8',
+              marginBottom: '14px'
+            }}>
+              <Link href="/" style={{ color: '#94A3B8', textDecoration: 'none' }}>Home</Link>
+              <ChevronRight size={12} />
+              <span style={{ color: '#38BDF8', fontWeight: 600 }}>Wealth Creation Strategies</span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1.15fr 0.85fr',
+              gap: '32px',
+              alignItems: 'center'
+            }} className="hero-grid">
               
               {/* Left Column: Headlines & Value Prop */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#008AD8]/15 border border-[#008AD8]/30 text-[#38BDF8] text-xs sm:text-sm font-semibold tracking-wide">
-                  <Sparkles className="w-4 h-4 text-[#FF6A13]" /> Systematic Wealth Engineering
+              <div>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '5px 12px',
+                  borderRadius: '9999px',
+                  background: 'rgba(0, 138, 216, 0.2)',
+                  border: '1px solid rgba(56, 189, 248, 0.4)',
+                  color: '#38BDF8',
+                  fontSize: '11.5px',
+                  fontWeight: 700,
+                  marginBottom: '14px'
+                }}>
+                  <Sparkles size={12} style={{ color: '#FF6A13' }} />
+                  <span>Systematic Wealth Engineering</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-                  Transform Idle Savings into <br className="hidden sm:inline" />
-                  <span className="bg-gradient-to-r from-[#008AD8] via-[#38BDF8] to-[#FF6A13] bg-clip-text text-transparent">
-                    Multi-Crore Wealth
-                  </span>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 4.5vw, 42px)',
+                  fontWeight: 800,
+                  lineHeight: 1.2,
+                  marginBottom: '14px',
+                  letterSpacing: '-0.02em',
+                  color: '#FFFFFF'
+                }}>
+                  Transform Idle Savings into <span style={{
+                    background: 'linear-gradient(135deg, #FF8A3D 0%, #FF5E00 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}>Multi-Crore Wealth</span>
                 </h1>
 
-                <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                  Fixed deposits and savings accounts silently lose value to inflation and taxes. 
-                  Discover how disciplined asset allocation, step-up SIPs, and India’s growing economic engine 
-                  can compound your hard-earned money into lasting generational freedom.
+                <p style={{
+                  fontSize: 'clamp(14px, 2vw, 16px)',
+                  lineHeight: 1.6,
+                  color: '#CBD5E1',
+                  marginBottom: '20px'
+                }}>
+                  Fixed deposits and savings accounts silently lose value to inflation and taxes. Discover how disciplined asset allocation, step-up SIPs, and India’s growing economic engine can compound your savings into lasting generational wealth.
                 </p>
 
-                {/* Value bullets */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <div className="flex items-center gap-2.5 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <span>Goal-Aligned Portfolio Structuring</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <span>Step-Up SIP Compounding Model</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <span>Zero Advisory Fees on Direct Route</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <span>Quarterly Rebalancing & Tax Harvesting</span>
-                  </div>
+                {/* Highlights Grid */}
+                <div className="dhanbad-highlights-grid" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: '10px',
+                  marginBottom: '24px'
+                }}>
+                  {[
+                    'Goal-Aligned Portfolio Structuring',
+                    'Step-Up SIP Compounding Model',
+                    'Zero Advisory Fees on Direct Route',
+                    'Quarterly Rebalancing & Tax Harvesting',
+                    'AMFI Regd. Distributor (ARN-194720)',
+                    'BSE StAR MF Execution Desk'
+                  ].map((feat, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', color: '#F1F5F9', fontWeight: 600 }}>
+                      <CheckCircle2 size={15} style={{ color: '#22C55E', flexShrink: 0 }} />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Hero CTAs */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
+                {/* Direct Action Buttons */}
+                <div className="hero-action-buttons" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '8px' }}>
                   <button
                     onClick={() => handleOpenConsultModal('Comprehensive Wealth Audit')}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#FF6A13] to-[#FF8A3D] text-white font-bold hover:shadow-lg hover:shadow-orange-500/25 transition duration-200"
+                    className="btn-orange"
+                    style={{ padding: '12px 24px', fontSize: '14px' }}
                   >
-                    <span>Get Free Wealth Audit</span>
-                    <ArrowRight className="w-4 h-4" />
+                    Get Free Wealth Audit <ArrowRight size={14} />
                   </button>
                   <a
-                    href="#wealth-engine"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold transition duration-200"
+                    href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20discuss%20a%20wealth%20creation%20plan%20for%20my%20family."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline"
+                    style={{
+                      padding: '11px 20px',
+                      fontSize: '13.5px',
+                      color: '#FFFFFF',
+                      borderColor: 'rgba(255, 255, 255, 0.3)',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
                   >
-                    <span>Simulate Compounding</span>
-                  </a>
-                </div>
-
-                {/* Helpline quick dial */}
-                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-300">
-                  <span className="text-slate-400">Speak directly to an advisor:</span>
-                  <a href="tel:+919102070777" className="font-semibold text-white hover:text-[#008AD8] transition flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-emerald-400" /> +91 91020 70777
-                  </a>
-                  <span className="text-slate-600">/</span>
-                  <a href="tel:+919102050555" className="font-semibold text-white hover:text-[#008AD8] transition flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-emerald-400" /> +91 91020 50555
+                    <span>💬 WhatsApp Advisor</span>
                   </a>
                 </div>
               </div>
 
               {/* Right Column: Lead Capture Card */}
-              <div className="lg:col-span-5">
-                <div className="bg-white rounded-2xl p-6 sm:p-8 text-slate-900 shadow-2xl border border-slate-100">
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                    <div>
-                      <h3 className="font-bold text-lg text-slate-900">Custom Wealth Blueprint</h3>
-                      <p className="text-xs text-slate-500">Get a personalized asset allocation plan within 2 hours</p>
+              <div>
+                <div className="compact-mobile-card" style={{
+                  background: 'rgba(255, 255, 255, 0.98)',
+                  borderRadius: '20px',
+                  padding: 'clamp(18px, 4vw, 30px)',
+                  color: 'var(--navy-deep)',
+                  boxShadow: '0 24px 60px rgba(0, 0, 0, 0.35)',
+                  border: '1px solid rgba(0, 138, 216, 0.2)'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                    <div style={{
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '10px',
+                      background: 'rgba(0, 138, 216, 0.1)',
+                      color: 'var(--primary-blue)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <Target size={19} />
                     </div>
-                    <div className="w-10 h-10 rounded-xl bg-[#008AD8]/10 flex items-center justify-center text-[#008AD8]">
-                      <Target className="w-5 h-5" />
+                    <div>
+                      <h3 style={{ fontSize: '16.5px', fontWeight: 800, margin: 0, color: 'var(--navy-deep)' }}>
+                        Custom Wealth Blueprint
+                      </h3>
+                      <p style={{ fontSize: '11.5px', color: '#64748B', margin: 0 }}>
+                        Get personalized asset allocation within 2 hours
+                      </p>
                     </div>
                   </div>
 
-                  {submitted ? (
-                    <div className="py-8 text-center space-y-3">
-                      <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
-                        <CheckCircle2 className="w-8 h-8" />
-                      </div>
-                      <h4 className="text-lg font-bold text-slate-900">Request Received!</h4>
-                      <p className="text-sm text-slate-600">
-                        Our Senior AMFI Wealth Advisor will contact you shortly to review your investment horizon and share a tailored wealth creation blueprint.
-                      </p>
-                      <button
-                        onClick={() => setSubmitted(false)}
-                        className="text-xs text-[#008AD8] font-semibold hover:underline"
-                      >
-                        Submit another request
-                      </button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleLeadSubmit} className="space-y-4 pt-4">
+                  {!submitted ? (
+                    <form onSubmit={handleLeadSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
                       <div>
-                        <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                        <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
                           Full Name *
                         </label>
                         <input
                           type="text"
                           required
+                          placeholder="e.g. Rajesh Sharma"
                           value={leadName}
                           onChange={(e) => setLeadName(e.target.value)}
-                          placeholder="e.g. Rajesh Sharma"
-                          className="w-full px-3.5 py-2.5 text-base sm:text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#008AD8] focus:border-transparent"
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px',
+                            borderRadius: '8px',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: '14px',
+                            background: '#F8FAFC'
+                          }}
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                        <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
                           Mobile Number *
                         </label>
-                        <div className="relative">
-                          <span className="absolute left-3 top-2.5 text-sm text-slate-400 font-medium">+91</span>
+                        <div style={{ display: 'flex' }}>
+                          <span style={{
+                            padding: '0 10px',
+                            background: '#F1F5F9',
+                            border: '1.5px solid #E2E8F0',
+                            borderRight: 'none',
+                            borderTopLeftRadius: '8px',
+                            borderBottomLeftRadius: '8px',
+                            fontSize: '13px',
+                            fontWeight: 700,
+                            color: '#64748B',
+                            display: 'flex',
+                            alignItems: 'center'
+                          }}>
+                            +91
+                          </span>
                           <input
                             type="tel"
                             required
-                            pattern="[0-9]{10}"
-                            value={leadPhone}
-                            onChange={(e) => setLeadPhone(e.target.value)}
+                            maxLength={10}
                             placeholder="98765 43210"
-                            className="w-full pl-12 pr-3.5 py-2.5 text-base sm:text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#008AD8] focus:border-transparent"
+                            value={leadPhone}
+                            onChange={(e) => setLeadPhone(e.target.value.replace(/\D/g, ''))}
+                            style={{
+                              width: '100%',
+                              padding: '10px 12px',
+                              borderTopRightRadius: '8px',
+                              borderBottomRightRadius: '8px',
+                              border: '1.5px solid #E2E8F0',
+                              fontSize: '14px',
+                              background: '#F8FAFC'
+                            }}
                           />
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3">
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                         <div>
-                          <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
-                            Primary Goal
+                          <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
+                            Target Goal
                           </label>
                           <select
                             value={leadGoal}
                             onChange={(e) => setLeadGoal(e.target.value)}
-                            className="w-full px-2.5 py-2.5 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#008AD8]"
+                            style={{
+                              width: '100%',
+                              padding: '10px 8px',
+                              borderRadius: '8px',
+                              border: '1.5px solid #E2E8F0',
+                              fontSize: '12.5px',
+                              background: '#F8FAFC'
+                            }}
                           >
                             <option value="₹1 Crore Milestone">₹1 Crore Milestone</option>
-                            <option value="Child Higher Education">Child Higher Education</option>
+                            <option value="Child Higher Education">Child Education</option>
                             <option value="Retirement / FIRE">Retirement / FIRE</option>
-                            <option value="Luxury Home Purchase">Luxury Home Purchase</option>
-                            <option value="Long Term Generational">Generational Wealth</option>
+                            <option value="Luxury Home Purchase">Home Purchase</option>
+                            <option value="Long Term Generational">Generational</option>
                           </select>
                         </div>
                         <div>
-                          <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
-                            Target Horizon
+                          <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, marginBottom: '3px', color: 'var(--navy-deep)' }}>
+                            Time Horizon
                           </label>
                           <select
                             value={leadHorizon}
                             onChange={(e) => setLeadHorizon(e.target.value)}
-                            className="w-full px-2.5 py-2.5 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#008AD8]"
+                            style={{
+                              width: '100%',
+                              padding: '10px 8px',
+                              borderRadius: '8px',
+                              border: '1.5px solid #E2E8F0',
+                              fontSize: '12.5px',
+                              background: '#F8FAFC'
+                            }}
                           >
                             <option value="5 - 7 Years">5 - 7 Years</option>
                             <option value="7 - 10 Years">7 - 10 Years</option>
@@ -347,103 +444,150 @@ export default function WealthCreationClient() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 px-4 rounded-xl bg-[#008AD8] hover:bg-[#0077BA] text-white font-bold text-sm transition duration-200 shadow-md hover:shadow-lg disabled:opacity-50"
+                        className="btn-orange"
+                        style={{ width: '100%', padding: '12px', fontSize: '14px', marginTop: '4px' }}
                       >
-                        {loading ? 'Processing...' : 'Request Free Consultation'}
+                        {loading ? 'Processing...' : 'Request Free Consultation 🚀'}
                       </button>
 
-                      <p className="text-[11px] text-center text-slate-400">
-                        🔒 Confidential & AMFI compliant. No spam or high-pressure selling.
-                      </p>
+                      <div style={{ fontSize: '11px', color: '#64748B', textAlign: 'center', marginTop: '2px' }}>
+                        🔒 100% Confidential • Official AMFI Registered MFD (ARN-194720)
+                      </div>
                     </form>
+                  ) : (
+                    <div style={{ textAlign: 'center', padding: '20px 0' }}>
+                      <div style={{
+                        width: '50px',
+                        height: '50px',
+                        borderRadius: '50%',
+                        background: '#DCFCE7',
+                        color: '#16A34A',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        margin: '0 auto 12px'
+                      }}>
+                        <CheckCircle2 size={28} />
+                      </div>
+                      <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '6px' }}>
+                        Request Received!
+                      </h4>
+                      <p style={{ fontSize: '12.5px', color: '#64748B', marginBottom: '14px' }}>
+                        Our Senior AMFI Wealth Advisor will call you at <strong>+91 {leadPhone}</strong> shortly.
+                      </p>
+                      <button
+                        onClick={() => setSubmitted(false)}
+                        style={{ fontSize: '12px', color: 'var(--primary-blue)', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}
+                      >
+                        Submit another request
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
         {/* The Reality Check: Saving vs Wealth Creation */}
-        <section className="py-16 bg-white border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-[#008AD8]">
-                The Wealth Reality
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+        <section style={{ padding: 'clamp(44px, 5vw, 76px) 0', background: '#FFFFFF', borderBottom: '1px solid #E2E8F0' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 36px' }}>
+              <div className="badge-blue" style={{ marginBottom: '12px' }}>
+                <Flame size={14} style={{ color: '#FF6A13' }} /> The Inflation Trap
+              </div>
+              <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '12px' }}>
                 Why Saving in Bank Accounts Silently Destroys Wealth
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base mt-2">
+              <p style={{ fontSize: '15px', color: '#64748B', lineHeight: 1.6 }}>
                 The hidden cost of "safety" is inflation. Here is what happens to ₹10 Lakhs over 15 years across different asset classes.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+              gap: '20px'
+            }}>
               {/* Card 1: Bank Savings */}
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 relative">
-                <div className="text-xs font-semibold text-rose-600 uppercase tracking-wide flex items-center gap-1.5 mb-2">
-                  <Flame className="w-4 h-4" /> Purchasing Power Loss
+              <div style={{
+                background: '#F8FAFC',
+                borderRadius: '16px',
+                padding: '24px',
+                border: '1px solid #E2E8F0'
+              }}>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#E11D48', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Purchasing Power Loss
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">Savings Account (3.5%)</h3>
-                <p className="text-xs text-slate-500 mt-1 mb-4">Nominal growth wiped out by 6% average annual inflation.</p>
-                <div className="space-y-2 text-sm border-t border-slate-200 pt-3">
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">Nominal Value (15 Yrs):</span>
-                    <span className="font-semibold text-slate-900">₹16.7 Lakh</span>
+                <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>Savings Account (3.5%)</h3>
+                <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.5, marginBottom: '16px' }}>Nominal growth wiped out by 6% average annual inflation.</p>
+                <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '14px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748B' }}>Nominal (15 Yrs):</span>
+                    <strong style={{ color: 'var(--navy-deep)' }}>₹16.7 Lakh</strong>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">Real Inflation-Adjusted:</span>
-                    <span className="font-bold text-rose-600">₹6.9 Lakh</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748B' }}>Real Inflation-Adjusted:</span>
+                    <strong style={{ color: '#E11D48' }}>₹6.9 Lakh</strong>
                   </div>
-                  <div className="text-xs text-rose-700 bg-rose-50 p-2.5 rounded-lg font-medium mt-3">
-                    ⚠️ You lose ~31% of real buying power over 15 years.
+                  <div style={{ background: '#FFE4E6', padding: '8px 10px', borderRadius: '8px', color: '#9F1239', fontSize: '12px', fontWeight: 600, marginTop: '6px' }}>
+                    ⚠️ You lose ~31% of real buying power.
                   </div>
                 </div>
               </div>
 
               {/* Card 2: Fixed Deposit */}
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 relative">
-                <div className="text-xs font-semibold text-amber-600 uppercase tracking-wide flex items-center gap-1.5 mb-2">
-                  <Clock className="w-4 h-4" /> Treadmill Growth
+              <div style={{
+                background: '#F8FAFC',
+                borderRadius: '16px',
+                padding: '24px',
+                border: '1px solid #E2E8F0'
+              }}>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#D97706', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Treadmill Growth
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">Fixed Deposit (6.5%)</h3>
-                <p className="text-xs text-slate-500 mt-1 mb-4">Pre-tax returns barely match inflation, net tax drag reduces capital.</p>
-                <div className="space-y-2 text-sm border-t border-slate-200 pt-3">
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">Nominal Value (15 Yrs):</span>
-                    <span className="font-semibold text-slate-900">₹25.7 Lakh</span>
+                <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>Fixed Deposit (6.5%)</h3>
+                <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.5, marginBottom: '16px' }}>Pre-tax returns barely match inflation; tax drag reduces capital.</p>
+                <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '14px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748B' }}>Nominal (15 Yrs):</span>
+                    <strong style={{ color: 'var(--navy-deep)' }}>₹25.7 Lakh</strong>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">Real Inflation-Adjusted:</span>
-                    <span className="font-bold text-amber-600">₹10.7 Lakh</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748B' }}>Real Inflation-Adjusted:</span>
+                    <strong style={{ color: '#D97706' }}>₹10.7 Lakh</strong>
                   </div>
-                  <div className="text-xs text-amber-700 bg-amber-50 p-2.5 rounded-lg font-medium mt-3">
-                    ℹ️ Zero true wealth creation after standard income tax bracket.
+                  <div style={{ background: '#FEF3C7', padding: '8px 10px', borderRadius: '8px', color: '#92400E', fontSize: '12px', fontWeight: 600, marginTop: '6px' }}>
+                    ℹ️ Zero true wealth creation after standard tax.
                   </div>
                 </div>
               </div>
 
               {/* Card 3: Disciplined Wealth Portfolio */}
-              <div className="bg-gradient-to-br from-[#008AD8]/10 via-white to-blue-50/50 rounded-2xl p-6 border-2 border-[#008AD8] relative shadow-lg">
-                <div className="absolute -top-3 right-4 px-3 py-0.5 rounded-full bg-[#008AD8] text-white text-[10px] font-bold tracking-wide">
-                  RECOMMENDED
+              <div style={{
+                background: 'linear-gradient(145deg, #F0F9FF 0%, #FFFFFF 100%)',
+                borderRadius: '16px',
+                padding: '24px',
+                border: '2px solid var(--primary-blue)',
+                boxShadow: '0 8px 24px rgba(0, 138, 216, 0.12)'
+              }}>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--primary-blue)', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Real Wealth Compounding
                 </div>
-                <div className="text-xs font-semibold text-[#008AD8] uppercase tracking-wide flex items-center gap-1.5 mb-2">
-                  <TrendingUp className="w-4 h-4" /> Wealth Compounding
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">Investrow Portfolio (13% CAGR)</h3>
-                <p className="text-xs text-slate-500 mt-1 mb-4">Disciplined multi-cap allocation capturing India's structural GDP growth.</p>
-                <div className="space-y-2 text-sm border-t border-blue-100 pt-3">
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">Nominal Value (15 Yrs):</span>
-                    <span className="font-bold text-emerald-600 text-base">₹62.5 Lakh</span>
+                <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>Investrow Portfolio (13% CAGR)</h3>
+                <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.5, marginBottom: '16px' }}>Disciplined multi-cap allocation capturing India's structural economic growth.</p>
+                <div style={{ borderTop: '1px solid #BAE6FD', paddingTop: '14px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748B' }}>Nominal (15 Yrs):</span>
+                    <strong style={{ color: '#16A34A', fontSize: '15px' }}>₹62.5 Lakh</strong>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600">Real Inflation-Adjusted:</span>
-                    <span className="font-bold text-[#008AD8]">₹26.0 Lakh</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748B' }}>Real Inflation-Adjusted:</span>
+                    <strong style={{ color: 'var(--primary-blue)' }}>₹26.0 Lakh</strong>
                   </div>
-                  <div className="text-xs text-emerald-800 bg-emerald-50 p-2.5 rounded-lg font-medium mt-3">
-                    🚀 Real buying power multiplied by 2.6x after beating inflation.
+                  <div style={{ background: '#DCFCE7', padding: '8px 10px', borderRadius: '8px', color: '#166534', fontSize: '12px', fontWeight: 600, marginTop: '6px' }}>
+                    🚀 Real purchasing power multiplied 2.6x above inflation.
                   </div>
                 </div>
               </div>
@@ -451,567 +595,233 @@ export default function WealthCreationClient() {
           </div>
         </section>
 
-        {/* 4 Pillars of Wealth Creation */}
-        <section className="py-16 bg-[#F8FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-[#008AD8]">
-                The Strategic Architecture
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-                The 4 Scientific Pillars of Sustainable Wealth
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base mt-2">
-                Wealth creation is not about guessing tomorrow's hot stock. It is a systematic process of engineering long-term compounding.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Pillar 1 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:shadow-lg transition">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#008AD8] flex items-center justify-center font-black text-xl mb-4">
-                  01
-                </div>
-                <h3 className="font-bold text-slate-900 text-base mb-2">Time Horizon Over Timing</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  The compounding curve is exponential. In a 20-year investment, over 60% of total wealth is generated in the final 5 years alone. Patience is the primary alpha.
-                </p>
+        {/* EMBEDDED INTERACTIVE WEALTH ENGINE */}
+        <section id="wealth-engine" style={{ padding: 'clamp(44px, 5vw, 76px) 0', background: '#F8FAFC', overflow: 'hidden' }}>
+          <div className="container" style={{ maxWidth: '960px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+              <div className="badge-blue" style={{ marginBottom: '12px' }}>
+                <Zap size={14} style={{ color: '#FF6A13' }} /> Compounding Engine
               </div>
-
-              {/* Pillar 2 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:shadow-lg transition">
-                <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#FF6A13] flex items-center justify-center font-black text-xl mb-4">
-                  02
-                </div>
-                <h3 className="font-bold text-slate-900 text-base mb-2">The Step-Up Multiplier</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Stepping up your monthly SIP by just 10% each year doubles your final terminal wealth compared to a fixed SIP, mirroring your career trajectory.
-                </p>
-              </div>
-
-              {/* Pillar 3 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:shadow-lg transition">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-xl mb-4">
-                  03
-                </div>
-                <h3 className="font-bold text-slate-900 text-base mb-2">Dynamic Asset Allocation</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Balancing high-growth equity, capital-preserving debt, and sovereign gold hedges shields your portfolio from catastrophic down-cycles.
-                </p>
-              </div>
-
-              {/* Pillar 4 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:shadow-lg transition">
-                <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-black text-xl mb-4">
-                  04
-                </div>
-                <h3 className="font-bold text-slate-900 text-base mb-2">Behavioral Discipline</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  The average retail investor underperforms index funds by panic selling during corrections. An advisor acts as an emotional shock-absorber.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Interactive Wealth Engine / Compounding Simulator */}
-        <section id="wealth-engine" className="py-16 bg-white border-y border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-[#FF6A13]">
-                Interactive Simulation
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+              <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'var(--navy-deep)' }}>
                 Simulate Your Generational Wealth Engine
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base mt-2">
-                Adjust the sliders below to see how monthly contributions and annual Step-Ups combine to build massive long-term capital.
-              </p>
             </div>
 
-            <div className="bg-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl border border-slate-800">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
-                {/* Sliders Side */}
-                <div className="lg:col-span-7 space-y-6">
-                  {/* Slider 1: Monthly Investment */}
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <label className="text-xs sm:text-sm text-slate-300 font-medium">Monthly Investment Amount</label>
-                      <span className="text-base sm:text-lg font-bold text-[#38BDF8]">
-                        ₹{monthlyInvestment.toLocaleString('en-IN')}/mo
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min={2000}
-                      max={100000}
-                      step={1000}
-                      value={monthlyInvestment}
-                      onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#008AD8]"
-                    />
-                    <div className="flex justify-between text-[11px] text-slate-400 mt-1">
-                      <span>₹2,000</span>
-                      <span>₹50,000</span>
-                      <span>₹1,00,000</span>
-                    </div>
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: '20px',
+              padding: 'clamp(20px, 4vw, 36px)',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 12px 32px rgba(10, 22, 40, 0.06)',
+              display: 'grid',
+              gridTemplateColumns: '1.1fr 0.9fr',
+              gap: '32px'
+            }} className="calc-grid">
+              
+              {/* Sliders */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--navy-deep)' }}>Monthly Investment</label>
+                    <span style={{ fontSize: '16px', fontWeight: 800, color: 'var(--primary-blue)' }}>₹{monthlyInvestment.toLocaleString('en-IN')}/mo</span>
                   </div>
-
-                  {/* Slider 2: Investment Horizon */}
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <label className="text-xs sm:text-sm text-slate-300 font-medium">Investment Horizon (Years)</label>
-                      <span className="text-base sm:text-lg font-bold text-white">
-                        {years} Years ({years * 12} Installments)
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min={3}
-                      max={30}
-                      step={1}
-                      value={years}
-                      onChange={(e) => setYears(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#008AD8]"
-                    />
-                    <div className="flex justify-between text-[11px] text-slate-400 mt-1">
-                      <span>3 Yrs</span>
-                      <span>15 Yrs</span>
-                      <span>30 Yrs</span>
-                    </div>
-                  </div>
-
-                  {/* Slider 3: Expected CAGR */}
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <label className="text-xs sm:text-sm text-slate-300 font-medium">Expected Portfolio CAGR (%)</label>
-                      <span className="text-base sm:text-lg font-bold text-emerald-400">
-                        {expectedReturn}% p.a.
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min={8}
-                      max={16}
-                      step={0.5}
-                      value={expectedReturn}
-                      onChange={(e) => setExpectedReturn(Number(e.target.value))}
-                      className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                    />
-                    <div className="flex justify-between text-[11px] text-slate-400 mt-1">
-                      <span>8% (Conservative)</span>
-                      <span>12.5% (Balanced)</span>
-                      <span>16% (Aggressive)</span>
-                    </div>
-                  </div>
-
-                  {/* Toggle Step-Up Feature */}
-                  <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-[#FF6A13]" />
-                        <span className="text-sm font-bold text-white">Annual Step-Up Feature</span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setEnableStepUp(!enableStepUp)}
-                        className={`px-3 py-1 text-xs font-bold rounded-full transition ${
-                          enableStepUp ? 'bg-emerald-500 text-white' : 'bg-slate-600 text-slate-300'
-                        }`}
-                      >
-                        {enableStepUp ? 'ACTIVE (+10%/yr)' : 'OFF'}
-                      </button>
-                    </div>
-
-                    {enableStepUp && (
-                      <div className="pt-2">
-                        <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Annual SIP Hike:</span>
-                          <span className="font-bold text-orange-400">+{stepUpPercent}% each year</span>
-                        </div>
-                        <input
-                          type="range"
-                          min={5}
-                          max={20}
-                          step={1}
-                          value={stepUpPercent}
-                          onChange={(e) => setStepUpPercent(Number(e.target.value))}
-                          className="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#FF6A13]"
-                        />
-                      </div>
-                    )}
-                  </div>
+                  <input
+                    type="range"
+                    min={2000}
+                    max={100000}
+                    step={1000}
+                    value={monthlyInvestment}
+                    onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
+                  />
                 </div>
 
-                {/* Projections Display Side */}
-                <div className="lg:col-span-5 bg-gradient-to-br from-slate-800 to-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-700">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Projected Corpus Value
-                  </span>
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-1 mb-4">
-                    {formatCurrency(activeMaturity)}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--navy-deep)' }}>Investment Period</label>
+                    <span style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent-orange)' }}>{years} Years ({years * 12} Installments)</span>
                   </div>
+                  <input
+                    type="range"
+                    min={3}
+                    max={30}
+                    step={1}
+                    value={years}
+                    onChange={(e) => setYears(Number(e.target.value))}
+                  />
+                </div>
 
-                  <div className="space-y-3 border-t border-slate-700 pt-4 text-sm">
-                    <div className="flex justify-between text-slate-300">
-                      <span>Total Amount Invested:</span>
-                      <span className="font-semibold text-white">{formatCurrency(activeInvested)}</span>
-                    </div>
-                    <div className="flex justify-between text-slate-300">
-                      <span>Wealth Generated (Gains):</span>
-                      <span className="font-bold text-emerald-400">+{formatCurrency(activeWealthGain)}</span>
-                    </div>
-                    {enableStepUp && (
-                      <div className="flex justify-between text-xs text-orange-300 pt-2 border-t border-slate-700/60">
-                        <span>Step-Up Advantage vs Flat:</span>
-                        <span className="font-bold">+{formatCurrency(Math.max(0, stepUpMaturity - regularMaturity))}</span>
-                      </div>
-                    )}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--navy-deep)' }}>Expected Return (CAGR)</label>
+                    <span style={{ fontSize: '16px', fontWeight: 800, color: '#10B981' }}>{expectedReturn}%</span>
                   </div>
+                  <input
+                    type="range"
+                    min={8}
+                    max={16}
+                    step={0.5}
+                    value={expectedReturn}
+                    onChange={(e) => setExpectedReturn(Number(e.target.value))}
+                  />
+                </div>
 
-                  <button
-                    onClick={() => handleOpenConsultModal(`Start ₹${monthlyInvestment.toLocaleString('en-IN')}/mo Wealth Plan`)}
-                    className="w-full mt-6 py-3 px-4 rounded-xl bg-gradient-to-r from-[#FF6A13] to-[#FF8A3D] text-white font-bold text-sm hover:shadow-lg transition flex items-center justify-center gap-2"
-                  >
-                    <span>Execute This Plan</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                  <p className="text-[11px] text-center text-slate-400 mt-2">
-                    Historical CAGR is illustrative. Equity funds are subject to market risks.
-                  </p>
+                <div style={{ padding: '12px', borderRadius: '12px', background: '#F1F5F9', border: '1px solid #E2E8F0' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                      ⚡ 10% Annual Step-Up
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setEnableStepUp(!enableStepUp)}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '9999px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        border: 'none',
+                        background: enableStepUp ? '#10B981' : '#94A3B8',
+                        color: 'white',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {enableStepUp ? 'ACTIVE (+10%/yr)' : 'DISABLED'}
+                    </button>
+                  </div>
                 </div>
               </div>
+
+              {/* Result Card */}
+              <div style={{
+                background: 'linear-gradient(145deg, #0A1628 0%, #0F1E36 100%)',
+                color: '#FFFFFF',
+                borderRadius: '16px',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}>
+                <div>
+                  <div style={{ fontSize: '12px', color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Projected Maturity Value
+                  </div>
+                  <div style={{ fontSize: 'clamp(28px, 4vw, 38px)', fontWeight: 800, color: '#38BDF8', marginTop: '4px' }}>
+                    {formatCurrency(activeMaturity)}
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', margin: '20px 0', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '16px' }}>
+                  <div>
+                    <div style={{ fontSize: '11px', color: '#94A3B8' }}>Total Invested</div>
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#F1F5F9' }}>{formatCurrency(activeInvested)}</div>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '11px', color: '#94A3B8' }}>Estimated Wealth Gain</div>
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#4ADE80' }}>+{formatCurrency(activeWealthGain)}</div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleOpenConsultModal(`Wealth Plan for ₹${monthlyInvestment}/mo (${years} Yrs)`)}
+                  className="btn-orange"
+                  style={{ width: '100%', padding: '12px', fontSize: '13.5px' }}
+                >
+                  Start This Wealth Journey ➔
+                </button>
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* Milestone-Based Wealth Framework */}
-        <section className="py-16 bg-[#F8FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-[#008AD8]">
-                Goal-Oriented Blueprints
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+        <section style={{ padding: 'clamp(44px, 5vw, 76px) 0', background: '#FFFFFF' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 36px' }}>
+              <div className="badge-blue" style={{ marginBottom: '12px' }}>
+                <Target size={14} /> Goal-Oriented Blueprints
+              </div>
+              <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'var(--navy-deep)' }}>
                 Wealth Milestones Every Family Strives For
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base mt-2">
-                We anchor your investments to concrete life milestones rather than speculative market indices.
-              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Milestone 1 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#008AD8] transition flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#008AD8] flex items-center justify-center mb-4">
-                    <Coins className="w-5 h-5" />
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+              gap: '20px'
+            }}>
+              {[
+                { title: 'First ₹1 Crore Milestone', desc: 'The hardest crore. After this milestone, your compounding returns generate more than annual salary.', target: '~₹15,000/mo for 15 Yrs @ 13%' },
+                { title: 'Child Higher Education', desc: 'Education inflation runs at 10-12%. Beat future tuition fee spikes with a disciplined equity portfolio.', target: 'Target: ₹35L - ₹75L' },
+                { title: 'Dream Home Down-Payment', desc: 'Avoid crippling 80% home loan EMIs by building 40-50% upfront equity capital.', target: 'Horizon: 5 to 7 Years' },
+                { title: 'Financial Freedom (FIRE)', desc: 'Retire on your terms with an inflation-proof monthly SWP dividend cashflow engine.', target: 'Target: ₹2.5 Cr - ₹10 Cr' }
+              ].map((m, idx) => (
+                <div key={idx} style={{
+                  padding: '24px',
+                  borderRadius: '16px',
+                  background: '#F8FAFC',
+                  border: '1px solid #E2E8F0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between'
+                }}>
+                  <div>
+                    <h3 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>{m.title}</h3>
+                    <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.6, marginBottom: '14px' }}>{m.desc}</p>
                   </div>
-                  <h3 className="font-bold text-slate-900 text-lg">First ₹1 Crore Milestone</h3>
-                  <p className="text-xs text-slate-500 mt-1 mb-4">The hardest crore. After this, your money works harder than your salary.</p>
-                  <div className="bg-slate-50 p-3 rounded-lg text-xs space-y-1 text-slate-700">
-                    <div><strong>SIP Needed:</strong> ~₹15,000/mo</div>
-                    <div><strong>Tenure:</strong> 15 Years @ 13%</div>
-                    <div><strong>Next ₹1 Cr:</strong> Takes only ~5 years!</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleOpenConsultModal('₹1 Crore Blueprint')}
-                  className="mt-4 text-xs font-bold text-[#008AD8] hover:underline flex items-center gap-1"
-                >
-                  Plan ₹1 Crore Journey <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              {/* Milestone 2 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#008AD8] transition flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#FF6A13] flex items-center justify-center mb-4">
-                    <Award className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-lg">Child Higher Education</h3>
-                  <p className="text-xs text-slate-500 mt-1 mb-4">Education inflation runs at 10-12%. Beat future tuition fee spikes.</p>
-                  <div className="bg-slate-50 p-3 rounded-lg text-xs space-y-1 text-slate-700">
-                    <div><strong>Target Corpus:</strong> ₹35 Lakh - ₹75 Lakh</div>
-                    <div><strong>Strategy:</strong> Flexi-Cap + International</div>
-                    <div><strong>De-risking:</strong> Shift to debt 2 yrs prior</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleOpenConsultModal('Child Education Planning')}
-                  className="mt-4 text-xs font-bold text-[#008AD8] hover:underline flex items-center gap-1"
-                >
-                  Protect Child's Dream <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              {/* Milestone 3 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#008AD8] transition flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
-                    <Building2 className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-lg">Dream Home Down-Payment</h3>
-                  <p className="text-xs text-slate-500 mt-1 mb-4">Avoid crippling 80% home loan EMIs by building 40-50% upfront equity.</p>
-                  <div className="bg-slate-50 p-3 rounded-lg text-xs space-y-1 text-slate-700">
-                    <div><strong>Horizon:</strong> 5 to 7 Years</div>
-                    <div><strong>Target:</strong> ₹30 Lakh - ₹60 Lakh</div>
-                    <div><strong>Strategy:</strong> Balanced Advantage + Large-Cap</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleOpenConsultModal('Home Downpayment Plan')}
-                  className="mt-4 text-xs font-bold text-[#008AD8] hover:underline flex items-center gap-1"
-                >
-                  Plan Home Fund <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              {/* Milestone 4 */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#008AD8] transition flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
-                    <Lock className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 text-lg">Financial Freedom (FIRE)</h3>
-                  <p className="text-xs text-slate-500 mt-1 mb-4">Retire on your terms with an inflation-proof monthly SWP dividend cashflow.</p>
-                  <div className="bg-slate-50 p-3 rounded-lg text-xs space-y-1 text-slate-700">
-                    <div><strong>Target:</strong> ₹2.5 Cr - ₹10 Cr</div>
-                    <div><strong>SWP Rate:</strong> 5-6% tax-efficient withdrawal</div>
-                    <div><strong>Longevity:</strong> Never outlive your money</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleOpenConsultModal('Retirement & FIRE Plan')}
-                  className="mt-4 text-xs font-bold text-[#008AD8] hover:underline flex items-center gap-1"
-                >
-                  Design FIRE Plan <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Cost of Delay Matrix */}
-        <section className="py-16 bg-white border-b border-slate-200">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="text-xs uppercase tracking-wider font-bold text-rose-600">
-                The Cost of Procrastination
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-                What Waiting 5 or 10 Years Actually Costs You
-              </h2>
-              <p className="text-slate-600 text-sm mt-1">
-                Comparing the final corpus at Age 60 for an investor contributing ₹10,000/month @ 12.5% CAGR.
-              </p>
-            </div>
-
-            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
-              <table className="w-full text-left border-collapse text-sm">
-                <thead>
-                  <tr className="bg-slate-900 text-white text-xs uppercase tracking-wider">
-                    <th className="p-4">Starting Age</th>
-                    <th className="p-4">Tenure to Age 60</th>
-                    <th className="p-4">Total Invested</th>
-                    <th className="p-4">Corpus at Age 60</th>
-                    <th className="p-4">Wealth Lost to Delay</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
-                  <tr className="bg-emerald-50/50">
-                    <td className="p-4 font-bold text-emerald-800">Age 25 (Starts early)</td>
-                    <td className="p-4">35 Years</td>
-                    <td className="p-4">₹42.0 Lakh</td>
-                    <td className="p-4 font-black text-emerald-700 text-base">₹6.49 Crore</td>
-                    <td className="p-4 text-emerald-700 font-semibold">— (Maximum Compounding)</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-slate-900">Age 30 (5-yr delay)</td>
-                    <td className="p-4">30 Years</td>
-                    <td className="p-4">₹36.0 Lakh</td>
-                    <td className="p-4 font-bold text-slate-900">₹3.53 Crore</td>
-                    <td className="p-4 text-rose-600 font-bold">-₹2.96 Crore Lost</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-slate-900">Age 35 (10-yr delay)</td>
-                    <td className="p-4">25 Years</td>
-                    <td className="p-4">₹30.0 Lakh</td>
-                    <td className="p-4 font-bold text-slate-900">₹1.89 Crore</td>
-                    <td className="p-4 text-rose-600 font-bold">-₹4.60 Crore Lost</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-slate-900">Age 40 (15-yr delay)</td>
-                    <td className="p-4">20 Years</td>
-                    <td className="p-4">₹24.0 Lakh</td>
-                    <td className="p-4 font-bold text-slate-900">₹99.9 Lakh</td>
-                    <td className="p-4 text-rose-600 font-bold">-₹5.49 Crore Lost</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-900 flex items-start gap-2.5">
-              <Flame className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
-              <div>
-                <strong>Key Takeaway:</strong> Delaying your investment by just 5 years (from Age 25 to 30) reduces your retirement corpus by nearly <strong>₹3 Crores</strong>, even though you only saved ₹6 Lakhs out of pocket during those 5 years!
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Investrow Wealth Advisory Process */}
-        <section className="py-16 bg-[#F8FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-[#008AD8]">
-                How We Partner With You
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-                Our 4-Step Scientific Wealth Creation Process
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base mt-2">
-                Transparent, disciplined, and backed by AMFI-certified institutional practices.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                <span className="w-8 h-8 rounded-lg bg-[#008AD8]/10 text-[#008AD8] font-bold flex items-center justify-center text-sm mb-3">
-                  1
-                </span>
-                <h4 className="font-bold text-slate-900 mb-1">Financial Health Audit</h4>
-                <p className="text-xs text-slate-600">
-                  We review your emergency cushion, life/health insurance shields, and current savings rate before investing a single rupee.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                <span className="w-8 h-8 rounded-lg bg-[#008AD8]/10 text-[#008AD8] font-bold flex items-center justify-center text-sm mb-3">
-                  2
-                </span>
-                <h4 className="font-bold text-slate-900 mb-1">Risk Profile & Sizing</h4>
-                <p className="text-xs text-slate-600">
-                  We determine your genuine tolerance for market drawdown and calibrate your equity, debt, and gold ratios accordingly.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                <span className="w-8 h-8 rounded-lg bg-[#008AD8]/10 text-[#008AD8] font-bold flex items-center justify-center text-sm mb-3">
-                  3
-                </span>
-                <h4 className="font-bold text-slate-900 mb-1">Paperless Execution</h4>
-                <p className="text-xs text-slate-600">
-                  Seamless BSE StAR MF registration, Aadhaar e-KYC, and automated bank mandates for monthly SIP automation without cheques.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                <span className="w-8 h-8 rounded-lg bg-[#008AD8]/10 text-[#008AD8] font-bold flex items-center justify-center text-sm mb-3">
-                  4
-                </span>
-                <h4 className="font-bold text-slate-900 mb-1">Annual Rebalancing</h4>
-                <p className="text-xs text-slate-600">
-                  When equity runs ahead of targets, we trim profits into debt; when equity corrects, we allocate more, buying low and selling high.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs Section */}
-        <section className="py-16 bg-white border-t border-slate-200">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-[#008AD8]">
-                Common Questions
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-                Frequently Asked Questions on Wealth Creation
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, idx) => (
-                <div key={idx} className="border border-slate-200 rounded-xl overflow-hidden transition">
-                  <button
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 bg-white hover:bg-slate-50 transition"
-                  >
-                    <span className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2.5">
-                      <HelpCircle className="w-4 h-4 text-[#008AD8] shrink-0" />
-                      {faq.q}
-                    </span>
-                    <ChevronDown className={`w-5 h-5 text-slate-400 shrink-0 transition-transform ${openFaq === idx ? 'rotate-180 text-[#008AD8]' : ''}`} />
-                  </button>
-                  {openFaq === idx && (
-                    <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                      {faq.a}
-                    </div>
-                  )}
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--primary-blue)' }}>{m.target}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Bottom Conversion / CTA Banner */}
-        <section className="py-16 bg-gradient-to-r from-[#0A1628] via-[#0D203D] to-[#0A1628] text-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-              <ShieldCheck className="w-4 h-4" /> AMFI Regd. Distributor ARN-194720
-            </div>
-            
-            <h2 className="text-2xl sm:text-4xl font-extrabold">
-              Ready to Build Your Family's Financial Fortress?
-            </h2>
-            
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
-              Schedule a one-on-one portfolio architecture review with an AMFI-registered wealth consultant today. Zero advisory fees, institutional-grade guidance.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-              <button
-                onClick={() => handleOpenConsultModal('Bottom CTA - Start Wealth Journey')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#FF6A13] to-[#FF8A3D] text-white font-bold hover:shadow-lg hover:shadow-orange-500/30 transition"
-              >
-                <span>Book Free Wealth Session</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <a
-                href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20discuss%20a%20wealth%20creation%20plan%20for%20my%20family."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition"
-              >
-                <span>Chat on WhatsApp</span>
-              </a>
+        {/* Wealth Creation FAQs */}
+        <section style={{ padding: 'clamp(44px, 5vw, 76px) 0', background: '#F8FAFC', borderTop: '1px solid #E2E8F0' }}>
+          <div className="container" style={{ maxWidth: '820px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+              <div className="badge-blue" style={{ marginBottom: '12px' }}>
+                <HelpCircle size={14} /> Clear Answers
+              </div>
+              <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'var(--navy-deep)' }}>
+                Frequently Asked Questions on Wealth Creation
+              </h2>
             </div>
 
-            <div className="pt-4 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-400">
-              <span>Direct Helplines:</span>
-              <a href="tel:+919102070777" className="text-white hover:text-[#008AD8] font-semibold flex items-center gap-1">
-                <Phone className="w-3.5 h-3.5 text-emerald-400" /> +91 91020 70777
-              </a>
-              <a href="tel:+919102050555" className="text-white hover:text-[#008AD8] font-semibold flex items-center gap-1">
-                <Phone className="w-3.5 h-3.5 text-emerald-400" /> +91 91020 50555
-              </a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {faqs.map((faq, idx) => (
+                <div key={idx} style={{
+                  background: '#FFFFFF',
+                  borderRadius: '12px',
+                  padding: '18px 20px',
+                  border: '1px solid #E2E8F0',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+                }}>
+                  <h3 style={{ fontSize: '15.5px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>
+                    {faq.q}
+                  </h3>
+                  <p style={{ fontSize: '13.5px', color: '#64748B', lineHeight: 1.6, margin: 0 }}>
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
       </main>
 
-      <Footer onOpenConsultModal={handleOpenConsultModal} />
+      <Footer />
+      <AIChatAdvisor onLeadSubmitted={() => { }} />
       <ConsultModal
         isOpen={consultModalOpen}
-        onClose={() => setConsultModalOpen(false)}
         initialService={selectedService}
+        onClose={() => setConsultModalOpen(false)}
+        onLeadSubmitted={() => { }}
       />
-      <AIChatAdvisor onOpenConsultModal={handleOpenConsultModal} />
-      <StickyMobileBar onOpenConsultModal={handleOpenConsultModal} />
-    </>
+      <StickyMobileBar 
+        onOpenCallbackModal={() => handleOpenConsultModal('Wealth Creation Sticky Callback')}
+        onOpenConsultModal={() => handleOpenConsultModal('Wealth Creation Sticky Callback')}
+      />
+    </div>
   );
 }
-

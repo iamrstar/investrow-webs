@@ -2,7 +2,9 @@
 
 import { Phone, MessageSquare } from 'lucide-react';
 
-export default function StickyMobileBar({ onOpenCallbackModal }) {
+export default function StickyMobileBar({ onOpenCallbackModal, onOpenConsultModal }) {
+  const handleOpen = onOpenCallbackModal || onOpenConsultModal;
+
   return (
     <div 
       className="mobile-sticky-bar"
@@ -12,13 +14,13 @@ export default function StickyMobileBar({ onOpenCallbackModal }) {
         bottom: 0,
         left: 0,
         right: 0,
-        background: 'rgba(255, 255, 255, 0.96)',
+        background: 'rgba(255, 255, 255, 0.98)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(226, 232, 240, 0.85)',
+        borderTop: '1px solid rgba(226, 232, 240, 0.9)',
         padding: '10px 16px calc(10px + env(safe-area-inset-bottom, 0px))',
         zIndex: 99,
-        boxShadow: '0 -8px 24px rgba(10, 22, 40, 0.1)'
+        boxShadow: '0 -8px 24px rgba(10, 22, 40, 0.12)'
       }}
     >
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
@@ -55,7 +57,8 @@ export default function StickyMobileBar({ onOpenCallbackModal }) {
         </a>
 
         <button 
-          onClick={onOpenCallbackModal}
+          type="button"
+          onClick={handleOpen}
           style={{
             display: 'flex',
             alignItems: 'center',

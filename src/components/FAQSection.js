@@ -33,7 +33,8 @@ export default function FAQSection() {
     <section id="faq" style={{ 
       padding: 'clamp(48px, 6vw, 100px) 0', 
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%)',
-      position: 'relative'
+      position: 'relative',
+      overflow: 'hidden'
     }}>
       {/* Background decoration */}
       <div style={{

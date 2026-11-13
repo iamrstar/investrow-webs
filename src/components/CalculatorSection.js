@@ -319,7 +319,8 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
     <section id="calculators" style={{
       padding: 'clamp(48px, 6vw, 96px) 0',
       background: 'linear-gradient(180deg, #F1F5F9 0%, #F8FAFC 50%, #FFFFFF 100%)',
-      position: 'relative'
+      position: 'relative',
+      overflow: 'hidden'
     }}>
       {/* Background radial aura */}
       <div style={{

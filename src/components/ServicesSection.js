@@ -197,7 +197,8 @@ export default function ServicesSection({ onSelectService }) {
     <section id="services" style={{ 
       padding: 'clamp(48px, 6vw, 96px) 0 clamp(56px, 8vw, 104px)', 
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%)',
-      position: 'relative'
+      position: 'relative',
+      overflow: 'hidden'
     }}>
       {/* Subtle brand ambient glows (sky blue & orange) */}
       <div style={{
