@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, MessageSquare, ArrowRight, Menu, X, ShieldCheck } from 'lucide-react';
+import { Phone, MessageSquare, ArrowRight, Menu, X, ShieldCheck, Smartphone, ExternalLink } from 'lucide-react';
 
 export default function Header({ onOpenConsultModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -118,6 +118,23 @@ export default function Header({ onOpenConsultModal }) {
               >
                 <MessageSquare size={12} /> WhatsApp
               </a>
+              <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
+              <a 
+                href="https://play.google.com/store/apps/details?id=com.investrow.investrowfinancial"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ 
+                  color: '#38BDF8', 
+                  fontWeight: 700, 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '5px',
+                  fontSize: '12px',
+                  transition: 'color 0.2s'
+                }}
+              >
+                <Smartphone size={12} /> Investrow App
+              </a>
             </div>
           </div>
 
@@ -231,8 +248,50 @@ export default function Header({ onOpenConsultModal }) {
           })}
         </nav>
 
-        {/* Action Button & Mobile Toggle */}
+        {/* Action Buttons: App Download, Consultation & Mobile Toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Desktop App Download Button */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.investrow.investrowfinancial"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-download-app-nav hide-mobile"
+            title="Download Investrow App on Google Play Store"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '7px',
+              padding: '9px 15px',
+              borderRadius: '10px',
+              background: 'rgba(0, 138, 216, 0.08)',
+              border: '1.5px solid rgba(0, 138, 216, 0.28)',
+              color: 'var(--primary-blue-dark)',
+              fontWeight: 700,
+              fontSize: '13px',
+              textDecoration: 'none',
+              transition: 'var(--transition-smooth)',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 138, 216, 0.16)';
+              e.currentTarget.style.borderColor = 'var(--primary-blue)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 138, 216, 0.08)';
+              e.currentTarget.style.borderColor = 'rgba(0, 138, 216, 0.28)';
+            }}
+          >
+            <Smartphone size={15} style={{ color: 'var(--primary-blue)' }} />
+            <span>Download App</span>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#22C55E',
+              boxShadow: '0 0 6px #22C55E'
+            }} />
+          </a>
+
           <button 
             onClick={() => onOpenConsultModal('Header Consultation')}
             className="btn-orange hide-mobile"
@@ -240,6 +299,40 @@ export default function Header({ onOpenConsultModal }) {
           >
             Book Free Advisory Call <ArrowRight size={14} />
           </button>
+
+          {/* Mobile App Download Button (Visible on phones next to menu) */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.investrow.investrowfinancial"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download Investrow App on Google Play"
+            className="mobile-app-nav-btn"
+            style={{
+              display: 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+              height: '42px',
+              padding: '0 12px',
+              borderRadius: '10px',
+              background: 'linear-gradient(135deg, #0A1628 0%, #0F1E36 100%)',
+              border: '1px solid rgba(0, 138, 216, 0.35)',
+              color: '#FFFFFF',
+              fontWeight: 700,
+              fontSize: '12px',
+              textDecoration: 'none',
+              boxShadow: '0 2px 8px rgba(10, 22, 40, 0.15)'
+            }}
+          >
+            <Smartphone size={14} style={{ color: '#38BDF8' }} />
+            <span>App</span>
+            <span style={{
+              width: '5px',
+              height: '5px',
+              borderRadius: '50%',
+              background: '#22C55E'
+            }} />
+          </a>
 
           {/* Mobile Menu Toggle Button */}
           <button 
@@ -280,6 +373,93 @@ export default function Header({ onOpenConsultModal }) {
           overflowY: 'auto',
           boxShadow: '0 20px 40px rgba(10, 22, 40, 0.12)'
         }}>
+          {/* Prominent App Download Card in Mobile Drawer */}
+          <div style={{
+            background: 'linear-gradient(135deg, #0A1628 0%, #0F1E36 100%)',
+            borderRadius: '14px',
+            padding: '14px 16px',
+            color: '#FFFFFF',
+            marginBottom: '10px',
+            border: '1px solid rgba(0, 138, 216, 0.35)',
+            boxShadow: '0 8px 20px rgba(10, 22, 40, 0.2)'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '9px',
+                  background: 'linear-gradient(135deg, #008AD8 0%, #005696 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#FFFFFF',
+                  boxShadow: '0 4px 10px rgba(0, 138, 216, 0.4)'
+                }}>
+                  <Smartphone size={17} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '13px', fontWeight: 800, color: '#FFFFFF' }}>Investrow App</div>
+                  <div style={{ fontSize: '10.5px', color: '#94A3B8' }}>Track MF Portfolios & Live SIPs</div>
+                </div>
+              </div>
+              <span style={{
+                fontSize: '10px',
+                fontWeight: 800,
+                background: 'rgba(34, 197, 94, 0.18)',
+                color: '#4ADE80',
+                padding: '2px 7px',
+                borderRadius: '9999px',
+                border: '1px solid rgba(74, 222, 128, 0.3)'
+              }}>
+                Play Store
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.investrow.investrowfinancial"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: '#000000',
+                  color: '#FFFFFF',
+                  padding: '9px 12px',
+                  borderRadius: '9px',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  textDecoration: 'none'
+                }}
+              >
+                <span>Get on Play Store</span> <ExternalLink size={12} style={{ color: '#94A3B8' }} />
+              </a>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '4px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  color: '#94A3B8',
+                  padding: '9px 10px',
+                  borderRadius: '9px',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  userSelect: 'none'
+                }}
+              >
+                <span>App Store</span>
+                <span style={{ fontSize: '9px', color: '#FF8A3D', fontWeight: 700 }}>(Soon)</span>
+              </div>
+            </div>
+          </div>
           {[
             { label: 'About Us', href: '/about', badge: null },
             { label: 'Our Team', href: '/team', badge: 'Leadership' },
@@ -416,6 +596,9 @@ export default function Header({ onOpenConsultModal }) {
           }
           .brand-logo-img {
             max-height: 38px !important;
+          }
+          .mobile-app-nav-btn {
+            display: inline-flex !important;
           }
           .mobile-toggle-btn {
             display: flex !important;

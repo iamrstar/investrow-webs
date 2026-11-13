@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import AMCPartners from '@/components/AMCPartners';
 import ServicesSection from '@/components/ServicesSection';
 import CalculatorSection from '@/components/CalculatorSection';
+import AppShowcaseSection from '@/components/AppShowcaseSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
@@ -13,6 +14,7 @@ import AIChatAdvisor from '@/components/AIChatAdvisor';
 import ExitIntentModal from '@/components/ExitIntentModal';
 import ConsultModal from '@/components/ConsultModal';
 import StickyMobileBar from '@/components/StickyMobileBar';
+import AppDownloadModal from '@/components/AppDownloadModal';
 
 export default function Home() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
@@ -40,6 +42,9 @@ export default function Home() {
       {/* Interactive Goal & SIP Calculator */}
       <CalculatorSection onLeadSubmitted={() => {}} onOpenConsultModal={handleOpenConsultModal} />
 
+      {/* Official Investrow Mobile App Showcase */}
+      <AppShowcaseSection />
+
       {/* Real Investor Testimonials & Human Stories */}
       <TestimonialsSection onOpenConsultModal={handleOpenConsultModal} />
 
@@ -48,6 +53,9 @@ export default function Home() {
 
       {/* Comprehensive Footer */}
       <Footer />
+
+      {/* Smart App Download Floating Popup / Bottom Banner */}
+      <AppDownloadModal />
 
       {/* Groq AI Wealth Advisor Floating Widget */}
       <AIChatAdvisor onLeadSubmitted={() => {}} />
