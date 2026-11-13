@@ -116,8 +116,8 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
               }}>
                 <div style={{ position: 'relative', width: '44px', height: '44px', flexShrink: 0 }}>
                   <img 
-                    src="/images/advisor/advisor_portrait.jpg" 
-                    alt="Rajesh Sharma, Senior Wealth Advisor"
+                    src="/images/team/surendra-prasad.png" 
+                    alt="Surendra Prasad, Founder & Senior Wealth Advisor"
                     style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #0EA5E9' }}
                   />
                   <span style={{
@@ -133,7 +133,7 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
                 </div>
                 <div>
                   <div style={{ fontSize: '13.5px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                    Rajesh Sharma • Senior AMFI Advisor
+                    Surendra Prasad • Founder & Senior AMFI Advisor
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#0284C7', fontWeight: 700, marginTop: '2px' }}>
                     ARN-194720 • 1-on-1 Confidential Advisory Call

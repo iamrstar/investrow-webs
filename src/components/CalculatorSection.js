@@ -1295,8 +1295,8 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                     }}>
                       <div style={{ position: 'relative', width: '36px', height: '36px', flexShrink: 0 }}>
                         <img 
-                          src="/images/advisor/advisor_portrait.jpg" 
-                          alt="Rajesh Sharma, Senior Wealth Advisor"
+                          src="/images/team/surendra-prasad.png" 
+                          alt="Surendra Prasad, Founder & Senior Wealth Advisor"
                           style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #FF8A3D' }} 
                         />
                         <span style={{
@@ -1312,7 +1312,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       </div>
                       <div style={{ lineHeight: 1.25 }}>
                         <div style={{ fontSize: '12px', fontWeight: 700, color: '#FFFFFF' }}>
-                          Rajesh Sharma • Senior AMFI Advisor (ARN-194720)
+                          Surendra Prasad • Founder & Senior AMFI Advisor (ARN-194720)
                         </div>
                         <div style={{ fontSize: '10.5px', color: '#94A3B8' }}>
                           Assigned to review & curate your 15%–25% alpha portfolio

@@ -49,7 +49,7 @@ const testimonials = [
     tagColor: '#8B5CF6',
     tagBg: '#F3E8FF',
     rating: 5,
-    quote: 'Their Smart Calculator opened my eyes to the power of Annual Step-Up SIPs. Rajesh and the team selected high-conviction mid and small-cap alpha compounders that have delivered outstanding compounding.'
+    quote: 'Their Smart Calculator opened my eyes to the power of Annual Step-Up SIPs. Surendra and the team selected high-conviction mid and small-cap alpha compounders that have delivered outstanding compounding.'
   }
 ];
 
@@ -258,8 +258,8 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <img 
-              src="/images/advisor/advisor_portrait.jpg" 
-              alt="Rajesh Sharma, Senior AMFI Advisor"
+              src="/images/team/surendra-prasad.png" 
+              alt="Surendra Prasad, Founder & Senior AMFI Advisor"
               style={{
                 width: '64px',
                 height: '64px',
@@ -278,7 +278,7 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
                 Ready to Join 3,000+ Families Compounding Their Future?
               </h3>
               <p style={{ fontSize: '13.5px', color: '#94A3B8', margin: 0 }}>
-                Get a complimentary portfolio review with Rajesh Sharma and our senior AMFI wealth advisory team.
+                Get a complimentary portfolio review with Surendra Prasad and our senior AMFI wealth advisory team.
               </p>
             </div>
           </div>
