@@ -305,21 +305,29 @@ export default function HeroSection({ onLeadSubmitted }) {
                 <img 
                   src="/images/avatars/client_doctor.jpg" 
                   alt="Dr. Vikram Sharma" 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FFFFFF' }} 
                 />
                 <img 
                   src="/images/avatars/client_entrepreneur.jpg" 
                   alt="Sunita Murmu" 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FFFFFF', marginLeft: '-10px' }} 
                 />
                 <img 
                   src="/images/avatars/client_executive.jpg" 
                   alt="Rajesh Agarwal" 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FFFFFF', marginLeft: '-10px' }} 
                 />
                 <img 
                   src="/images/avatars/client_tech.jpg" 
                   alt="Aniket Roy" 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FFFFFF', marginLeft: '-10px' }} 
                 />
                 <div style={{
@@ -569,6 +577,9 @@ export default function HeroSection({ onLeadSubmitted }) {
                     key={slide.id}
                     src={slide.src}
                     alt={slide.alt}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    decoding={idx === 0 ? 'sync' : 'async'}
+                    fetchPriority={idx === 0 ? 'high' : 'low'}
                     style={{
                       position: 'absolute',
                       inset: 0,
