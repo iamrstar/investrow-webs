@@ -7,20 +7,20 @@ import Footer from '@/components/Footer';
 import ConsultModal from '@/components/ConsultModal';
 import AIChatAdvisor from '@/components/AIChatAdvisor';
 import StickyMobileBar from '@/components/StickyMobileBar';
-import { 
-  ShieldCheck, 
-  MapPin, 
-  Phone, 
-  ArrowRight, 
-  CheckCircle2, 
-  TrendingUp, 
-  Users, 
-  Award, 
-  Sparkles, 
-  Clock, 
-  Calculator, 
-  HelpCircle, 
-  Building2, 
+import {
+  ShieldCheck,
+  MapPin,
+  Phone,
+  ArrowRight,
+  CheckCircle2,
+  TrendingUp,
+  Users,
+  Award,
+  Sparkles,
+  Clock,
+  Calculator,
+  HelpCircle,
+  Building2,
   FileCheck,
   ChevronRight,
   Landmark,
@@ -146,7 +146,7 @@ export default function NpsClient() {
               gap: '40px',
               alignItems: 'center'
             }} className="hero-grid">
-              
+
               <div>
                 <div style={{
                   display: 'inline-flex',
@@ -511,7 +511,7 @@ export default function NpsClient() {
               gridTemplateColumns: '1.1fr 0.9fr',
               gap: '32px'
             }} className="calc-grid">
-              
+
               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
@@ -663,12 +663,12 @@ export default function NpsClient() {
       </main>
 
       <Footer />
-      <AIChatAdvisor onLeadSubmitted={() => {}} />
+      <AIChatAdvisor onLeadSubmitted={() => { }} />
       <ConsultModal
         isOpen={consultModalOpen}
         initialService={selectedService}
         onClose={() => setConsultModalOpen(false)}
-        onLeadSubmitted={() => {}}
+        onLeadSubmitted={() => { }}
       />
       <StickyMobileBar onOpenCallbackModal={() => handleOpenConsultModal('NPS Mobile Sticky Callback')} />
     </div>
