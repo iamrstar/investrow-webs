@@ -388,3 +388,4 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
     </div>
   );
 }
+

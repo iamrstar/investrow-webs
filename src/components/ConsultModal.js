@@ -1,17 +1,66 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, CheckCircle2, ShieldCheck, Sparkles, Calendar } from 'lucide-react';
 
-export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual Funds & Monthly SIP', onLeadSubmitted }) {
+export default function ConsultModal({ 
+  isOpen, 
+  onClose, 
+  initialService = 'Mutual Funds & Monthly SIP', 
+  defaultService,
+  advisor: propAdvisor,
+  onLeadSubmitted 
+}) {
+  const activeService = defaultService || initialService || 'Mutual Funds & Monthly SIP';
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [service, setService] = useState(initialService);
+  const [service, setService] = useState(activeService);
   const [preferredTime, setPreferredTime] = useState('Morning (10 AM - 1 PM)');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (activeService) {
+      setService(activeService);
+    }
+    if (isOpen) {
+      setSubmitted(false);
+    }
+  }, [activeService, isOpen]);
+
   if (!isOpen) return null;
+
+  // Dynamically resolve active advisor from prop or service name
+  let activeAdvisor = propAdvisor;
+  const sLower = (service || activeService || '').toLowerCase();
+  
+  if (!activeAdvisor) {
+    if (sLower.includes('dipankar') || sLower.includes('moi')) {
+      activeAdvisor = {
+        name: 'Dipankar Moi',
+        role: 'Business Development Manager',
+        badge: 'Head of Growth & Client Relations',
+        image: '/images/team/dipankar-moi.png',
+        sub: 'Strategic Investor Planning • 1-on-1 Meeting'
+      };
+    } else if (sLower.includes('birendra') || sLower.includes('kumar')) {
+      activeAdvisor = {
+        name: 'Birendra Kumar',
+        role: 'Accounts & Compliance',
+        badge: 'Head of Compliance & Finance',
+        image: '/images/team/birendra-kumar.png',
+        sub: 'Compliance & Statutory Audit • 1-on-1 Meeting'
+      };
+    } else {
+      activeAdvisor = {
+        name: 'Surendra Prasad',
+        role: 'Founder & Senior AMFI Advisor',
+        badge: 'AMFI Registered MFD (ARN-194720)',
+        image: '/images/team/surendra-prasad.png',
+        sub: 'ARN-194720 • 1-on-1 Confidential Advisory Call'
+      };
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +78,10 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
           name: name.trim(),
           phone: cleanPhone,
           service: service,
-          source: 'Website - Mutual Fund Consultation Booking',
+          source: `Website - Consultation with ${activeAdvisor.name}`,
           stage: 'New',
           callStatus: 'Pending',
-          remarks: `Booked Consultation for ${service} | Preferred Call Window: ${preferredTime}`
+          remarks: `Booked Consultation with ${activeAdvisor.name} (${activeAdvisor.role}) | Objective: ${service} | Preferred Call Window: ${preferredTime}`
         })
       });
 
@@ -116,8 +165,8 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
               }}>
                 <div style={{ position: 'relative', width: '44px', height: '44px', flexShrink: 0 }}>
                   <img 
-                    src="/images/team/surendra-prasad.png" 
-                    alt="Surendra Prasad, Founder & Senior Wealth Advisor"
+                    src={activeAdvisor.image || '/images/team/surendra-prasad.png'} 
+                    alt={`${activeAdvisor.name}, ${activeAdvisor.role}`}
                     style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #0EA5E9' }}
                   />
                   <span style={{
@@ -133,19 +182,19 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
                 </div>
                 <div>
                   <div style={{ fontSize: '13.5px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                    Surendra Prasad • Founder & Senior AMFI Advisor
+                    {activeAdvisor.name} • {activeAdvisor.role}
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#0284C7', fontWeight: 700, marginTop: '2px' }}>
-                    ARN-194720 • 1-on-1 Confidential Advisory Call
+                    {activeAdvisor.sub || '1-on-1 Confidential Advisory Call'}
                   </div>
                 </div>
               </div>
 
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px', lineHeight: 1.3 }}>
-                Book Your 1-on-1 Mutual Fund Advisory Call
+                Book Your Meeting with {activeAdvisor.name}
               </h3>
               <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                Speak directly with an Investrow certified mutual fund specialist for scheme allocation, existing portfolio check, or goal-based SIP planning.
+                Speak directly with {activeAdvisor.name} ({activeAdvisor.role}) at Investrow Financial Services for tailored portfolio guidance and financial planning.
               </p>
             </div>
 
@@ -257,6 +306,9 @@ export default function ConsultModal({ isOpen, onClose, initialService = 'Mutual
                       e.currentTarget.style.borderColor = 'var(--border-subtle)';
                     }}
                   >
+                    {!['Mutual Funds & Monthly SIP', 'Lumpsum Investment (STP)', 'Tax-Saving Mutual Funds (ELSS)', 'Free Portfolio Audit & Rebalancing', 'Retirement & Goal Planning', 'Monthly Cashflow via SWP'].includes(service) && (
+                      <option value={service}>{service}</option>
+                    )}
                     <option value="Mutual Funds & Monthly SIP">Start New Monthly SIP</option>
                     <option value="Lumpsum Investment (STP)">Lumpsum Investment</option>
                     <option value="Tax-Saving Mutual Funds (ELSS)">Tax-Saving ELSS (80C)</option>

@@ -99,7 +99,8 @@ export default function AwardsClient() {
             fontWeight: 800,
             letterSpacing: '-0.03em',
             marginBottom: '20px',
-            lineHeight: 1.15
+            lineHeight: 1.15,
+            color: '#FFFFFF'
           }}>
             Recognized by India’s Premier <br />
             <span className="gradient-text-orange">Mutual Fund Asset Management Companies</span>
@@ -394,7 +395,7 @@ export default function AwardsClient() {
               }}>
                 <ShieldCheck size={14} /> AMFI Reg. Mutual Fund Distributor (ARN-194720)
               </div>
-              <h3 style={{ fontSize: '26px', fontWeight: 800, marginBottom: '8px', lineHeight: 1.25 }}>
+              <h3 style={{ fontSize: '26px', fontWeight: 800, color: '#FFFFFF', marginBottom: '8px', lineHeight: 1.25 }}>
                 Partner With an Award-Winning Wealth Advisory Firm
               </h3>
               <p style={{ fontSize: '15px', color: '#94A3B8', lineHeight: 1.6 }}>

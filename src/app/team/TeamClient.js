@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,9 +9,6 @@ import AIChatAdvisor from '@/components/AIChatAdvisor';
 import StickyMobileBar from '@/components/StickyMobileBar';
 import { 
   leadershipTeam, 
-  departmentCategories, 
-  teamSpecialists, 
-  allTeamMembers, 
   teamStats 
 } from '@/data/teamData';
 import { 
@@ -26,8 +23,6 @@ import {
   Sparkles, 
   Quote, 
   CheckCircle2, 
-  Search, 
-  Filter, 
   GraduationCap, 
   Clock, 
   Target, 
@@ -41,29 +36,13 @@ import {
 export default function TeamClient() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
   const [consultDefaultService, setConsultDefaultService] = useState('Executive Advisory Consultation');
-  const [selectedDept, setSelectedDept] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedAdvisor, setSelectedAdvisor] = useState(null);
 
-  const handleOpenConsultModal = (serviceName = 'Team Consultation') => {
+  const handleOpenConsultModal = (serviceName = 'Team Consultation', advisor = null) => {
     setConsultDefaultService(serviceName);
+    setSelectedAdvisor(advisor);
     setConsultModalOpen(true);
   };
-
-  // Filtered specialist members based on department and search
-  const filteredSpecialists = useMemo(() => {
-    return teamSpecialists.filter(member => {
-      const matchesDept = selectedDept === 'all' || selectedDept === 'specialists' || member.department === selectedDept;
-      const q = searchQuery.toLowerCase().trim();
-      const matchesQuery = !q || 
-        member.name.toLowerCase().includes(q) ||
-        member.role.toLowerCase().includes(q) ||
-        member.deptName.toLowerCase().includes(q) ||
-        (member.qualifications && member.qualifications.toLowerCase().includes(q)) ||
-        (member.focus && member.focus.toLowerCase().includes(q));
-
-      return matchesDept && matchesQuery;
-    });
-  }, [selectedDept, searchQuery]);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#F8FAFC' }}>
@@ -340,17 +319,21 @@ export default function TeamClient() {
                     position: 'relative'
                   }}>
                     {/* Portrait Image Container */}
-                    <div style={{
-                      width: '210px',
-                      height: '230px',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      background: '#FFFFFF',
-                      marginBottom: '20px',
-                      border: '3px solid rgba(255, 255, 255, 0.15)',
-                      boxShadow: '0 12px 28px rgba(0,0,0,0.3)',
-                      position: 'relative'
-                    }}>
+                    <div 
+                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`, leader)}
+                      style={{
+                        width: '210px',
+                        height: '230px',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        background: '#FFFFFF',
+                        marginBottom: '20px',
+                        border: '3px solid rgba(255, 255, 255, 0.15)',
+                        boxShadow: '0 12px 28px rgba(0,0,0,0.3)',
+                        position: 'relative',
+                        cursor: 'pointer'
+                      }}
+                    >
                       <img
                         src={leader.image}
                         alt={leader.name}
@@ -363,12 +346,16 @@ export default function TeamClient() {
                       />
                     </div>
 
-                    <h3 style={{
-                      fontSize: '22px',
-                      fontWeight: 800,
-                      color: '#FFFFFF',
-                      marginBottom: '4px'
-                    }}>
+                    <h3 
+                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`, leader)}
+                      style={{
+                        fontSize: '22px',
+                        fontWeight: 800,
+                        color: '#FFFFFF',
+                        marginBottom: '4px',
+                        cursor: 'pointer'
+                      }}
+                    >
                       {leader.name}
                     </h3>
 
@@ -397,7 +384,7 @@ export default function TeamClient() {
                     </div>
 
                     <button
-                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`)}
+                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`, leader)}
                       className="btn-orange"
                       style={{
                         width: '100%',
@@ -611,7 +598,7 @@ export default function TeamClient() {
           </div>
         </section>
 
-        {/* SECTION 2: 20+ SPECIALIST FORCE ("more 20 peoples") */}
+        {/* SECTION 2: 20+ HIGHLY QUALIFIED PROFESSIONALS FORCE */}
         <section style={{ padding: '80px 0 96px', background: '#F8FAFC', borderTop: '1px solid #E2E8F0' }}>
           <div className="container">
             <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
@@ -629,352 +616,311 @@ export default function TeamClient() {
                 textTransform: 'uppercase',
                 marginBottom: '12px'
               }}>
-                <Users size={14} /> 20+ Dedicated Team Members
+                <Users size={14} /> 20+ Certified Institutional Professionals
               </div>
               <h2 style={{
-                fontSize: 'clamp(28px, 4vw, 38px)',
+                fontSize: 'clamp(28px, 4vw, 40px)',
                 fontWeight: 800,
                 color: 'var(--navy-deep)',
                 lineHeight: 1.25,
-                marginBottom: '14px'
+                marginBottom: '16px'
               }}>
-                Our Specialized Advisory, Research & Operations Force
+                Powered by 20+ Highly Qualified Professionals
               </h2>
               <p style={{ fontSize: '16px', lineHeight: 1.7, color: '#64748B' }}>
-                Supporting our leadership are 20+ certified professionals managing wealth planning, quantitative scheme screening, C-KYC processing, and digital portfolio management for 5,000+ investors.
+                Behind Investrow’s executive leadership operates an institutional force of over 20+ full-time certified wealth advisors, quantitative research analysts, operations managers, and regulatory compliance specialists — dedicated to managing and compounding wealth for 3,000+ families.
               </p>
             </div>
 
-            {/* Department Filter Bar & Search */}
-            <div style={{
-              background: '#FFFFFF',
-              borderRadius: '16px',
-              padding: '20px 24px',
-              border: '1px solid #E2E8F0',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.03)',
-              marginBottom: '36px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '18px'
-            }}>
-              {/* Search Bar */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                background: '#F1F5F9',
-                padding: '10px 18px',
-                borderRadius: '10px',
-                border: '1px solid #CBD5E1'
-              }}>
-                <Search size={18} style={{ color: '#64748B' }} />
-                <input
-                  type="text"
-                  placeholder="Search by specialist name, certification (NISM, MBA, CFA), role, or area of focus (SIP, HNI, NRI, Debt, KYC)..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{
-                    border: 'none',
-                    background: 'transparent',
-                    outline: 'none',
-                    width: '100%',
-                    fontSize: '14px',
-                    color: 'var(--navy-deep)'
-                  }}
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      fontSize: '12px',
-                      color: '#64748B',
-                      cursor: 'pointer',
-                      fontWeight: 600
-                    }}
-                  >
-                    Clear
-                  </button>
-                )}
-              </div>
-
-              {/* Department Filter Tabs */}
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '8px',
-                alignItems: 'center'
-              }}>
-                <span style={{ fontSize: '12.5px', fontWeight: 700, color: '#475569', marginRight: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Filter size={14} /> Department:
-                </span>
-                {[
-                  { id: 'all', label: 'All Specialists', count: 22 },
-                  { id: 'advisory', label: 'Wealth Advisory & RM', count: 6 },
-                  { id: 'research', label: 'Research & Analytics', count: 4 },
-                  { id: 'operations', label: 'Client Operations & KYC', count: 5 },
-                  { id: 'compliance', label: 'Compliance & Risk', count: 3 },
-                  { id: 'technology', label: 'Digital & Technology', count: 4 }
-                ].map((cat) => {
-                  const isActive = selectedDept === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setSelectedDept(cat.id)}
-                      style={{
-                        padding: '7px 14px',
-                        borderRadius: '9999px',
-                        fontSize: '12.5px',
-                        fontWeight: 600,
-                        border: '1px solid',
-                        borderColor: isActive ? 'var(--primary-blue)' : '#E2E8F0',
-                        background: isActive ? 'var(--primary-blue)' : '#FFFFFF',
-                        color: isActive ? '#FFFFFF' : '#475569',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <span>{cat.label}</span>
-                      <span style={{
-                        fontSize: '11px',
-                        padding: '1px 6px',
-                        borderRadius: '9999px',
-                        background: isActive ? 'rgba(255,255,255,0.25)' : '#F1F5F9',
-                        color: isActive ? '#FFFFFF' : '#64748B'
-                      }}>
-                        {cat.count}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Results Counter */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '24px',
-              fontSize: '13px',
-              color: '#64748B'
-            }}>
-              <span>
-                Showing <strong>{filteredSpecialists.length}</strong> specialized team members
-                {selectedDept !== 'all' ? ` in selected department` : ''}
-                {searchQuery ? ` matching "${searchQuery}"` : ''}
-              </span>
-
-              {(selectedDept !== 'all' || searchQuery) && (
-                <button
-                  onClick={() => {
-                    setSelectedDept('all');
-                    setSearchQuery('');
-                  }}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: 'var(--primary-blue)',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    fontSize: '12.5px'
-                  }}
-                >
-                  Reset all filters
-                </button>
-              )}
-            </div>
-
-            {/* Specialist Cards Grid */}
+            {/* Collective Strength KPI Bar */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(285px, 1fr))',
-              gap: '24px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '16px',
+              marginBottom: '44px'
             }}>
-              {filteredSpecialists.map((member) => (
+              {[
+                { number: '20+', label: 'Qualified Professionals', desc: 'Across Advisory, Research & Operations', icon: <Users size={20} color="#008AD8" /> },
+                { number: '100%', label: 'AMFI / NISM Certified', desc: 'Strict regulatory code compliance (ARN-194720)', icon: <ShieldCheck size={20} color="#22C55E" /> },
+                { number: '40+', label: 'AMCs Under Coverage', desc: 'SBI, HDFC, ICICI, Nippon, Quant & more', icon: <Building2 size={20} color="#FF6A13" /> },
+                { number: '2 Hours', label: 'Client Desk SLA', desc: 'Dedicated relationship desk response', icon: <Clock size={20} color="#8B5CF6" /> }
+              ].map((stat, idx) => (
+                <div key={idx} style={{
+                  background: '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '22px 20px',
+                  border: '1px solid #E2E8F0',
+                  boxShadow: '0 4px 12px rgba(10, 22, 40, 0.03)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '12px',
+                    background: 'rgba(0, 138, 216, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    {stat.icon}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.1 }}>
+                      {stat.number}
+                    </div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--primary-blue)', marginTop: '2px' }}>
+                      {stat.label}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#64748B', marginTop: '2px' }}>
+                      {stat.desc}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Department Functional Desks Grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '24px',
+              marginBottom: '44px'
+            }}>
+              {[
+                {
+                  title: 'Wealth Advisory & Relationship Management Desk',
+                  teamSize: '6+ Senior Advisors',
+                  badgeColor: '#008AD8',
+                  badgeBg: 'rgba(0, 138, 216, 0.1)',
+                  qualifications: 'AMFI Registered (ARN-194720), NISM Series V-A, MBA Finance',
+                  responsibilities: [
+                    'Personalized goal-based SIP architecture (Child higher education, FIRE, retirement)',
+                    'High-Net-Worth (HNI) asset allocation & lumpsum deployment strategies',
+                    'Dedicated human relationship manager with direct phone & WhatsApp access',
+                    'Regular annual portfolio rebalancing and tax-efficient SWP cashflow setup'
+                  ]
+                },
+                {
+                  title: 'Quantitative Research & Fund Analytics Desk',
+                  teamSize: '4+ Research Analysts',
+                  badgeColor: '#FF6A13',
+                  badgeBg: 'rgba(255, 106, 19, 0.1)',
+                  qualifications: 'CFA Charterholders, M.Sc Finance, Quantitative Data Specialists',
+                  responsibilities: [
+                    'Quarterly quantitative tracking across 2,500+ active mutual fund schemes',
+                    'Rolling returns analysis, alpha vs. benchmark, capture ratios & Sharpe ratio screening',
+                    'Identification of consistent compounders in Mid-Cap, Small-Cap & Flexi-Cap categories',
+                    'Early warning detection for fund manager transitions and mandate drifts'
+                  ]
+                },
+                {
+                  title: 'Client Operations & Fast-Track C-KYC Desk',
+                  teamSize: '5+ Operations Specialists',
+                  badgeColor: '#10B981',
+                  badgeBg: 'rgba(16, 185, 129, 0.1)',
+                  qualifications: 'BSE StAR MF Certified, CAMS / KFintech Operations Experts',
+                  responsibilities: [
+                    '100% paperless onboarding and C-KYC / KRA verification within hours',
+                    'Seamless automated SIP bank mandate registration via e-NACH / UPI Autopay',
+                    'Consolidation of scattered family folios into single unified portfolio view',
+                    'End-to-end assistance with nominee updates, bank changes & redemption payouts'
+                  ]
+                },
+                {
+                  title: 'Regulatory Compliance, Risk & Governance Desk',
+                  teamSize: '3+ Compliance Officers',
+                  badgeColor: '#8B5CF6',
+                  badgeBg: 'rgba(139, 92, 246, 0.1)',
+                  qualifications: 'Chartered Accountants (CA), SEBI / AMFI Statutory Compliance Leads',
+                  responsibilities: [
+                    'Continuous adherence to SEBI and AMFI Code of Conduct and fiduciary standards',
+                    'Strict zero-conflict-of-interest policy: 100% investor-first scheme recommendations',
+                    'Institutional data security and client privacy governance protocols',
+                    'Independent statutory audit and regulatory reporting compliance'
+                  ]
+                },
+                {
+                  title: 'Digital Platforms & Mobile Technology Desk',
+                  teamSize: '4+ Digital Engineers',
+                  badgeColor: '#0EA5E9',
+                  badgeBg: 'rgba(14, 165, 233, 0.1)',
+                  qualifications: 'Fintech Software Engineers, Cloud Security Architects',
+                  responsibilities: [
+                    'Development & maintenance of official Investrow App on Google Play Store',
+                    'Live NAV integrations, real-time XIRR compounding engines & goal simulators',
+                    'Bank-grade 256-bit encryption protecting investor data and session integrity',
+                    'Continuous uptime monitoring and cloud infrastructure scalability'
+                  ]
+                }
+              ].map((desk, idx) => (
                 <div
-                  key={member.id}
+                  key={idx}
                   style={{
                     background: '#FFFFFF',
-                    borderRadius: '16px',
+                    borderRadius: '18px',
                     border: '1px solid #E2E8F0',
-                    padding: '24px',
-                    boxShadow: '0 4px 12px rgba(10, 22, 40, 0.04)',
+                    padding: '28px 26px',
+                    boxShadow: '0 4px 16px rgba(10, 22, 40, 0.04)',
                     display: 'flex',
                     flexDirection: 'column',
                     transition: 'all 0.25s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.borderColor = 'var(--primary-blue)';
-                    e.currentTarget.style.boxShadow = '0 12px 24px -6px rgba(0, 138, 216, 0.12)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 138, 216, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(0, 138, 216, 0.4)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(10, 22, 40, 0.04)';
                     e.currentTarget.style.borderColor = '#E2E8F0';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(10, 22, 40, 0.04)';
                   }}
                 >
-                  {/* Top Row: Avatar & Dept Pill */}
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', marginBottom: '16px' }}>
-                    <div style={{
-                      width: '52px',
-                      height: '52px',
-                      borderRadius: '12px',
-                      background: `linear-gradient(135deg, ${member.color || '#008AD8'}15 0%, ${member.color || '#008AD8'}30 100%)`,
-                      border: `1.5px solid ${member.color || '#008AD8'}40`,
-                      color: member.color || 'var(--primary-blue)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '17px',
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{
+                      fontSize: '11.5px',
                       fontWeight: 800,
-                      flexShrink: 0
-                    }}>
-                      {member.initials}
-                    </div>
-
-                    <div style={{
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      color: 'var(--primary-blue)',
-                      background: 'rgba(0, 138, 216, 0.08)',
-                      padding: '4px 10px',
+                      color: desk.badgeColor,
+                      background: desk.badgeBg,
+                      padding: '4px 12px',
                       borderRadius: '9999px',
-                      textAlign: 'right'
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px'
                     }}>
-                      {member.deptName}
-                    </div>
+                      <Users size={12} /> {desk.teamSize}
+                    </span>
+                    <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: 600 }}>
+                      Division {idx + 1} of 5
+                    </span>
                   </div>
 
-                  {/* Name & Role */}
-                  <h4 style={{
-                    fontSize: '17px',
-                    fontWeight: 700,
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: 800,
                     color: 'var(--navy-deep)',
-                    marginBottom: '4px',
-                    lineHeight: 1.3
+                    marginBottom: '10px',
+                    lineHeight: 1.35
                   }}>
-                    {member.name}
-                  </h4>
+                    {desk.title}
+                  </h3>
+
                   <div style={{
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    color: 'var(--primary-blue)',
-                    marginBottom: '12px'
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '11.5px',
+                    color: '#475569',
+                    background: '#F1F5F9',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    marginBottom: '16px'
                   }}>
-                    {member.role}
+                    <GraduationCap size={13} style={{ color: desk.badgeColor, flexShrink: 0 }} />
+                    <span style={{ fontWeight: 600 }}>{desk.qualifications}</span>
                   </div>
 
-                  {/* Badges: Qualifications & Experience */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '14px' }}>
-                    <span style={{
-                      fontSize: '11.5px',
-                      color: '#475569',
-                      background: '#F1F5F9',
-                      padding: '3px 8px',
-                      borderRadius: '4px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px'
-                    }}>
-                      <GraduationCap size={12} style={{ color: '#008AD8' }} /> {member.qualifications}
-                    </span>
-                    <span style={{
-                      fontSize: '11.5px',
-                      color: '#475569',
-                      background: '#F1F5F9',
-                      padding: '3px 8px',
-                      borderRadius: '4px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px'
-                    }}>
-                      <Clock size={12} style={{ color: '#FF6A13' }} /> {member.experience}
-                    </span>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '9px', marginBottom: '20px' }}>
+                    {desk.responsibilities.map((resp, rIdx) => (
+                      <div key={rIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: '#64748B', lineHeight: 1.5 }}>
+                        <CheckCircle2 size={15} style={{ color: '#22C55E', flexShrink: 0, marginTop: '2px' }} />
+                        <span>{resp}</span>
+                      </div>
+                    ))}
                   </div>
 
-                  {/* Focus / Specialty Area */}
-                  <div style={{
-                    fontSize: '12.5px',
-                    color: '#64748B',
-                    lineHeight: 1.55,
-                    marginBottom: '18px',
-                    flex: 1,
-                    borderTop: '1px solid #F1F5F9',
-                    paddingTop: '12px'
-                  }}>
-                    <strong style={{ color: '#334155' }}>Domain Focus: </strong>
-                    {member.focus}
-                  </div>
-
-                  {/* Consultation Trigger */}
                   <button
-                    onClick={() => handleOpenConsultModal(`Consultation regarding ${member.role} (${member.name})`)}
+                    onClick={() => handleOpenConsultModal(`Consultation with ${desk.title}`)}
                     style={{
-                      background: 'transparent',
-                      border: '1px solid #E2E8F0',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                      fontSize: '12.5px',
-                      fontWeight: 600,
-                      color: 'var(--navy-deep)',
-                      cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '6px',
+                      gap: '8px',
+                      padding: '11px',
+                      borderRadius: '10px',
+                      background: 'rgba(0, 138, 216, 0.08)',
+                      border: '1px solid rgba(0, 138, 216, 0.25)',
+                      color: 'var(--primary-blue-dark)',
+                      fontSize: '13px',
+                      fontWeight: 700,
+                      cursor: 'pointer',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'var(--primary-blue)';
-                      e.currentTarget.style.borderColor = 'var(--primary-blue)';
                       e.currentTarget.style.color = '#FFFFFF';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.borderColor = '#E2E8F0';
-                      e.currentTarget.style.color = 'var(--navy-deep)';
+                      e.currentTarget.style.background = 'rgba(0, 138, 216, 0.08)';
+                      e.currentTarget.style.color = 'var(--primary-blue-dark)';
                     }}
                   >
-                    <span>Connect with Team</span>
-                    <ArrowRight size={13} />
+                    <span>Connect With This Desk</span>
+                    <ArrowRight size={14} />
                   </button>
                 </div>
               ))}
             </div>
 
-            {filteredSpecialists.length === 0 && (
-              <div style={{
-                textAlign: 'center',
-                padding: '60px 20px',
-                background: '#FFFFFF',
-                borderRadius: '16px',
-                border: '1px dashed #CBD5E1'
-              }}>
-                <Users size={40} style={{ color: '#94A3B8', margin: '0 auto 12px' }} />
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--navy-deep)', marginBottom: '8px' }}>
-                  No team members found
+            {/* Bottom Institutional Commitment Callout */}
+            <div style={{
+              background: 'linear-gradient(135deg, #0A1628 0%, #0F1E36 100%)',
+              borderRadius: '20px',
+              padding: '32px 36px',
+              color: '#FFFFFF',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '24px',
+              border: '1px solid rgba(0, 138, 216, 0.35)',
+              boxShadow: '0 12px 36px rgba(10, 22, 40, 0.25)'
+            }}>
+              <div style={{ maxWidth: '620px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#38BDF8', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '6px' }}>
+                  <ShieldCheck size={14} /> Fiduciary Wealth Architecture
+                </div>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#FFFFFF', marginBottom: '8px' }}>
+                  Work with a Dedicated Team That Puts Your Goals First
                 </h3>
-                <p style={{ fontSize: '14px', color: '#64748B', marginBottom: '16px' }}>
-                  Try adjusting your search keywords or select a different department filter.
+                <p style={{ fontSize: '14px', color: '#94A3B8', margin: 0, lineHeight: 1.6 }}>
+                  Our 20+ member team combines quantitative discipline with genuine human care. Get a complimentary, confidential review of your mutual fund portfolio today.
                 </p>
-                <button
-                  onClick={() => {
-                    setSelectedDept('all');
-                    setSearchQuery('');
-                  }}
-                  className="btn-primary"
-                  style={{ padding: '8px 20px', fontSize: '13px' }}
-                >
-                  View All 22 Specialists
-                </button>
               </div>
-            )}
+
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => handleOpenConsultModal('Team Advisory Review')}
+                  className="btn-orange"
+                  style={{ padding: '12px 24px', fontSize: '14px' }}
+                >
+                  Book Free Portfolio Review ➔
+                </button>
+                <a
+                  href="tel:+919102070777"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '12px 20px',
+                    borderRadius: '10px',
+                    background: 'rgba(255, 255, 255, 0.08)',
+                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    color: '#FFFFFF',
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    textDecoration: 'none'
+                  }}
+                >
+                  <Phone size={14} style={{ color: 'var(--accent-orange)' }} />
+                  <span>Call Advisory Desk</span>
+                </a>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -1135,8 +1081,12 @@ export default function TeamClient() {
       {/* Interactive Consultation Modal */}
       <ConsultModal
         isOpen={consultModalOpen}
-        onClose={() => setConsultModalOpen(false)}
+        onClose={() => {
+          setConsultModalOpen(false);
+          setSelectedAdvisor(null);
+        }}
         defaultService={consultDefaultService}
+        advisor={selectedAdvisor}
       />
 
       <StickyMobileBar onOpenConsultModal={handleOpenConsultModal} />
