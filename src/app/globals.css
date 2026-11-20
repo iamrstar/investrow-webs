@@ -601,8 +601,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
     padding: 0 16px !important;
   }
 
-  /* Show sticky bottom bar & reserve padding so footer/content is never covered */
-  .mobile-sticky-bar {
+  /* Show sticky bottom dock & reserve padding so footer/content is never covered */
+  .mobile-sticky-bar,
+  .mobile-sticky-dock {
     display: block !important;
   }
   body {
@@ -630,15 +631,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
     max-height: 38px !important;
   }
 
-  /* AI Wealth Advisor FAB floating position above sticky bar */
-  .ai-advisor-fab-container {
-    bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
-    right: 14px !important;
-  }
-  .ai-advisor-fab-btn {
-    padding: 10px 16px !important;
-    font-size: 13px !important;
-    box-shadow: 0 8px 24px rgba(255, 106, 19, 0.45) !important;
+  /* Hide floating FAB & floating pill buttons on mobile: AI Wealth Advisor and App are unified into the sleek bottom dock */
+  .ai-advisor-fab-container,
+  .app-floating-pill-trigger {
+    display: none !important;
   }
   .ai-chat-modal {
     bottom: 0 !important;

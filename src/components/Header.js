@@ -320,46 +320,12 @@ export default function Header({ onOpenConsultModal }) {
           </a>
 
           <button 
-            onClick={() => onOpenConsultModal('Header Consultation')}
+            onClick={() => onOpenConsultModal('Free Wealth Advisory Call')}
             className="btn-orange hide-mobile"
             style={{ padding: '10px 22px', fontSize: '13.5px' }}
           >
             Book Free Advisory Call <ArrowRight size={14} />
           </button>
-
-          {/* Mobile App Download Button (Visible on phones next to menu) */}
-          <a
-            href="https://play.google.com/store/apps/details?id=com.investrow.investrowfinancial"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download Investrow App on Google Play"
-            className="mobile-app-nav-btn"
-            style={{
-              display: 'none',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '4px',
-              height: '42px',
-              padding: '0 12px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, #0A1628 0%, #0F1E36 100%)',
-              border: '1px solid rgba(0, 138, 216, 0.35)',
-              color: '#FFFFFF',
-              fontWeight: 700,
-              fontSize: '12px',
-              textDecoration: 'none',
-              boxShadow: '0 2px 8px rgba(10, 22, 40, 0.15)'
-            }}
-          >
-            <Smartphone size={14} style={{ color: '#38BDF8' }} />
-            <span>App</span>
-            <span style={{
-              width: '5px',
-              height: '5px',
-              borderRadius: '50%',
-              background: '#22C55E'
-            }} />
-          </a>
 
           {/* Mobile Menu Toggle Button */}
           <button 
@@ -601,7 +567,7 @@ export default function Header({ onOpenConsultModal }) {
             type="button"
             onClick={() => {
               setMobileMenuOpen(false);
-              onOpenConsultModal('Mobile Header Consultation');
+              onOpenConsultModal('Free Wealth Advisory Call');
             }}
             className="btn-orange"
             style={{ width: '100%', marginTop: '8px', padding: '12px', fontSize: '14px' }}
@@ -632,9 +598,6 @@ export default function Header({ onOpenConsultModal }) {
           }
           .brand-logo-img {
             max-height: 38px !important;
-          }
-          .mobile-app-nav-btn {
-            display: inline-flex !important;
           }
           .mobile-toggle-btn {
             display: flex !important;

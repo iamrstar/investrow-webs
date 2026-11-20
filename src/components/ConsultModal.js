@@ -11,28 +11,40 @@ export default function ConsultModal({
   advisor: propAdvisor,
   onLeadSubmitted 
 }) {
-  const activeService = defaultService || initialService || 'Mutual Funds & Monthly SIP';
+  const rawService = defaultService || initialService || 'Mutual Funds & Monthly SIP';
+
+  // Map internal tracking strings to standard user-facing service options
+  const resolveStandardService = (raw) => {
+    const s = (raw || '').toLowerCase();
+    if (s.includes('tax') || s.includes('elss') || s.includes('80c')) return 'Tax-Saving Mutual Funds (ELSS)';
+    if (s.includes('audit') || s.includes('health') || s.includes('review') || s.includes('portfolio') || s.includes('check')) return 'Free Portfolio Audit & Rebalancing';
+    if (s.includes('retire') || s.includes('goal')) return 'Retirement & Goal Planning';
+    if (s.includes('swp') || s.includes('cashflow') || s.includes('income')) return 'Monthly Cashflow via SWP';
+    if (s.includes('lump') || s.includes('stp')) return 'Lumpsum Investment (STP)';
+    return 'Mutual Funds & Monthly SIP';
+  };
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [service, setService] = useState(activeService);
+  const [service, setService] = useState(resolveStandardService(rawService));
   const [preferredTime, setPreferredTime] = useState('Morning (10 AM - 1 PM)');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (activeService) {
-      setService(activeService);
+    if (rawService) {
+      setService(resolveStandardService(rawService));
     }
     if (isOpen) {
       setSubmitted(false);
     }
-  }, [activeService, isOpen]);
+  }, [rawService, isOpen]);
 
   if (!isOpen) return null;
 
-  // Dynamically resolve active advisor from prop or service name
+  // Dynamically resolve active advisor ONLY if specifically requested
   let activeAdvisor = propAdvisor;
-  const sLower = (service || activeService || '').toLowerCase();
+  const sLower = (rawService || '').toLowerCase();
   
   if (!activeAdvisor) {
     if (sLower.includes('dipankar') || sLower.includes('moi')) {
@@ -51,7 +63,7 @@ export default function ConsultModal({
         image: '/images/team/birendra-kumar.png',
         sub: 'Compliance & Statutory Audit • 1-on-1 Meeting'
       };
-    } else {
+    } else if (sLower.includes('surendra') || sLower.includes('prasad')) {
       activeAdvisor = {
         name: 'Surendra Prasad',
         role: 'Founder & Senior AMFI Advisor',
@@ -59,6 +71,8 @@ export default function ConsultModal({
         image: '/images/team/surendra-prasad.png',
         sub: 'ARN-194720 • 1-on-1 Confidential Advisory Call'
       };
+    } else {
+      activeAdvisor = null; // General Investrow Advisory Desk
     }
   }
 
@@ -78,10 +92,12 @@ export default function ConsultModal({
           name: name.trim(),
           phone: cleanPhone,
           service: service,
-          source: `Website - Consultation with ${activeAdvisor.name}`,
+          source: activeAdvisor ? `Website - Meeting with ${activeAdvisor.name}` : `Website - ${rawService}`,
           stage: 'New',
           callStatus: 'Pending',
-          remarks: `Booked Consultation with ${activeAdvisor.name} (${activeAdvisor.role}) | Objective: ${service} | Preferred Call Window: ${preferredTime}`
+          remarks: activeAdvisor
+            ? `Booked Meeting with ${activeAdvisor.name} (${activeAdvisor.role}) | Objective: ${service} | Origin: ${rawService} | Preferred Time: ${preferredTime}`
+            : `Booked Free Advisory Call | Objective: ${service} | Origin: ${rawService} | Preferred Time: ${preferredTime}`
         })
       });
 
@@ -157,17 +173,25 @@ export default function ConsultModal({
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
-                padding: '8px 12px',
-                background: 'rgba(240, 249, 255, 0.8)',
+                padding: '10px 14px',
+                background: 'rgba(240, 249, 255, 0.85)',
                 borderRadius: '12px',
                 border: '1px solid rgba(14, 165, 233, 0.25)',
                 marginBottom: '16px'
               }}>
                 <div style={{ position: 'relative', width: '44px', height: '44px', flexShrink: 0 }}>
                   <img 
-                    src={activeAdvisor.image || '/images/team/surendra-prasad.png'} 
-                    alt={`${activeAdvisor.name}, ${activeAdvisor.role}`}
-                    style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #0EA5E9' }}
+                    src={activeAdvisor ? activeAdvisor.image : '/images/brand/investrow-emblem.png'} 
+                    alt={activeAdvisor ? `${activeAdvisor.name}, ${activeAdvisor.role}` : 'Investrow Advisory Desk'}
+                    style={{ 
+                      width: '44px', 
+                      height: '44px', 
+                      borderRadius: activeAdvisor ? '50%' : '10px', 
+                      objectFit: activeAdvisor ? 'cover' : 'contain', 
+                      border: '2px solid #0EA5E9',
+                      background: '#FFFFFF',
+                      padding: activeAdvisor ? '0' : '4px'
+                    }}
                   />
                   <span style={{
                     position: 'absolute',
@@ -182,19 +206,21 @@ export default function ConsultModal({
                 </div>
                 <div>
                   <div style={{ fontSize: '13.5px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                    {activeAdvisor.name} • {activeAdvisor.role}
+                    {activeAdvisor ? `${activeAdvisor.name} • ${activeAdvisor.role}` : 'Investrow Advisory Desk • AMFI Registered MFD'}
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#0284C7', fontWeight: 700, marginTop: '2px' }}>
-                    {activeAdvisor.sub || '1-on-1 Confidential Advisory Call'}
+                    {activeAdvisor ? (activeAdvisor.sub || '1-on-1 Confidential Advisory Call') : 'ARN-194720 • 1-on-1 Confidential Advisory Call'}
                   </div>
                 </div>
               </div>
 
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px', lineHeight: 1.3 }}>
-                Book Your Meeting with {activeAdvisor.name}
+                {activeAdvisor ? `Book Your Meeting with ${activeAdvisor.name}` : 'Book Your Free Wealth Advisory Call'}
               </h3>
               <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                Speak directly with {activeAdvisor.name} ({activeAdvisor.role}) at Investrow Financial Services for tailored portfolio guidance and financial planning.
+                {activeAdvisor 
+                  ? `Speak directly with ${activeAdvisor.name} (${activeAdvisor.role}) at Investrow Financial Services for tailored portfolio guidance and financial planning.`
+                  : 'Speak directly with our certified wealth management specialists at Investrow Financial Services for tailored portfolio guidance, SIP planning, and goal architecture.'}
               </p>
             </div>
 
@@ -306,15 +332,12 @@ export default function ConsultModal({
                       e.currentTarget.style.borderColor = 'var(--border-subtle)';
                     }}
                   >
-                    {!['Mutual Funds & Monthly SIP', 'Lumpsum Investment (STP)', 'Tax-Saving Mutual Funds (ELSS)', 'Free Portfolio Audit & Rebalancing', 'Retirement & Goal Planning', 'Monthly Cashflow via SWP'].includes(service) && (
-                      <option value={service}>{service}</option>
-                    )}
                     <option value="Mutual Funds & Monthly SIP">Start New Monthly SIP</option>
-                    <option value="Lumpsum Investment (STP)">Lumpsum Investment</option>
+                    <option value="Free Portfolio Audit & Rebalancing">Free Portfolio Health Check</option>
+                    <option value="Retirement & Goal Planning">Retirement & Goal Planning</option>
                     <option value="Tax-Saving Mutual Funds (ELSS)">Tax-Saving ELSS (80C)</option>
-                    <option value="Free Portfolio Audit & Rebalancing">Portfolio Health Check</option>
-                    <option value="Retirement & Goal Planning">Retirement / Goal Planning</option>
                     <option value="Monthly Cashflow via SWP">Monthly Cashflow (SWP)</option>
+                    <option value="Lumpsum Investment (STP)">Lumpsum Investment (STP)</option>
                   </select>
                 </div>
 

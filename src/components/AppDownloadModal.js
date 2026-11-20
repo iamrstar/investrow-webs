@@ -91,10 +91,7 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
         <style jsx>{`
           @media (max-width: 768px) {
             .app-floating-pill-trigger {
-              bottom: 80px !important;
-              left: 14px !important;
-              padding: 8px 12px !important;
-              font-size: 11px !important;
+              display: none !important;
             }
           }
         `}</style>

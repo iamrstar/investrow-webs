@@ -33,6 +33,13 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
     }
   }, [messages, isOpen]);
 
+  // Listen for unified mobile dock trigger
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-investrow-ai', handleOpen);
+    return () => window.removeEventListener('open-investrow-ai', handleOpen);
+  }, []);
+
   const handleSend = async (textToSend) => {
     const text = textToSend || input;
     if (!text.trim() || loading) return;

@@ -29,6 +29,18 @@ export const metadata = {
     locale: 'en_IN',
     type: 'website',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico?v=3' },
+      { url: '/favicon-16x16.png?v=3', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=3', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png?v=3', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico?v=3',
+    apple: [
+      { url: '/apple-touch-icon.png?v=3', sizes: '180x180', type: 'image/png' }
+    ],
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Investrow Financial Services | Mutual Funds & SIP Advisory',
@@ -83,6 +95,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Favicon & Touch Icons with Cache Busting */}
+        <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+        <link rel="shortcut icon" href="/favicon.ico?v=3" />
+
         {/* Preconnect to Google Fonts for sub-millisecond font handshake */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
