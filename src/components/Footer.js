@@ -1,10 +1,11 @@
 'use client';
 
 import { Phone, Mail, MapPin, ShieldCheck, MessageSquare, Smartphone } from 'lucide-react';
+import BrandTagline from './BrandTagline';
 
 export default function Footer() {
   return (
-    <footer style={{
+    <footer id="contact" style={{
       background: 'linear-gradient(180deg, #060E1A 0%, #030912 100%)',
       color: '#94A3B8',
       fontSize: '14px',
@@ -98,7 +99,7 @@ export default function Footer() {
 
           {/* Col 1: About */}
           <div>
-            <div style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: '14px' }}>
               <img 
                 src="/investrow-logo.png" 
                 alt="Investrow Financial Services" 
@@ -111,6 +112,9 @@ export default function Footer() {
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
                 }}
               />
+            </div>
+            <div style={{ marginBottom: '18px' }}>
+              <BrandTagline size="sm" theme="dark" />
             </div>
             <p style={{ fontSize: '13.5px', lineHeight: 1.65, color: '#64748B', marginBottom: '22px' }}>
               Investrow Financial Services Pvt. Ltd. is an AMFI-registered Mutual Fund Distributor (ARN-194720) dedicated to helping families build generational wealth through disciplined Systematic Investment Plans (SIPs) and tailored mutual fund strategies.
@@ -268,7 +272,7 @@ export default function Footer() {
                 }}>
                   <MapPin size={16} style={{ color: '#0EA5E9' }} />
                 </div>
-                <span style={{ color: '#64748B', lineHeight: 1.5 }}>Investrow Financial Services Pvt. Ltd., Dhanbad, Jharkhand, India.</span>
+                <span style={{ color: '#64748B', lineHeight: 1.5 }}>Dhanbad - Sindri Rd, Jealgora, Jamadoba, Dhanbad, Jharkhand 828110</span>
               </div>
               <div style={{ display: 'flex', gap: '12px' }}>
                 <div style={{

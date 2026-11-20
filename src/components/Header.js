@@ -1,31 +1,53 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Phone, MessageSquare, ArrowRight, Menu, X, ShieldCheck, Smartphone, ExternalLink } from 'lucide-react';
+import BrandTagline from './BrandTagline';
 
 export default function Header({ onOpenConsultModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(104);
+  const headerRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 15);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const updateHeight = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateHeight);
+    };
   }, []);
 
   return (
-    <header style={{
-      position: 'sticky',
-      top: 0,
-      zIndex: 100,
-      background: scrolled ? 'rgba(255, 255, 255, 0.94)' : 'rgba(255, 255, 255, 0.98)',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
-      borderBottom: scrolled ? '1px solid rgba(226, 232, 240, 0.6)' : '1px solid rgba(226, 232, 240, 0.3)',
-      transition: 'var(--transition-smooth)',
-      boxShadow: scrolled ? '0 4px 30px rgba(10, 22, 40, 0.06)' : 'none'
-    }}>
+    <>
+      <header 
+        ref={headerRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 1000,
+          background: scrolled ? 'rgba(255, 255, 255, 0.96)' : 'rgba(255, 255, 255, 0.98)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: scrolled ? '1px solid rgba(226, 232, 240, 0.8)' : '1px solid rgba(226, 232, 240, 0.4)',
+          transition: 'all 0.25s ease',
+          boxShadow: scrolled ? '0 10px 30px rgba(10, 22, 40, 0.08)' : '0 2px 8px rgba(10, 22, 40, 0.03)'
+        }}
+      >
       {/* Top Regulatory & Direct Helpline Bar */}
       <div style={{
         background: 'linear-gradient(135deg, #0A1628 0%, #0D1B2A 50%, #0A1628 100%)',
@@ -198,52 +220,57 @@ export default function Header({ onOpenConsultModal }) {
         padding: '12px 24px',
         minHeight: '68px'
       }}>
-        {/* Brand Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        {/* Brand Logo & Tagline (stacked directly below logo) */}
+        <Link href="/" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textDecoration: 'none' }}>
           <img 
             src="/investrow-logo.png" 
             alt="Investrow Financial Services" 
             className="brand-logo-img"
-            style={{ maxHeight: '44px', width: 'auto', objectFit: 'contain' }}
+            style={{ maxHeight: '38px', width: 'auto', objectFit: 'contain' }}
           />
+          <div style={{ marginTop: '2px', display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <BrandTagline size="xs" theme="light" />
+          </div>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'nowrap' }}>
+        {/* Desktop Nav Links - Clean Minimal Navigation */}
+        <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '22px', flexWrap: 'nowrap' }}>
           {[
-            { label: 'About Us', href: '/about' },
-            { label: 'Our Team', href: '/team' },
-            { label: 'Services', href: '/#services' },
+            { label: 'Home', href: '/' },
+            { label: 'Mutual Fund', href: '/#services' },
             { label: 'Calculators', href: '/#calculators' },
-            { label: 'Client Stories', href: '/#testimonials' },
-            { label: 'Awards', href: '/awards' },
-            { label: 'Why Us', href: '/#why-us' },
-            { label: 'Partners', href: '/#partners' },
-            { label: 'FAQs', href: '/#faq' }
+            { label: 'Learn', href: '/wealth-creation' },
+            { label: 'About Us', href: '/about' },
+            { label: 'Contact Us', href: '/#contact' }
           ].map((item) => {
             return (
-              <a 
+              <Link 
                 key={item.label}
                 href={item.href} 
+                className="nav-link-item"
                 style={{ 
                   fontWeight: 600, 
-                  fontSize: '13px', 
+                  fontSize: '14px', 
                   color: 'var(--navy-deep)', 
-                  transition: 'var(--transition-smooth)',
+                  textDecoration: 'none',
+                  outline: 'none',
+                  transition: 'color 0.2s ease',
                   position: 'relative',
-                  padding: '4px 0',
+                  padding: '6px 0',
                   whiteSpace: 'nowrap',
                   flexShrink: 0
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = 'var(--primary-blue)';
+                  e.currentTarget.style.color = '#FF6A13';
+                  e.currentTarget.style.textDecoration = 'none';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = 'var(--navy-deep)';
+                  e.currentTarget.style.color = 'var(--navy-deep)';
+                  e.currentTarget.style.textDecoration = 'none';
                 }}
               >
                 {item.label}
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -461,18 +488,12 @@ export default function Header({ onOpenConsultModal }) {
             </div>
           </div>
           {[
+            { label: 'Home', href: '/', badge: null },
+            { label: 'Mutual Fund', href: '/#services', badge: null },
+            { label: 'Calculators', href: '/#calculators', badge: 'Interactive' },
+            { label: 'Learn', href: '/wealth-creation', badge: 'Guide' },
             { label: 'About Us', href: '/about', badge: null },
-            { label: 'Our Team', href: '/team', badge: 'Leadership' },
-            { label: 'Mutual Fund Services', href: '/#services', badge: null },
-            { label: 'Dhanbad Advisory Desk', href: '/mutual-fund-consultant-in-dhanbad', badge: 'Local Desk' },
-            { label: 'Investor Services Desk', href: '/investor-services', badge: 'CAMS / KFin' },
-            { label: 'NPS Pension Advisory', href: '/nps-consultant-in-jharkhand', badge: 'Tax Saving' },
-            { label: 'Wealth Creation Blueprint', href: '/wealth-creation', badge: 'FIRE / SIP' },
-            { label: 'Smart Goal Calculators', href: '/#calculators', badge: 'Interactive' },
-            { label: 'Client Stories & Reviews', href: '/#testimonials', badge: '3k+ Families' },
-            { label: 'Awards & Honors', href: '/awards', badge: null },
-            { label: 'Why Investrow', href: '/#why-us', badge: null },
-            { label: 'Frequently Asked Questions', href: '/#faq', badge: null }
+            { label: 'Contact Us', href: '/#contact', badge: 'Desk' }
           ].map((item) => (
             <a 
               key={item.label}
@@ -489,6 +510,14 @@ export default function Header({ onOpenConsultModal }) {
                 justifyContent: 'space-between',
                 transition: 'background 0.2s ease',
                 textDecoration: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#FF6A13';
+                e.currentTarget.style.background = '#F1F5F9';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'var(--navy-deep)';
+                e.currentTarget.style.background = 'transparent';
               }}
               onTouchStart={(e) => e.currentTarget.style.background = '#F1F5F9'}
               onTouchEnd={(e) => e.currentTarget.style.background = 'transparent'}
@@ -583,6 +612,13 @@ export default function Header({ onOpenConsultModal }) {
       )}
 
       <style jsx>{`
+        :global(.nav-link-item) {
+          text-decoration: none !important;
+        }
+        :global(.nav-link-item:hover) {
+          color: #FF6A13 !important;
+          text-decoration: none !important;
+        }
         @media (max-width: 768px) {
           .top-bar-desktop {
             display: none !important;
@@ -606,5 +642,15 @@ export default function Header({ onOpenConsultModal }) {
         }
       `}</style>
     </header>
+    {/* Dynamic Spacer to preserve exact document flow under fixed header */}
+    <div 
+      aria-hidden="true" 
+      style={{ 
+        height: `${headerHeight}px`, 
+        width: '100%', 
+        pointerEvents: 'none' 
+      }} 
+    />
+  </>
   );
 }

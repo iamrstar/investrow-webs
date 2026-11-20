@@ -1,6 +1,7 @@
 'use client';
 
 import { Smartphone, ShieldCheck, CheckCircle2, TrendingUp, Bell, QrCode, ArrowRight, Star } from 'lucide-react';
+import BrandTagline from './BrandTagline';
 
 export default function AppShowcaseSection() {
   const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.investrow.investrowfinancial';
@@ -75,6 +76,10 @@ export default function AppShowcaseSection() {
               }}>
                 LIVE NOW
               </span>
+            </div>
+
+            <div style={{ marginBottom: '16px' }}>
+              <BrandTagline size="sm" theme="dark" />
             </div>
 
             <h2 style={{
