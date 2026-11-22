@@ -31,14 +31,15 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico?v=3' },
-      { url: '/favicon-16x16.png?v=3', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png?v=3', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.png?v=3', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=5', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png?v=5', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-48x48.png?v=5', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon.ico?v=5', sizes: 'any' },
+      { url: '/favicon.png?v=5', sizes: '192x192', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico?v=3',
+    shortcut: '/favicon.ico?v=5',
     apple: [
-      { url: '/apple-touch-icon.png?v=3', sizes: '180x180', type: 'image/png' }
+      { url: '/apple-touch-icon.png?v=5', sizes: '180x180', type: 'image/png' }
     ],
   },
   twitter: {
@@ -74,8 +75,10 @@ export default function RootLayout({ children }) {
     email: 'info@investrow.in',
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Sundarpur Basti, Jealgora',
       addressLocality: 'Dhanbad',
       addressRegion: 'Jharkhand',
+      postalCode: '828110',
       addressCountry: 'IN'
     },
     geo: {
@@ -96,11 +99,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Favicon & Touch Icons with Cache Busting */}
-        <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-        <link rel="shortcut icon" href="/favicon.ico?v=3" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=5" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=5" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=5" />
+        <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico?v=5" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5" />
 
         {/* Preconnect to Google Fonts for sub-millisecond font handshake */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

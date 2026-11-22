@@ -728,7 +728,7 @@ export default function DhanbadClient() {
               {[
                 {
                   q: 'Where is Investrow located in Dhanbad and how can I meet an advisor?',
-                  a: 'Investrow Financial Services is based in Dhanbad, Jharkhand. You can schedule an in-person advisory meeting at our office or request a dedicated advisor visit to your clinic, office, or residence anywhere across Dhanbad, Saraidhela, Bank More, or Bokaro.'
+                  a: 'Investrow Financial Services is based at Sundarpur Basti, Jealgora, Dhanbad, Jharkhand 828110. You can schedule an in-person advisory meeting at our office or request a dedicated advisor visit to your clinic, office, or residence anywhere across Dhanbad, Saraidhela, Bank More, or Bokaro.'
                 },
                 {
                   q: 'Does Investrow charge any upfront advisory or transaction fees?',

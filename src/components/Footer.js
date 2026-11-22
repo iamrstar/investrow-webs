@@ -272,7 +272,7 @@ export default function Footer() {
                 }}>
                   <MapPin size={16} style={{ color: '#0EA5E9' }} />
                 </div>
-                <span style={{ color: '#64748B', lineHeight: 1.5 }}>Dhanbad - Sindri Rd, Jealgora, Jamadoba, Dhanbad, Jharkhand 828110</span>
+                <span style={{ color: '#64748B', lineHeight: 1.5 }}>Sundarpur Basti, Jealgora, Dhanbad, Jharkhand, India, 828110</span>
               </div>
               <div style={{ display: 'flex', gap: '12px' }}>
                 <div style={{
