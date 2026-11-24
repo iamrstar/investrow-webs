@@ -504,6 +504,10 @@ export default function Footer() {
             <Link href="/downloads" style={{ color: '#FF8A3D', textDecoration: 'none', fontWeight: 600 }}>
               AMFI Forms & Downloads
             </Link>
+            <span style={{ color: 'rgba(255,255,255,0.15)' }}>•</span>
+            <Link href="/learn" style={{ color: '#38BDF8', textDecoration: 'none', fontWeight: 600 }}>
+              Mutual Fund Learning Academy
+            </Link>
           </div>
         </div>
 

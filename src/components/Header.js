@@ -240,7 +240,7 @@ export default function Header({ onOpenConsultModal }) {
             { label: 'Mutual Fund', href: '/#services' },
             { label: 'Calculators', href: '/#calculators' },
             { label: 'Downloads', href: '/downloads' },
-            { label: 'Learn', href: '/wealth-creation' },
+            { label: 'Learn', href: '/learn' },
             { label: 'About Us', href: '/about' },
             { label: 'Contact Us', href: '/#contact' }
           ].map((item) => {
@@ -459,7 +459,7 @@ export default function Header({ onOpenConsultModal }) {
             { label: 'Mutual Fund', href: '/#services', badge: null },
             { label: 'Calculators', href: '/#calculators', badge: 'Interactive' },
             { label: 'AMFI Forms & Downloads', href: '/downloads', badge: 'PDF' },
-            { label: 'Learn', href: '/wealth-creation', badge: 'Guide' },
+            { label: 'Learn Academy', href: '/learn', badge: 'Academy' },
             { label: 'About Us', href: '/about', badge: null },
             { label: 'Contact Us', href: '/#contact', badge: 'Desk' }
           ].map((item) => (
