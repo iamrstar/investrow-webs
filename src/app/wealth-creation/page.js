@@ -6,7 +6,7 @@ export const metadata = {
   keywords: 'Wealth Creation Strategies, Mutual Fund Wealth Creation, SIP Compounding Dhanbad, Goal Based Investing Jharkhand, ₹1 Crore SIP Milestone, Financial Freedom FIRE India, Investrow Wealth Advisor',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
-    canonical: '/wealth-creation',
+    canonical: 'https://www.investrow.in/wealth-creation',
   },
   openGraph: {
     title: 'Wealth Creation Strategies & Goal Planning | Investrow Financial Services',
@@ -37,6 +37,57 @@ export const metadata = {
 };
 
 export default function WealthCreationPage() {
-  return <WealthCreationClient />;
-}
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.investrow.in'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Wealth Creation Strategies',
+        item: 'https://www.investrow.in/wealth-creation'
+      }
+    ]
+  };
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Wealth Creation Strategies & Disciplined SIP Compounding Guide',
+    description: 'Practical guide to transforming regular monthly savings into generational wealth through compounding, annual step-up SIPs, and disciplined asset allocation.',
+    author: {
+      '@type': 'Person',
+      name: 'Surendra Prasad',
+      jobTitle: 'Founder & Senior AMFI Advisor (ARN-194720)'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Investrow Financial Services Pvt. Ltd.',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.investrow.in/investrow-logo.png'
+      }
+    },
+    mainEntityOfPage: 'https://www.investrow.in/wealth-creation'
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <WealthCreationClient />
+    </>
+  );
+}

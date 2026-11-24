@@ -21,6 +21,12 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/downloads`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/nps-consultant-in-jharkhand`,
       lastModified: new Date(),
       changeFrequency: 'weekly',

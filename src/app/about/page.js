@@ -6,7 +6,7 @@ export const metadata = {
   keywords: 'About Investrow, AMFI Registered Distributor Dhanbad, Mutual Fund Advisors Jharkhand, Wealth Management India, Investrow AUM',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
-    canonical: '/about',
+    canonical: 'https://www.investrow.in/about',
   },
   openGraph: {
     title: 'About Us | Investrow Financial Services Pvt. Ltd.',
@@ -37,5 +37,58 @@ export const metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutClient />;
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.investrow.in'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About Us',
+        item: 'https://www.investrow.in/about'
+      }
+    ]
+  };
+
+  const aboutPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Investrow Financial Services',
+    url: 'https://www.investrow.in/about',
+    description: 'Learn about Investrow Financial Services Pvt. Ltd., an AMFI Registered Mutual Fund Distributor (ARN-194720) incorporated on 6th July 2021 with headquarters in Dhanbad, Jharkhand.',
+    mainEntity: {
+      '@type': 'FinancialService',
+      name: 'Investrow Financial Services Pvt. Ltd.',
+      foundingDate: '2021-07-06',
+      taxID: 'ARN-194720',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Sundarpur Basti, Jealgora',
+        addressLocality: 'Dhanbad',
+        addressRegion: 'Jharkhand',
+        postalCode: '828110',
+        addressCountry: 'IN'
+      }
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageJsonLd) }}
+      />
+      <AboutClient />
+    </>
+  );
 }

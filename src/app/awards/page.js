@@ -18,5 +18,44 @@ export const metadata = {
 };
 
 export default function AwardsPage() {
-  return <AwardsClient />;
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.investrow.in'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Awards & Recognition',
+        item: 'https://www.investrow.in/awards'
+      }
+    ]
+  };
+
+  const awardsPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemPage',
+    name: 'AMC Industry Recognition & Awards',
+    url: 'https://www.investrow.in/awards',
+    description: 'Milestone trophies and recognition certificates presented by leading Indian Asset Management Companies including Kotak, Tata, Bajaj Finserv, and UTI to Investrow Financial Services.'
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(awardsPageJsonLd) }}
+      />
+      <AwardsClient />
+    </>
+  );
 }

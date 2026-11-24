@@ -26,5 +26,68 @@ export const metadata = {
 };
 
 export default function TeamPage() {
-  return <TeamClient />;
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.investrow.in'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Our Team',
+        item: 'https://www.investrow.in/team'
+      }
+    ]
+  };
+
+  const teamProfileJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    name: 'Investrow Executive Leadership & Advisory Team',
+    url: 'https://www.investrow.in/team',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Investrow Financial Services Pvt. Ltd.',
+      employee: [
+        {
+          '@type': 'Person',
+          name: 'Surendra Prasad',
+          jobTitle: 'Founder & Senior Wealth Advisor',
+          image: 'https://www.investrow.in/images/team/surendra-prasad.png',
+          knowsAbout: ['Mutual Funds', 'AMFI Regulations', 'SIP Compounding', 'Retirement Planning']
+        },
+        {
+          '@type': 'Person',
+          name: 'Dipankar Moi',
+          jobTitle: 'Director & Operations Head',
+          knowsAbout: ['Mutual Fund Operations', 'BSE StAR MF', 'Client Services']
+        },
+        {
+          '@type': 'Person',
+          name: 'Birendra Kumar',
+          jobTitle: 'Director & Strategic Advisory',
+          knowsAbout: ['Corporate Investments', 'Risk Management']
+        }
+      ]
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamProfileJsonLd) }}
+      />
+      <TeamClient />
+    </>
+  );
 }

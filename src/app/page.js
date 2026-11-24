@@ -1,78 +1,69 @@
-'use client';
+import HomeClient from './HomeClient';
 
-import { useState } from 'react';
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import AMCPartners from '@/components/AMCPartners';
-import ServicesSection from '@/components/ServicesSection';
-import CalculatorSection from '@/components/CalculatorSection';
-import AppShowcaseSection from '@/components/AppShowcaseSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import FAQSection from '@/components/FAQSection';
-import Footer from '@/components/Footer';
-import AIChatAdvisor from '@/components/AIChatAdvisor';
-import ExitIntentModal from '@/components/ExitIntentModal';
-import ConsultModal from '@/components/ConsultModal';
-import StickyMobileBar from '@/components/StickyMobileBar';
-import AppDownloadModal from '@/components/AppDownloadModal';
+export const metadata = {
+  title: 'Investrow Financial Services | AMFI Registered Mutual Fund Distributor & SIP Advisory',
+  description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) in Jharkhand & Pan-India. Managing ₹250+ Cr AUM for 3,000+ families. Goal-based SIP, Lumpsum, SWP, ELSS, and ₹0 advisory fee.',
+  keywords: 'Mutual Fund Distributor Jharkhand, AMFI Registered MFD Dhanbad, Best SIP Calculator, Mutual Funds Investment, ELSS Tax Saving, SWP Retirement Income, Investrow, Mutual Funds Dhanbad, Financial Advisor Jharkhand',
+  metadataBase: new URL('https://www.investrow.in'),
+  alternates: {
+    canonical: 'https://www.investrow.in',
+  },
+  openGraph: {
+    title: 'Investrow Financial Services | AMFI Registered Mutual Fund Distributor & SIP Advisory',
+    description: 'AMFI Registered Mutual Fund Distributor (ARN-194720). Managing ₹250+ Cr AUM for 3,000+ happy investors. Calculate your SIP compounding and book a free portfolio audit.',
+    url: 'https://www.investrow.in',
+    siteName: 'Investrow Financial Services',
+    images: [
+      {
+        url: '/investrow-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Investrow Financial Services Logo',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Investrow Financial Services | Mutual Funds & SIP Advisory',
+    description: 'AMFI Registered Mutual Fund Distributor (ARN-194720). Empowering 3,000+ investors with disciplined wealth compounding.',
+    images: ['/investrow-logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
 export default function Home() {
-  const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('Mutual Funds');
-
-  const handleOpenConsultModal = (service = 'Mutual Funds') => {
-    setSelectedService(service);
-    setConsultModalOpen(true);
+  const homeBreadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.investrow.in'
+      }
+    ]
   };
 
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
-      {/* Navigation Header */}
-      <Header onOpenConsultModal={handleOpenConsultModal} />
-
-      {/* Hero Section with Quick Lead Capture */}
-      <HeroSection onLeadSubmitted={() => {}} />
-
-      {/* AMC & Insurer Partners Marquee */}
-      <AMCPartners />
-
-      {/* Services Showcase */}
-      <ServicesSection onSelectService={handleOpenConsultModal} />
-
-      {/* Interactive Goal & SIP Calculator */}
-      <CalculatorSection onLeadSubmitted={() => {}} onOpenConsultModal={handleOpenConsultModal} />
-
-      {/* Official Investrow Mobile App Showcase */}
-      <AppShowcaseSection />
-
-      {/* Real Investor Testimonials & Human Stories */}
-      <TestimonialsSection onOpenConsultModal={handleOpenConsultModal} />
-
-      {/* Authority & FAQs */}
-      <FAQSection />
-
-      {/* Comprehensive Footer */}
-      <Footer />
-
-      {/* Smart App Download Floating Popup / Bottom Banner */}
-      <AppDownloadModal />
-
-      {/* Groq AI Wealth Advisor Floating Widget */}
-      <AIChatAdvisor onLeadSubmitted={() => {}} />
-
-      {/* Exit Intent Offer Pop-Up */}
-      <ExitIntentModal onLeadSubmitted={() => {}} />
-
-      {/* Consultation Request Modal */}
-      <ConsultModal 
-        isOpen={consultModalOpen}
-        initialService={selectedService}
-        onClose={() => setConsultModalOpen(false)}
-        onLeadSubmitted={() => {}}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeBreadcrumbJsonLd) }}
       />
-
-      {/* Sticky Mobile Actions Bar */}
-      <StickyMobileBar onOpenCallbackModal={() => handleOpenConsultModal('Mobile Callback')} />
-    </main>
+      <HomeClient />
+    </>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Phone, Mail, MapPin, ShieldCheck, MessageSquare, Smartphone } from 'lucide-react';
 import BrandTagline from './BrandTagline';
 
@@ -463,6 +464,47 @@ export default function Footer() {
           Investrow Financial Services Pvt. Ltd. is an AMFI-registered Mutual Fund Distributor (ARN-194720). 
           Any calculations, calculators, or projections on this website are illustrative in nature based on assumed historical rates of return and do not guarantee future performance. 
           Past performance is no guarantee of future returns.
+        </div>
+
+        {/* Regional Quick Links & Advisory Portals Bar (SEO Internal PageRank Boost) */}
+        <div style={{
+          marginTop: '28px',
+          padding: '14px 20px',
+          borderRadius: 'var(--radius-md)',
+          background: 'rgba(255, 255, 255, 0.02)',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          fontSize: '12.5px',
+          color: '#94A3B8'
+        }}>
+          <div style={{ fontWeight: 700, color: '#E2E8F0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>Advisory Portals & Regional Desks:</span>
+          </div>
+          <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Link href="/mutual-fund-consultant-in-dhanbad" style={{ color: '#38BDF8', textDecoration: 'none', fontWeight: 600 }}>
+              Mutual Funds in Dhanbad
+            </Link>
+            <span style={{ color: 'rgba(255,255,255,0.15)' }}>•</span>
+            <Link href="/nps-consultant-in-jharkhand" style={{ color: '#38BDF8', textDecoration: 'none', fontWeight: 600 }}>
+              NPS Pension Jharkhand
+            </Link>
+            <span style={{ color: 'rgba(255,255,255,0.15)' }}>•</span>
+            <Link href="/wealth-creation" style={{ color: '#38BDF8', textDecoration: 'none', fontWeight: 600 }}>
+              Wealth Creation Guide
+            </Link>
+            <span style={{ color: 'rgba(255,255,255,0.15)' }}>•</span>
+            <Link href="/investor-services" style={{ color: '#38BDF8', textDecoration: 'none', fontWeight: 600 }}>
+              CAMS & KFintech Services
+            </Link>
+            <span style={{ color: 'rgba(255,255,255,0.15)' }}>•</span>
+            <Link href="/downloads" style={{ color: '#FF8A3D', textDecoration: 'none', fontWeight: 600 }}>
+              AMFI Forms & Downloads
+            </Link>
+          </div>
         </div>
 
         {/* Bottom Bar */}

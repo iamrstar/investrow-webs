@@ -22,11 +22,16 @@ import {
   ChevronUp,
   Flame,
   Award,
-  TrendingDown
+  TrendingDown,
+  Printer,
+  Clock,
+  Wallet,
+  Hourglass
 } from 'lucide-react';
+import SIPBlueprintModal from './SIPBlueprintModal';
 
 export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal }) {
-  // Calculator mode: 'sip' | 'stepup' | 'lumpsum' | 'goal'
+  // Calculator mode: 'sip' | 'stepup' | 'lumpsum' | 'goal' | 'swp' | 'delay'
   const [calcMode, setCalcMode] = useState('sip');
 
   // Input states
@@ -34,12 +39,15 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
   const [stepUpPercent, setStepUpPercent] = useState(10); // for Step-up SIP
   const [lumpsumAmount, setLumpsumAmount] = useState(200000); // for Lumpsum
   const [targetGoalCorpus, setTargetGoalCorpus] = useState(10000000); // for Goal Seek (₹1 Cr default)
+  const [swpCorpus, setSwpCorpus] = useState(5000000); // for SWP (₹50 Lakh default)
+  const [swpMonthly, setSwpMonthly] = useState(35000); // for SWP (₹35,000/mo default)
   const [years, setYears] = useState(10);
   const [returnRate, setReturnRate] = useState(12);
 
   // Extra Smart Feature: Inflation Toggle (6% annual inflation)
   const [adjustForInflation, setAdjustForInflation] = useState(false);
   const [showMilestoneSchedule, setShowMilestoneSchedule] = useState(false);
+  const [showBlueprintModal, setShowBlueprintModal] = useState(false);
 
   // Blurry Lead Gate for High-Alpha Breakup (15%, 20%, 25% returns)
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -92,6 +100,28 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
       const target = Number(targetGoalCorpus);
       return target;
     }
+    else if (calcMode === 'swp') {
+      const C0 = Number(swpCorpus);
+      const W = Number(swpMonthly);
+      let bal = C0;
+      let withdrawn = 0;
+      for (let m = 0; m < totalMonths; m++) {
+        if (bal >= W) {
+          bal -= W;
+          withdrawn += W;
+          bal *= (1 + monthlyRate);
+        } else {
+          withdrawn += bal;
+          bal = 0;
+          break;
+        }
+      }
+      return Math.round(withdrawn + bal);
+    }
+    else if (calcMode === 'delay') {
+      const P = Number(monthlySip);
+      return Math.round(P * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate));
+    }
     return 0;
   };
 
@@ -105,11 +135,29 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
     let totalInvested = 0;
     let maturityValue = 0;
     let requiredSip = 0;
+    let totalWithdrawn = 0;
+    let remainingBalance = 0;
+    let costOfWaiting1Yr = 0;
+    let costOfWaiting2Yrs = 0;
+    let costOfWaiting3Yrs = 0;
+    let costOfWaiting5Yrs = 0;
 
     if (calcMode === 'sip') {
       const P = Number(monthlySip);
       totalInvested = P * totalMonths;
       maturityValue = Math.round(P * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate));
+
+      const m1 = Math.max(0, (y - 1) * 12);
+      const val1 = Math.round(P * ((Math.pow(1 + monthlyRate, m1) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting1Yr = Math.max(0, maturityValue - val1);
+
+      const m3 = Math.max(0, (y - 3) * 12);
+      const val3 = Math.round(P * ((Math.pow(1 + monthlyRate, m3) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting3Yrs = Math.max(0, maturityValue - val3);
+
+      const m5 = Math.max(0, (y - 5) * 12);
+      const val5 = Math.round(P * ((Math.pow(1 + monthlyRate, m5) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting5Yrs = Math.max(0, maturityValue - val5);
     } 
     else if (calcMode === 'stepup') {
       const initialP = Number(monthlySip);
@@ -140,6 +188,49 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
       const denom = ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
       requiredSip = Math.round(target / denom);
       totalInvested = requiredSip * totalMonths;
+    }
+    else if (calcMode === 'swp') {
+      const C0 = Number(swpCorpus);
+      const W = Number(swpMonthly);
+      totalInvested = C0;
+      let bal = C0;
+      let actualWithdrawn = 0;
+
+      for (let m = 0; m < totalMonths; m++) {
+        if (bal >= W) {
+          bal -= W;
+          actualWithdrawn += W;
+          bal *= (1 + monthlyRate);
+        } else {
+          actualWithdrawn += bal;
+          bal = 0;
+          break;
+        }
+      }
+      totalWithdrawn = Math.round(actualWithdrawn);
+      remainingBalance = Math.round(bal);
+      maturityValue = totalWithdrawn + remainingBalance;
+    }
+    else if (calcMode === 'delay') {
+      const P = Number(monthlySip);
+      totalInvested = P * totalMonths;
+      maturityValue = Math.round(P * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate));
+
+      const m1 = Math.max(0, (y - 1) * 12);
+      const val1 = Math.round(P * ((Math.pow(1 + monthlyRate, m1) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting1Yr = Math.max(0, maturityValue - val1);
+
+      const m2 = Math.max(0, (y - 2) * 12);
+      const val2 = Math.round(P * ((Math.pow(1 + monthlyRate, m2) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting2Yrs = Math.max(0, maturityValue - val2);
+
+      const m3 = Math.max(0, (y - 3) * 12);
+      const val3 = Math.round(P * ((Math.pow(1 + monthlyRate, m3) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting3Yrs = Math.max(0, maturityValue - val3);
+
+      const m5 = Math.max(0, (y - 5) * 12);
+      const val5 = Math.round(P * ((Math.pow(1 + monthlyRate, m5) - 1) / monthlyRate) * (1 + monthlyRate));
+      costOfWaiting5Yrs = Math.max(0, maturityValue - val5);
     }
 
     const estimatedReturns = Math.max(0, maturityValue - totalInvested);
@@ -205,6 +296,28 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
       } else if (calcMode === 'goal') {
         inv = requiredSip * chkMonths;
         val = Math.round(requiredSip * ((Math.pow(1 + monthlyRate, chkMonths) - 1) / monthlyRate) * (1 + monthlyRate));
+      } else if (calcMode === 'swp') {
+        const C0 = Number(swpCorpus);
+        const W = Number(swpMonthly);
+        inv = C0;
+        let b = C0;
+        let wSum = 0;
+        for (let m = 0; m < chkMonths; m++) {
+          if (b >= W) {
+            b -= W;
+            wSum += W;
+            b *= (1 + monthlyRate);
+          } else {
+            wSum += b;
+            b = 0;
+            break;
+          }
+        }
+        val = Math.round(wSum + b);
+      } else if (calcMode === 'delay') {
+        const P = Number(monthlySip);
+        inv = P * chkMonths;
+        val = Math.round(P * ((Math.pow(1 + monthlyRate, chkMonths) - 1) / monthlyRate) * (1 + monthlyRate));
       }
 
       milestones.push({
@@ -222,12 +335,18 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
       returnsMultiplier,
       requiredSip,
       inflationAdjustedMaturity,
+      totalWithdrawn,
+      remainingBalance,
+      costOfWaiting1Yr,
+      costOfWaiting2Yrs,
+      costOfWaiting3Yrs,
+      costOfWaiting5Yrs,
       alpha15,
       alpha20,
       alpha25,
       milestones
     };
-  }, [calcMode, monthlySip, stepUpPercent, lumpsumAmount, targetGoalCorpus, years, returnRate]);
+  }, [calcMode, monthlySip, stepUpPercent, lumpsumAmount, targetGoalCorpus, swpCorpus, swpMonthly, years, returnRate]);
 
   // Suggested Asset Allocation based on Tenure
   const suggestedAllocation = useMemo(() => {
@@ -393,25 +512,29 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
           </div>
         </div>
 
-        {/* 4-Tab Mode Switcher */}
+        {/* 6-Tab Mode Switcher */}
         <div 
           className="calc-tab-switcher"
           style={{
             display: 'flex',
             justifyContent: 'center',
-            maxWidth: '680px',
+            maxWidth: '860px',
             margin: '0 auto 36px',
             background: 'rgba(226, 232, 240, 0.6)',
             padding: '4px',
             borderRadius: 'var(--radius-full)',
-            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
+            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)',
+            flexWrap: 'wrap',
+            gap: '4px'
           }}
         >
           {[
             { id: 'sip', label: 'Monthly SIP', icon: TrendingUp },
             { id: 'stepup', label: 'Step-Up SIP', icon: Flame, badge: 'Popular' },
             { id: 'lumpsum', label: 'One-Time Lumpsum', icon: Layers },
-            { id: 'goal', label: 'Target Goal Planner', icon: Target }
+            { id: 'goal', label: 'Target Goal', icon: Target },
+            { id: 'swp', label: 'Monthly SWP', icon: Wallet },
+            { id: 'delay', label: 'Cost of Delay', icon: Hourglass, badge: 'Cost' }
           ].map((tab) => {
             const IconComp = tab.icon;
             const isActive = calcMode === tab.id;
@@ -421,6 +544,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                 onClick={() => setCalcMode(tab.id)}
                 style={{
                   flex: 1,
+                  minWidth: '130px',
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -540,6 +664,178 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         ₹{(amt / 1000)}k
                       </button>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {calcMode === 'swp' && (
+                <>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <div>
+                        <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                          Total Investment Corpus (Lumpsum)
+                        </label>
+                        <div style={{ fontSize: '12px', color: '#64748B' }}>Total capital deployed for regular monthly cashflow</div>
+                      </div>
+                      <div style={{
+                        fontSize: '18px',
+                        fontWeight: 800,
+                        background: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)',
+                        color: '#0284C7',
+                        padding: '5px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(0, 138, 216, 0.15)'
+                      }}>
+                        {formatCurrency(swpCorpus)}
+                      </div>
+                    </div>
+                    <input 
+                      type="range"
+                      min={500000}
+                      max={50000000}
+                      step={500000}
+                      value={swpCorpus}
+                      onChange={(e) => setSwpCorpus(Number(e.target.value))}
+                    />
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                      {[2500000, 5000000, 10000000, 20000000].map(amt => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setSwpCorpus(amt)}
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            background: swpCorpus === amt ? 'var(--primary-blue)' : '#F1F5F9',
+                            color: swpCorpus === amt ? '#FFFFFF' : '#475569',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {formatCurrency(amt)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <div>
+                        <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                          Monthly Withdrawal (SWP)
+                        </label>
+                        <div style={{ fontSize: '12px', color: '#64748B' }}>Regular tax-efficient monthly income desired</div>
+                      </div>
+                      <div style={{
+                        fontSize: '18px',
+                        fontWeight: 800,
+                        background: 'linear-gradient(135deg, #ECFDF5, #D1FAE5)',
+                        color: '#059669',
+                        padding: '5px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(16, 185, 129, 0.15)'
+                      }}>
+                        {formatCurrency(swpMonthly)} / mo
+                      </div>
+                    </div>
+                    <input 
+                      type="range"
+                      min={5000}
+                      max={250000}
+                      step={2500}
+                      value={swpMonthly}
+                      onChange={(e) => setSwpMonthly(Number(e.target.value))}
+                    />
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                      {[15000, 25000, 35000, 50000, 100000].map(amt => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setSwpMonthly(amt)}
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            background: swpMonthly === amt ? '#059669' : '#F1F5F9',
+                            color: swpMonthly === amt ? '#FFFFFF' : '#475569',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          ₹{(amt / 1000)}k/mo
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {calcMode === 'delay' && (
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <div>
+                      <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                        Planned Monthly SIP
+                      </label>
+                      <div style={{ fontSize: '12px', color: '#64748B' }}>Your intended monthly investment</div>
+                    </div>
+                    <div style={{
+                      fontSize: '18px',
+                      fontWeight: 800,
+                      background: 'linear-gradient(135deg, #FEE2E2, #FECACA)',
+                      color: '#DC2626',
+                      padding: '5px 16px',
+                      borderRadius: 'var(--radius-sm)',
+                      border: '1px solid rgba(220, 38, 38, 0.15)'
+                    }}>
+                      ₹{monthlySip.toLocaleString('en-IN')}
+                    </div>
+                  </div>
+                  <input 
+                    type="range"
+                    min={1000}
+                    max={100000}
+                    step={500}
+                    value={monthlySip}
+                    onChange={(e) => setMonthlySip(Number(e.target.value))}
+                  />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                    {[2500, 5000, 10000, 25000, 50000].map(amt => (
+                      <button
+                        key={amt}
+                        type="button"
+                        onClick={() => setMonthlySip(amt)}
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 600,
+                          padding: '3px 10px',
+                          borderRadius: '6px',
+                          background: monthlySip === amt ? '#DC2626' : '#F1F5F9',
+                          color: monthlySip === amt ? '#FFFFFF' : '#475569',
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ₹{(amt / 1000)}k
+                      </button>
+                    ))}
+                  </div>
+
+                  <div style={{
+                    marginTop: '16px',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    background: '#FFF5F5',
+                    border: '1px solid #FECACA',
+                    fontSize: '12px',
+                    color: '#991B1B',
+                    lineHeight: 1.5
+                  }}>
+                    ⚠️ <strong>Every month of waiting erodes your final corpus.</strong> Compare what happens if you delay by 1, 3, or 5 years versus investing today.
                   </div>
                 </div>
               )}
@@ -682,6 +978,178 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                 </div>
               )}
 
+              {calcMode === 'swp' && (
+                <>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <div>
+                        <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                          Total Investment Corpus (Lumpsum)
+                        </label>
+                        <div style={{ fontSize: '12px', color: '#64748B' }}>Total capital deployed for regular monthly cashflow</div>
+                      </div>
+                      <div style={{
+                        fontSize: '18px',
+                        fontWeight: 800,
+                        background: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)',
+                        color: '#0284C7',
+                        padding: '5px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(0, 138, 216, 0.15)'
+                      }}>
+                        {formatCurrency(swpCorpus)}
+                      </div>
+                    </div>
+                    <input 
+                      type="range"
+                      min={500000}
+                      max={50000000}
+                      step={500000}
+                      value={swpCorpus}
+                      onChange={(e) => setSwpCorpus(Number(e.target.value))}
+                    />
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                      {[2500000, 5000000, 10000000, 20000000].map(amt => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setSwpCorpus(amt)}
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            background: swpCorpus === amt ? 'var(--primary-blue)' : '#F1F5F9',
+                            color: swpCorpus === amt ? '#FFFFFF' : '#475569',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {formatCurrency(amt)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <div>
+                        <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                          Monthly Withdrawal (SWP)
+                        </label>
+                        <div style={{ fontSize: '12px', color: '#64748B' }}>Regular tax-efficient monthly income desired</div>
+                      </div>
+                      <div style={{
+                        fontSize: '18px',
+                        fontWeight: 800,
+                        background: 'linear-gradient(135deg, #ECFDF5, #D1FAE5)',
+                        color: '#059669',
+                        padding: '5px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(16, 185, 129, 0.15)'
+                      }}>
+                        {formatCurrency(swpMonthly)} / mo
+                      </div>
+                    </div>
+                    <input 
+                      type="range"
+                      min={5000}
+                      max={250000}
+                      step={2500}
+                      value={swpMonthly}
+                      onChange={(e) => setSwpMonthly(Number(e.target.value))}
+                    />
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                      {[15000, 25000, 35000, 50000, 100000].map(amt => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setSwpMonthly(amt)}
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            background: swpMonthly === amt ? '#059669' : '#F1F5F9',
+                            color: swpMonthly === amt ? '#FFFFFF' : '#475569',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          ₹{(amt / 1000)}k/mo
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {calcMode === 'delay' && (
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <div>
+                      <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                        Planned Monthly SIP
+                      </label>
+                      <div style={{ fontSize: '12px', color: '#64748B' }}>Your intended monthly investment</div>
+                    </div>
+                    <div style={{
+                      fontSize: '18px',
+                      fontWeight: 800,
+                      background: 'linear-gradient(135deg, #FEE2E2, #FECACA)',
+                      color: '#DC2626',
+                      padding: '5px 16px',
+                      borderRadius: 'var(--radius-sm)',
+                      border: '1px solid rgba(220, 38, 38, 0.15)'
+                    }}>
+                      ₹{monthlySip.toLocaleString('en-IN')}
+                    </div>
+                  </div>
+                  <input 
+                    type="range"
+                    min={1000}
+                    max={100000}
+                    step={500}
+                    value={monthlySip}
+                    onChange={(e) => setMonthlySip(Number(e.target.value))}
+                  />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                    {[2500, 5000, 10000, 25000, 50000].map(amt => (
+                      <button
+                        key={amt}
+                        type="button"
+                        onClick={() => setMonthlySip(amt)}
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 600,
+                          padding: '3px 10px',
+                          borderRadius: '6px',
+                          background: monthlySip === amt ? '#DC2626' : '#F1F5F9',
+                          color: monthlySip === amt ? '#FFFFFF' : '#475569',
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ₹{(amt / 1000)}k
+                      </button>
+                    ))}
+                  </div>
+
+                  <div style={{
+                    marginTop: '16px',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    background: '#FFF5F5',
+                    border: '1px solid #FECACA',
+                    fontSize: '12px',
+                    color: '#991B1B',
+                    lineHeight: 1.5
+                  }}>
+                    ⚠️ <strong>Every month of waiting erodes your final corpus.</strong> Compare what happens if you delay by 1, 3, or 5 years versus investing today.
+                  </div>
+                </div>
+              )}
+
               {calcMode === 'goal' && (
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
@@ -731,6 +1199,178 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(tgt)}
                       </button>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {calcMode === 'swp' && (
+                <>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <div>
+                        <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                          Total Investment Corpus (Lumpsum)
+                        </label>
+                        <div style={{ fontSize: '12px', color: '#64748B' }}>Total capital deployed for regular monthly cashflow</div>
+                      </div>
+                      <div style={{
+                        fontSize: '18px',
+                        fontWeight: 800,
+                        background: 'linear-gradient(135deg, #E0F2FE, #BAE6FD)',
+                        color: '#0284C7',
+                        padding: '5px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(0, 138, 216, 0.15)'
+                      }}>
+                        {formatCurrency(swpCorpus)}
+                      </div>
+                    </div>
+                    <input 
+                      type="range"
+                      min={500000}
+                      max={50000000}
+                      step={500000}
+                      value={swpCorpus}
+                      onChange={(e) => setSwpCorpus(Number(e.target.value))}
+                    />
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                      {[2500000, 5000000, 10000000, 20000000].map(amt => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setSwpCorpus(amt)}
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            background: swpCorpus === amt ? 'var(--primary-blue)' : '#F1F5F9',
+                            color: swpCorpus === amt ? '#FFFFFF' : '#475569',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {formatCurrency(amt)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <div>
+                        <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                          Monthly Withdrawal (SWP)
+                        </label>
+                        <div style={{ fontSize: '12px', color: '#64748B' }}>Regular tax-efficient monthly income desired</div>
+                      </div>
+                      <div style={{
+                        fontSize: '18px',
+                        fontWeight: 800,
+                        background: 'linear-gradient(135deg, #ECFDF5, #D1FAE5)',
+                        color: '#059669',
+                        padding: '5px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(16, 185, 129, 0.15)'
+                      }}>
+                        {formatCurrency(swpMonthly)} / mo
+                      </div>
+                    </div>
+                    <input 
+                      type="range"
+                      min={5000}
+                      max={250000}
+                      step={2500}
+                      value={swpMonthly}
+                      onChange={(e) => setSwpMonthly(Number(e.target.value))}
+                    />
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                      {[15000, 25000, 35000, 50000, 100000].map(amt => (
+                        <button
+                          key={amt}
+                          type="button"
+                          onClick={() => setSwpMonthly(amt)}
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 600,
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            background: swpMonthly === amt ? '#059669' : '#F1F5F9',
+                            color: swpMonthly === amt ? '#FFFFFF' : '#475569',
+                            border: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          ₹{(amt / 1000)}k/mo
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {calcMode === 'delay' && (
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <div>
+                      <label style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                        Planned Monthly SIP
+                      </label>
+                      <div style={{ fontSize: '12px', color: '#64748B' }}>Your intended monthly investment</div>
+                    </div>
+                    <div style={{
+                      fontSize: '18px',
+                      fontWeight: 800,
+                      background: 'linear-gradient(135deg, #FEE2E2, #FECACA)',
+                      color: '#DC2626',
+                      padding: '5px 16px',
+                      borderRadius: 'var(--radius-sm)',
+                      border: '1px solid rgba(220, 38, 38, 0.15)'
+                    }}>
+                      ₹{monthlySip.toLocaleString('en-IN')}
+                    </div>
+                  </div>
+                  <input 
+                    type="range"
+                    min={1000}
+                    max={100000}
+                    step={500}
+                    value={monthlySip}
+                    onChange={(e) => setMonthlySip(Number(e.target.value))}
+                  />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '10px', flexWrap: 'wrap' }}>
+                    {[2500, 5000, 10000, 25000, 50000].map(amt => (
+                      <button
+                        key={amt}
+                        type="button"
+                        onClick={() => setMonthlySip(amt)}
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 600,
+                          padding: '3px 10px',
+                          borderRadius: '6px',
+                          background: monthlySip === amt ? '#DC2626' : '#F1F5F9',
+                          color: monthlySip === amt ? '#FFFFFF' : '#475569',
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ₹{(amt / 1000)}k
+                      </button>
+                    ))}
+                  </div>
+
+                  <div style={{
+                    marginTop: '16px',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    background: '#FFF5F5',
+                    border: '1px solid #FECACA',
+                    fontSize: '12px',
+                    color: '#991B1B',
+                    lineHeight: 1.5
+                  }}>
+                    ⚠️ <strong>Every month of waiting erodes your final corpus.</strong> Compare what happens if you delay by 1, 3, or 5 years versus investing today.
                   </div>
                 </div>
               )}
@@ -890,111 +1530,225 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                   color: '#94A3B8',
                   fontWeight: 700
                 }}>
-                  {calcMode === 'goal' ? 'Required Monthly SIP' : 'Projected Wealth Growth'}
+                  {calcMode === 'goal' 
+                    ? 'Required Monthly SIP' 
+                    : calcMode === 'swp'
+                    ? 'Total Cashflow Generated'
+                    : calcMode === 'delay'
+                    ? 'Cost of Waiting 1 Year'
+                    : 'Projected Wealth Growth'}
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setAdjustForInflation(!adjustForInflation)}
-                  style={{
-                    background: adjustForInflation ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    padding: '3px 10px',
-                    borderRadius: '9999px',
-                    fontSize: '11px',
-                    color: adjustForInflation ? '#38BDF8' : '#CBD5E1',
-                    cursor: 'pointer',
-                    fontWeight: 600
-                  }}
-                >
-                  {adjustForInflation ? 'Inflation Adjusted (6%)' : 'Adjust for 6% Inflation'}
-                </button>
+                {calcMode !== 'delay' && calcMode !== 'swp' && (
+                  <button
+                    type="button"
+                    onClick={() => setAdjustForInflation(!adjustForInflation)}
+                    style={{
+                      background: adjustForInflation ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255, 255, 255, 0.06)',
+                      border: '1px solid rgba(255, 255, 255, 0.15)',
+                      padding: '3px 10px',
+                      borderRadius: '9999px',
+                      fontSize: '11px',
+                      color: adjustForInflation ? '#38BDF8' : '#CBD5E1',
+                      cursor: 'pointer',
+                      fontWeight: 600
+                    }}
+                  >
+                    {adjustForInflation ? 'Inflation Adjusted (6%)' : 'Adjust for 6% Inflation'}
+                  </button>
+                )}
               </div>
 
               {/* LIVE ESTIMATED MATURITY VALUE — ALWAYS VISIBLE! */}
               <div style={{
                 fontSize: 'clamp(34px, 4vw, 44px)',
                 fontWeight: 800,
-                color: '#FFFFFF',
+                color: calcMode === 'delay' ? '#F87171' : '#FFFFFF',
                 lineHeight: 1.1,
                 letterSpacing: '-0.02em',
                 marginBottom: '8px'
               }}>
                 {calcMode === 'goal' 
                   ? `${formatCurrency(calculations.requiredSip)} / mo`
+                  : calcMode === 'swp'
+                  ? formatCurrency(calculations.totalWithdrawn)
+                  : calcMode === 'delay'
+                  ? `- ${formatCurrency(calculations.costOfWaiting1Yr)}`
                   : formatCurrency(displayMaturity)
                 }
               </div>
 
-              {/* Multiplier Badge */}
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: 'rgba(56, 189, 248, 0.12)',
-                padding: '4px 12px',
-                borderRadius: 'var(--radius-full)',
-                color: '#38BDF8',
-                border: '1px solid rgba(56, 189, 248, 0.2)',
-                fontSize: '12px',
-                fontWeight: 600,
-                marginBottom: '18px'
-              }}>
-                🚀 Over {calculations.returnsMultiplier}x your invested capital!
-              </div>
-
-              {/* Live Donut Breakdown */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                padding: '14px 18px',
-                borderRadius: 'var(--radius-md)',
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                marginBottom: '20px'
-              }}>
-                <div style={{ position: 'relative', width: '56px', height: '56px', flexShrink: 0 }}>
-                  <svg viewBox="0 0 36 36" style={{ width: '56px', height: '56px', transform: 'rotate(-90deg)' }}>
-                    <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3.5" />
-                    <circle 
-                      cx="18" cy="18" r="15.5" fill="none" 
-                      stroke="#94A3B8" strokeWidth="3.5"
-                      strokeDasharray={`${investedPercent} ${returnsPercent}`}
-                      strokeLinecap="round"
-                    />
-                    <circle 
-                      cx="18" cy="18" r="15.5" fill="none" 
-                      stroke="var(--accent-orange)" strokeWidth="3.5"
-                      strokeDasharray={`${returnsPercent} ${investedPercent}`}
-                      strokeDashoffset={`-${investedPercent}`}
-                      strokeLinecap="round"
-                    />
-                  </svg>
+              {/* Multiplier Badge / Subtitle */}
+              {calcMode === 'swp' ? (
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: 'rgba(34, 197, 94, 0.12)',
+                  padding: '4px 12px',
+                  borderRadius: 'var(--radius-full)',
+                  color: '#4ADE80',
+                  border: '1px solid rgba(34, 197, 94, 0.25)',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  marginBottom: '18px'
+                }}>
+                  💰 Remaining Balance: {formatCurrency(calculations.remainingBalance)} after {years} yrs
                 </div>
+              ) : calcMode === 'delay' ? (
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: 'rgba(239, 68, 68, 0.15)',
+                  padding: '4px 12px',
+                  borderRadius: 'var(--radius-full)',
+                  color: '#F87171',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  marginBottom: '18px'
+                }}>
+                  ⏳ Wealth lost if you wait 1 full year before starting
+                </div>
+              ) : (
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: 'rgba(56, 189, 248, 0.12)',
+                  padding: '4px 12px',
+                  borderRadius: 'var(--radius-full)',
+                  color: '#38BDF8',
+                  border: '1px solid rgba(56, 189, 248, 0.2)',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  marginBottom: '18px'
+                }}>
+                  🚀 Over {calculations.returnsMultiplier}x your invested capital!
+                </div>
+              )}
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex: 1 }}>
+              {/* Breakdown Metric Box */}
+              {calcMode === 'swp' ? (
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  padding: '14px 18px',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  marginBottom: '20px'
+                }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#94A3B8' }} />
-                      Total Invested
-                    </span>
+                    <span style={{ fontSize: '12px', color: '#94A3B8' }}>Initial Invested Corpus</span>
                     <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#E2E8F0' }}>
                       {formatCurrency(calculations.totalInvested)}
                     </span>
                   </div>
-
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '12px', color: '#FDBA74', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-orange)' }} />
-                      Estimated Returns
+                    <span style={{ fontSize: '12px', color: '#38BDF8' }}>Total Monthly Cashflow Withdrawn</span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#38BDF8' }}>
+                      {formatCurrency(calculations.totalWithdrawn)}
                     </span>
-                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--accent-orange)' }}>
-                      + {formatCurrency(calculations.estimatedReturns)}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#4ADE80' }}>Remaining Corpus (At {returnRate}% CAGR)</span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#4ADE80' }}>
+                      {formatCurrency(calculations.remainingBalance)}
                     </span>
                   </div>
                 </div>
-              </div>
+              ) : calcMode === 'delay' ? (
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  padding: '14px 18px',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  marginBottom: '20px'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#4ADE80' }}>Corpus if you start today</span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#4ADE80' }}>
+                      {formatCurrency(calculations.maturityValue)}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#F87171' }}>Cost of waiting 1 Year</span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#F87171' }}>
+                      - {formatCurrency(calculations.costOfWaiting1Yr)}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#EF4444' }}>Cost of waiting 3 Years</span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#EF4444' }}>
+                      - {formatCurrency(calculations.costOfWaiting3Yrs)}
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#DC2626' }}>Cost of waiting 5 Years</span>
+                    <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#DC2626' }}>
+                      - {formatCurrency(calculations.costOfWaiting5Yrs)}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px',
+                  padding: '14px 18px',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  marginBottom: '20px'
+                }}>
+                  <div style={{ position: 'relative', width: '56px', height: '56px', flexShrink: 0 }}>
+                    <svg viewBox="0 0 36 36" style={{ width: '56px', height: '56px', transform: 'rotate(-90deg)' }}>
+                      <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3.5" />
+                      <circle 
+                        cx="18" cy="18" r="15.5" fill="none" 
+                        stroke="#94A3B8" strokeWidth="3.5"
+                        strokeDasharray={`${investedPercent} ${returnsPercent}`}
+                        strokeLinecap="round"
+                      />
+                      <circle 
+                        cx="18" cy="18" r="15.5" fill="none" 
+                        stroke="var(--accent-orange)" strokeWidth="3.5"
+                        strokeDasharray={`${returnsPercent} ${investedPercent}`}
+                        strokeDashoffset={`-${investedPercent}`}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#94A3B8' }} />
+                        Total Invested
+                      </span>
+                      <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#E2E8F0' }}>
+                        {formatCurrency(calculations.totalInvested)}
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: '12px', color: '#FDBA74', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-orange)' }} />
+                        Estimated Returns
+                      </span>
+                      <span style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--accent-orange)' }}>
+                        + {formatCurrency(calculations.estimatedReturns)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* SECTION 2: 3 EXCITING HIGH-RETURN COLUMNS (WITH BLURRED STRATEGY LINES) */}
               <div style={{ marginTop: '18px' }}>
@@ -1478,7 +2232,115 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
 
         </div>
 
+        {/* Investor Action Strip: WhatsApp Share + Download Blueprint PDF */}
+        <div style={{
+          marginTop: '32px',
+          padding: '20px 24px',
+          background: '#FFFFFF',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid rgba(226, 232, 240, 0.9)',
+          boxShadow: '0 4px 20px rgba(10, 22, 40, 0.04)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '16px'
+        }}>
+          <div>
+            <div style={{ fontSize: '15px', fontWeight: 800, color: 'var(--navy-deep)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Award size={18} style={{ color: 'var(--accent-orange)' }} />
+              <span>Ready to turn this simulation into a real investment portfolio?</span>
+            </div>
+            <div style={{ fontSize: '12.5px', color: '#64748B', marginTop: '2px' }}>
+              Share your exact numbers directly with AMFI Senior Advisor Surendra Prasad (ARN-194720) or download your official PDF blueprint.
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            <a
+              href={`https://wa.me/919102070777?text=${encodeURIComponent(
+                `Hello Investrow, I just simulated my plan on your Smart Wealth Calculator:\n` +
+                `• Strategy: ${calcMode.toUpperCase()} (${years} Years @ ${returnRate}% p.a.)\n` +
+                (calcMode === 'sip' ? `• Monthly SIP: ₹${monthlySip.toLocaleString('en-IN')}\n• Total Invested: ₹${calculations.totalInvested.toLocaleString('en-IN')}\n• Projected Wealth: ₹${calculations.maturityValue.toLocaleString('en-IN')}\n` : '') +
+                (calcMode === 'stepup' ? `• Initial SIP: ₹${monthlySip.toLocaleString('en-IN')} (+${stepUpPercent}%/yr)\n• Projected Wealth: ₹${calculations.maturityValue.toLocaleString('en-IN')}\n` : '') +
+                (calcMode === 'lumpsum' ? `• Lumpsum: ₹${lumpsumAmount.toLocaleString('en-IN')}\n• Projected Wealth: ₹${calculations.maturityValue.toLocaleString('en-IN')}\n` : '') +
+                (calcMode === 'goal' ? `• Target Goal: ₹${targetGoalCorpus.toLocaleString('en-IN')}\n• Required Monthly SIP: ₹${calculations.requiredSip.toLocaleString('en-IN')}/mo\n` : '') +
+                (calcMode === 'swp' ? `• Initial Corpus: ₹${swpCorpus.toLocaleString('en-IN')}\n• Monthly SWP: ₹${swpMonthly.toLocaleString('en-IN')}\n• Total Withdrawn: ₹${calculations.totalWithdrawn.toLocaleString('en-IN')}\n• Balance Remaining: ₹${calculations.remainingBalance.toLocaleString('en-IN')}\n` : '') +
+                (calcMode === 'delay' ? `• Monthly SIP: ₹${monthlySip.toLocaleString('en-IN')}\n• Wealth if started today: ₹${calculations.maturityValue.toLocaleString('en-IN')}\n• Wealth lost if delayed 1 yr: ₹${calculations.costOfWaiting1Yr.toLocaleString('en-IN')}\n` : '') +
+                `Please review this and suggest the best AMFI mutual fund portfolio.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: '#25D366',
+                color: '#FFFFFF',
+                padding: '10px 18px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: 700,
+                textDecoration: 'none',
+                boxShadow: '0 4px 14px rgba(37, 211, 102, 0.25)',
+                transition: 'transform 0.2s ease'
+              }}
+            >
+              <MessageSquare size={16} /> Share Plan on WhatsApp
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setShowBlueprintModal(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: 'linear-gradient(135deg, #0A1628 0%, #162A4A 100%)',
+                color: '#FFFFFF',
+                border: 'none',
+                padding: '10px 18px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(10, 22, 40, 0.15)',
+                transition: 'transform 0.2s ease'
+              }}
+            >
+              <Printer size={16} /> Save / Print PDF Blueprint
+            </button>
+          </div>
+        </div>
+
       </div>
+
+      {/* Downloadable / Printable SIP Blueprint Modal */}
+      <SIPBlueprintModal
+        isOpen={showBlueprintModal}
+        onClose={() => setShowBlueprintModal(false)}
+        planData={{
+          calcMode,
+          monthlySip,
+          stepUpPercent,
+          lumpsumAmount,
+          targetGoalCorpus,
+          swpCorpus,
+          swpMonthly,
+          years,
+          returnRate,
+          totalInvested: calculations.totalInvested,
+          maturityValue: calculations.maturityValue,
+          estimatedReturns: calculations.estimatedReturns,
+          totalWithdrawn: calculations.totalWithdrawn,
+          remainingBalance: calculations.remainingBalance,
+          costOfWaiting1Yr: calculations.costOfWaiting1Yr,
+          costOfWaiting3Yrs: calculations.costOfWaiting3Yrs,
+          costOfWaiting5Yrs: calculations.costOfWaiting5Yrs,
+          milestones: calculations.milestones,
+          formatCurrency
+        }}
+      />
 
       <style jsx>{`
         @media (max-width: 900px) {
