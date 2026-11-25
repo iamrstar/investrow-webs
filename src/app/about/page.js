@@ -61,11 +61,10 @@ export default function AboutPage() {
     '@type': 'AboutPage',
     name: 'About Investrow Financial Services',
     url: 'https://www.investrow.in/about',
-    description: 'Learn about Investrow Financial Services Pvt. Ltd., an AMFI Registered Mutual Fund Distributor (ARN-194720) incorporated on 6th July 2021 with headquarters in Dhanbad, Jharkhand.',
+    description: 'Learn about Investrow Financial Services Pvt. Ltd., an AMFI Registered Mutual Fund Distributor (ARN-194720) with headquarters in Dhanbad, Jharkhand.',
     mainEntity: {
       '@type': 'FinancialService',
       name: 'Investrow Financial Services Pvt. Ltd.',
-      foundingDate: '2021-07-06',
       taxID: 'ARN-194720',
       address: {
         '@type': 'PostalAddress',

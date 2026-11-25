@@ -154,7 +154,6 @@ export default function AboutClient() {
     { label: 'Current Registration Status', value: 'Active & In Good Standing (Renewed to 2027)', highlight: true },
     { label: 'Stock Exchange Membership', value: 'BSE StAR MF (Member Code: 55533)', highlight: false },
     { label: 'Corporate Identity Number (CIN)', value: 'U67190JH2021PTC016813', highlight: false },
-    { label: 'Date of Incorporation', value: '6th July 2021 (Govt. of India, MCA)', highlight: false },
     { label: 'Registered Corporate Office', value: 'Sundarpur Basti, Jealgora, Dhanbad, Jharkhand, India, 828110', highlight: false },
     { label: 'Founder & Principal Officer', value: 'Surendra Prasad (Director)', highlight: false },
     { label: 'Statutory Regulators', value: 'SEBI & AMFI (Association of Mutual Funds in India)', highlight: false }
@@ -302,7 +301,7 @@ export default function AboutClient() {
               fontSize: '12px',
               fontWeight: 600
             }}>
-              BSE Member Code: 55533 • Estd. 2021 • Dhanbad
+              BSE Member Code: 55533 • Dhanbad, Jharkhand
             </span>
           </div>
 
@@ -359,7 +358,7 @@ export default function AboutClient() {
                 color: '#CBD5E1',
                 marginBottom: '16px'
               }}>
-                Established in July 2021, <strong>Investrow Financial Services Pvt. Ltd.</strong> was founded with a singular commitment: to make institutional-grade mutual fund advisory and financial planning transparent, disciplined, and accessible to everyday Indian families and businesses.
+                <strong>Investrow Financial Services Pvt. Ltd.</strong> was founded with a singular commitment: to make institutional-grade mutual fund advisory and financial planning transparent, disciplined, and accessible to everyday Indian families and businesses.
               </p>
 
               <p style={{
