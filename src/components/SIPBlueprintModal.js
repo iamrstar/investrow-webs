@@ -273,7 +273,7 @@ export default function SIPBlueprintModal({
             </div>
           )}
 
-          {/* Action Callout & Advisory Desk */}
+          {/* Action Callout & Distribution Desk */}
           <div style={{
             background: 'linear-gradient(135deg, #0A1628 0%, #162A4A 100%)',
             color: '#FFFFFF',
@@ -291,13 +291,13 @@ export default function SIPBlueprintModal({
                 Ready to activate this plan with curated top-quartile funds?
               </div>
               <div style={{ fontSize: '11.5px', color: '#94A3B8' }}>
-                Contact Surendra Prasad & the Investrow Advisory Desk for 100% free portfolio scheme mapping.
+                Contact Surendra Prasad & the Investrow Distribution Desk for 100% free portfolio scheme mapping.
               </div>
             </div>
             <div style={{ display: 'flex', gap: '8px' }}>
               <a
                 href={`https://wa.me/919102070777?text=${encodeURIComponent(
-                  `Hello Investrow Advisory, I generated a ${years}-year ${calcMode.toUpperCase()} blueprint for ${formatCurrency(maturityValue)} on your website. Please review scheme allocation.`
+                  `Hello Investrow Team, I generated a ${years}-year ${calcMode.toUpperCase()} blueprint for ${formatCurrency(maturityValue)} on your website. Please review scheme allocation.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

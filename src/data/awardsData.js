@@ -14,7 +14,7 @@ export const awardsData = [
   },
   {
     id: 'corporate-connect-trophy',
-    title: 'Most Trusted Investment & Wealth Advisory Company',
+    title: 'Most Trusted Investment & Financial Services Company',
     category: 'trophy',
     categoryLabel: 'Crystal & Glass Trophies',
     issuer: 'Corporate Connect',
@@ -22,7 +22,7 @@ export const awardsData = [
     badge: 'Industry Leadership',
     image: '/images/awards_showcase/corporate-connect-most-trusted-trophy.jpg',
     signatories: 'Corporate Connect Editorial & Jury Board',
-    citation: 'Impact Recognition under Most Trusted Investment & Wealth Advisory Company for remarkable growth and distinctive client-first wealth propositions.',
+    citation: 'Impact Recognition under Most Trusted Investment & Financial Services Company for remarkable growth and distinctive client-first wealth propositions.',
     featured: true
   },
   {
@@ -32,10 +32,10 @@ export const awardsData = [
     categoryLabel: 'Framed AMC Certificates',
     issuer: 'Corporate Connect',
     year: 'February 2026',
-    badge: 'Excellence in Wealth Advisory',
+    badge: 'Excellence in Wealth Distribution',
     image: '/images/awards_showcase/corporate-connect-most-trusted-plaque.jpg',
     signatories: 'Publisher, CCM',
-    citation: 'Official Certificate of Recognition presented to Investrow Financial Services Pvt Ltd for captive advisory and sustained wealth compounding.',
+    citation: 'Official Certificate of Recognition presented to Investrow Financial Services Pvt Ltd for outstanding fund distribution and sustained wealth compounding.',
     featured: true
   },
   {
@@ -87,7 +87,7 @@ export const awardsData = [
     badge: 'Sustained Growth',
     image: '/images/awards_showcase/tata-mf-key-partners-q1-fy26.jpg',
     signatories: 'Tata Asset Management Limited',
-    citation: 'Prestigious wooden & gold shield recognizing consistent quarterly advisory performance and investor folio growth.',
+    citation: 'Prestigious wooden & gold shield recognizing consistent quarterly distribution performance and investor folio growth.',
     featured: false
   },
   {
@@ -139,7 +139,7 @@ export const awardsData = [
     badge: 'Distribution Pioneer',
     image: '/images/awards_showcase/bajaj-finserv-flexicap-nfo.jpg',
     signatories: 'Ganesh Mohan (CEO) & Aniruddha Chaudhuri (Business Head)',
-    citation: 'Framed honor recognizing key advisory distribution during the inaugural Flexicap fund offering.',
+    citation: 'Framed honor recognizing key fund distribution during the inaugural Flexicap fund offering.',
     featured: false
   },
   {

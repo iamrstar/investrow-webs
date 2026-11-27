@@ -466,7 +466,7 @@ export default function Footer() {
           Past performance is no guarantee of future returns.
         </div>
 
-        {/* Regional Quick Links & Advisory Portals Bar (SEO Internal PageRank Boost) */}
+        {/* Regional Quick Links & Services Portals Bar (SEO Internal PageRank Boost) */}
         <div style={{
           marginTop: '28px',
           padding: '14px 20px',
@@ -482,7 +482,7 @@ export default function Footer() {
           color: '#94A3B8'
         }}>
           <div style={{ fontWeight: 700, color: '#E2E8F0', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>Advisory Portals & Regional Desks:</span>
+            <span>Distribution Portals & Regional Desks:</span>
           </div>
           <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link href="/mutual-fund-consultant-in-dhanbad" style={{ color: '#38BDF8', textDecoration: 'none', fontWeight: 600 }}>

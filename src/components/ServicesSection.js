@@ -565,11 +565,11 @@ export default function ServicesSection({ onSelectService }) {
             </p>
 
             <button
-              onClick={() => onSelectService('SIP vs Lumpsum Advisory')}
+              onClick={() => onSelectService('SIP vs Lumpsum Planning')}
               className="btn-orange"
               style={{ padding: '10px 22px', fontSize: '13.5px' }}
             >
-              Get Free Asset Allocation Advice <ArrowRight size={14} />
+              Get Free Asset Allocation Guidance <ArrowRight size={14} />
             </button>
           </div>
 

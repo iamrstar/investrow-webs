@@ -8,7 +8,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hello! 👋 I'm your **Investrow AI Mutual Fund Advisor**. What goal or mutual fund calculation can I assist you with today?`
+      content: `Hello! 👋 I'm your **Investrow AI Mutual Fund Guide**. What goal or mutual fund calculation can I assist you with today?`
     }
   ]);
   const [input, setInput] = useState('');
@@ -65,7 +65,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
       console.error(err);
       setMessages([
         ...newMessages,
-        { role: 'assistant', content: 'Apologies, I encountered an issue. You can call our senior advisor directly at +91 91020 70777.' }
+        { role: 'assistant', content: 'Apologies, I encountered an issue. You can call our senior distribution desk directly at +91 91020 70777.' }
       ]);
     } finally {
       setLoading(false);
@@ -101,7 +101,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
         ...prev,
         {
           role: 'assistant',
-          content: `Thank you, **${leadName}**! 🎉 Your goal has been registered with our advisory team. One of our certified AMFI advisors will contact you at **+91 ${cleanPhone}** with personalized fund recommendations. Feel free to keep asking questions!`
+          content: `Thank you, **${leadName}**! 🎉 Your goal has been registered with our distribution team. One of our certified AMFI specialists will contact you at **+91 ${cleanPhone}** with personalized fund recommendations. Feel free to keep asking questions!`
         }
       ]);
     } catch (err) {
@@ -160,7 +160,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
             }}
           >
             <Sparkles size={18} />
-            <span className="ai-advisor-fab-text">AI Wealth Advisor</span>
+            <span className="ai-advisor-fab-text">AI Wealth Guide</span>
             <div className="pulse-dot" style={{ background: '#FFFFFF' }} />
           </button>
         ) : null}
@@ -222,7 +222,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
                 <Bot size={22} />
               </div>
               <div>
-                <div style={{ fontSize: '15.5px', fontWeight: 800 }}>Investrow AI Advisor</div>
+                <div style={{ fontSize: '15.5px', fontWeight: 800 }}>Investrow AI Guide</div>
                 <div style={{ fontSize: '11px', color: '#38BDF8', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 600 }}>
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', display: 'inline-block', boxShadow: '0 0 6px #10B981' }} />
                   AMFI ARN-194720 Powered
@@ -370,7 +370,7 @@ export default function AIChatAdvisor({ onLeadSubmitted }) {
                     className="btn-orange"
                     style={{ padding: '10px', fontSize: '13.5px', borderRadius: 'var(--radius-md)', marginTop: '4px' }}
                   >
-                    {leadSubmitting ? 'Saving...' : 'Save Plan & Connect Advisor 🚀'}
+                    {leadSubmitting ? 'Saving...' : 'Save Plan & Connect Specialist 🚀'}
                   </button>
                 </form>
               </div>

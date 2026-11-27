@@ -322,7 +322,7 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
               Your Free Audit Is Locked In!
             </h3>
             <p style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '32px', lineHeight: 1.6 }}>
-              Thank you, <strong>{name}</strong>. A Senior AMFI Certified Mutual Fund Advisor from Investrow will call you at <strong>+91 {phone}</strong> to coordinate your portfolio review.
+              Thank you, <strong>{name}</strong>. A Senior AMFI Certified Mutual Fund Specialist from Investrow will call you at <strong>+91 {phone}</strong> to coordinate your portfolio review.
             </p>
             <button 
               onClick={() => setIsOpen(false)}

@@ -40,7 +40,7 @@ import {
 
 export default function LearnClient() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('Learning Advisory Guidance');
+  const [selectedService, setSelectedService] = useState('Learning Consultation Guidance');
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [expandedModule, setExpandedModule] = useState('sip-basics');
@@ -691,8 +691,8 @@ export default function LearnClient() {
       category: 'basics',
       categoryLabel: 'Basics & Strategy',
       readTime: '6 min read',
-      badge: 'Advisor Methodology',
-      snippet: 'Move beyond simplistic star ratings. How certified AMFI advisors evaluate rolling returns, downside capture, fund manager tenure, and portfolio overlap.',
+      badge: 'MFD Methodology',
+      snippet: 'Move beyond simplistic star ratings. How certified AMFI distributors evaluate rolling returns, downside capture, fund manager tenure, and portfolio overlap.',
       fullContent: {
         intro: 'Over 85% of retail investors pick funds solely based on 1-year trailing returns or online star ratings. This "rearview mirror" approach often leads to buying funds right before a period of severe underperformance. Here is the verified 5-point AMFI framework.',
         keyMechanism: [
@@ -796,7 +796,7 @@ export default function LearnClient() {
           },
           {
             title: 'What a Full-Service AMFI Distributor Provides',
-            desc: 'Investrow (ARN-194720) provides professional scheme curation across 44 AMCs, quarterly portfolio rebalancing, capital gains tax optimization, RTA service desk, and emergency guidance at ₹0 upfront advisory fee.'
+            desc: 'Investrow (ARN-194720) provides professional scheme curation across 44 AMCs, quarterly portfolio rebalancing, capital gains tax optimization, RTA service desk, and emergency guidance at ₹0 distributor fee.'
           }
         ],
         example: {
@@ -809,9 +809,9 @@ export default function LearnClient() {
         takeaways: [
           'Choose Direct if you are a seasoned finance professional willing to spend 15+ hours monthly researching balance sheets, fund manager changes, and sector rotation.',
           'Choose an AMFI Distributor if you want hands-off peace of mind, disciplined rebalancing, and certified financial expertise.',
-          'At Investrow, our client retention rate exceeds 98% because ongoing advisory protects wealth across market cycles.'
+          'At Investrow, our client retention rate exceeds 98% because ongoing portfolio monitoring and distribution support protect wealth across market cycles.'
         ],
-        toolAction: { label: 'Meet Our AMFI Certified Advisory Team', href: '/team' }
+        toolAction: { label: 'Meet Our AMFI Certified Distribution Team', href: '/team' }
       }
     },
     {
@@ -995,7 +995,7 @@ export default function LearnClient() {
           },
           {
             title: 'Mistake 4: Checking Portfolio NAV Every Day',
-            desc: 'Checking daily NAV fluctuations induces unnecessary anxiety, leading to compulsive trading and churn. Review your portfolio once every 6 months with your certified AMFI advisor.'
+            desc: 'Checking daily NAV fluctuations induces unnecessary anxiety, leading to compulsive trading and churn. Review your portfolio once every 6 months with your certified AMFI distributor.'
           }
         ],
         example: {
@@ -1126,7 +1126,7 @@ export default function LearnClient() {
               marginBottom: '20px'
             }}>
               <BookOpen size={16} />
-              <span>24 Plain-English Mutual Fund Guides by AMFI Registered Advisors (ARN-194720)</span>
+              <span>24 Plain-English Mutual Fund Guides by AMFI Registered Distributors (ARN-194720)</span>
             </div>
 
             <h1 style={{
@@ -1146,7 +1146,7 @@ export default function LearnClient() {
               lineHeight: 1.65,
               marginBottom: '32px'
             }}>
-              Search anything from SIP compounding, SWP monthly cashflow, Section 80C tax savings, new capital gains tax rules, to Active vs Index funds, NRI investing, and child education portfolios. Clear, honest, zero-jargon guides curated by veteran AMFI-certified advisors.
+              Search anything from SIP compounding, SWP monthly cashflow, Section 80C tax savings, new capital gains tax rules, to Active vs Index funds, NRI investing, and child education portfolios. Clear, honest, zero-jargon guides curated by veteran AMFI-certified distributors.
             </p>
 
             {/* Smart Search Bar */}
@@ -1534,7 +1534,7 @@ export default function LearnClient() {
                               textDecoration: 'none'
                             }}
                           >
-                            <MessageSquare size={14} /> Ask Advisor on WhatsApp
+                            <MessageSquare size={14} /> Ask Specialist on WhatsApp
                           </a>
 
                           <button
@@ -1551,7 +1551,7 @@ export default function LearnClient() {
                               cursor: 'pointer'
                             }}
                           >
-                            Book 1-on-1 Advisory Call
+                            Book 1-on-1 Portfolio Call
                           </button>
                         </div>
                       </div>
@@ -1673,7 +1673,7 @@ export default function LearnClient() {
                 <ShieldCheck size={14} /> AMFI Registered Mutual Fund Distributor (ARN-194720)
               </div>
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#FFFFFF', marginBottom: '8px' }}>
-                Still Have Questions? Talk Directly to an AMFI Certified Advisor
+                Still Have Questions? Talk Directly to an AMFI Certified Specialist
               </h3>
               <p style={{ fontSize: '14px', color: '#94A3B8', lineHeight: 1.55, margin: 0 }}>
                 Don't make financial decisions in isolation. Founder Surendra Prasad and our senior research desk in Dhanbad, Jharkhand provide 100% free guidance on fund selection, goal planning, and tax optimization.
@@ -1705,7 +1705,7 @@ export default function LearnClient() {
 
               <button
                 type="button"
-                onClick={() => handleOpenConsultModal('General Wealth Learning Advisory')}
+                onClick={() => handleOpenConsultModal('General Wealth Learning Consultation')}
                 className="btn-orange"
                 style={{ width: '100%', padding: '12px 24px', fontSize: '14px', cursor: 'pointer' }}
               >

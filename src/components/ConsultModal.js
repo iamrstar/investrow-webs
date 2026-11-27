@@ -66,13 +66,13 @@ export default function ConsultModal({
     } else if (sLower.includes('surendra') || sLower.includes('prasad')) {
       activeAdvisor = {
         name: 'Surendra Prasad',
-        role: 'Founder & Senior AMFI Advisor',
+        role: 'Founder & Principal Officer',
         badge: 'AMFI Registered MFD (ARN-194720)',
         image: '/images/team/surendra-prasad.png',
-        sub: 'ARN-194720 • 1-on-1 Confidential Advisory Call'
+        sub: 'ARN-194720 • 1-on-1 Confidential Portfolio Call'
       };
     } else {
-      activeAdvisor = null; // General Investrow Advisory Desk
+      activeAdvisor = null; // General Investrow Distribution Desk
     }
   }
 
@@ -97,7 +97,7 @@ export default function ConsultModal({
           callStatus: 'Pending',
           remarks: activeAdvisor
             ? `Booked Meeting with ${activeAdvisor.name} (${activeAdvisor.role}) | Objective: ${service} | Origin: ${rawService} | Preferred Time: ${preferredTime}`
-            : `Booked Free Advisory Call | Objective: ${service} | Origin: ${rawService} | Preferred Time: ${preferredTime}`
+            : `Booked Free Portfolio Consultation | Objective: ${service} | Origin: ${rawService} | Preferred Time: ${preferredTime}`
         })
       });
 
@@ -182,7 +182,7 @@ export default function ConsultModal({
                 <div style={{ position: 'relative', width: '44px', height: '44px', flexShrink: 0 }}>
                   <img 
                     src={activeAdvisor ? activeAdvisor.image : '/images/brand/investrow-emblem.png'} 
-                    alt={activeAdvisor ? `${activeAdvisor.name}, ${activeAdvisor.role}` : 'Investrow Advisory Desk'}
+                    alt={activeAdvisor ? `${activeAdvisor.name}, ${activeAdvisor.role}` : 'Investrow Distribution Desk'}
                     style={{ 
                       width: '44px', 
                       height: '44px', 
@@ -206,16 +206,16 @@ export default function ConsultModal({
                 </div>
                 <div>
                   <div style={{ fontSize: '13.5px', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.2 }}>
-                    {activeAdvisor ? `${activeAdvisor.name} • ${activeAdvisor.role}` : 'Investrow Advisory Desk • AMFI Registered MFD'}
+                    {activeAdvisor ? `${activeAdvisor.name} • ${activeAdvisor.role}` : 'Investrow Distribution Desk • AMFI Registered MFD'}
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#0284C7', fontWeight: 700, marginTop: '2px' }}>
-                    {activeAdvisor ? (activeAdvisor.sub || '1-on-1 Confidential Advisory Call') : 'ARN-194720 • 1-on-1 Confidential Advisory Call'}
+                    {activeAdvisor ? (activeAdvisor.sub || '1-on-1 Confidential Portfolio Call') : 'ARN-194720 • 1-on-1 Confidential Portfolio Call'}
                   </div>
                 </div>
               </div>
 
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px', lineHeight: 1.3 }}>
-                {activeAdvisor ? `Book Your Meeting with ${activeAdvisor.name}` : 'Book Your Free Wealth Advisory Call'}
+                {activeAdvisor ? `Book Your Meeting with ${activeAdvisor.name}` : 'Book Your Free Portfolio Review Call'}
               </h3>
               <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                 {activeAdvisor 
@@ -378,7 +378,7 @@ export default function ConsultModal({
                 className="btn-orange"
                 style={{ width: '100%', padding: '15px', marginTop: '12px', fontSize: '15.5px' }}
               >
-                {loading ? 'Confirming slot...' : 'Confirm Advisory Slot 🚀'}
+                {loading ? 'Confirming slot...' : 'Confirm Consultation Slot 🚀'}
               </button>
 
               <div style={{ 
@@ -417,7 +417,7 @@ export default function ConsultModal({
               Consultation Booked!
             </h3>
             <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', marginBottom: '28px', lineHeight: 1.6 }}>
-              Thank you, <strong>{name}</strong>. An Investrow Certified Mutual Fund Advisor will call you at <strong>+91 {phone}</strong> during your preferred window ({preferredTime}).
+              Thank you, <strong>{name}</strong>. An Investrow Certified Mutual Fund Specialist will call you at <strong>+91 {phone}</strong> during your preferred window ({preferredTime}).
             </p>
             <button
               onClick={onClose}

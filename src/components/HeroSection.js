@@ -25,18 +25,18 @@ const HERO_SLIDES = [
       stars: '★★★★★',
       rating: '4.9/5',
       stat: '3,000+ Families',
-      sub: 'Zero Bias Advisory',
+      sub: 'Zero Bias Distribution',
       icon: Users,
       iconColor: '#FF6A13',
       iconBg: 'linear-gradient(135deg, #FFF1EB, #FFE2D4)'
     }
   },
   {
-    id: 'advisor',
-    title: '1-on-1 AMFI Advisory',
+    id: 'distributor',
+    title: '1-on-1 AMFI Guidance',
     emoji: '🤝',
     src: '/images/hero/hero_advisor_investor.jpg',
-    alt: 'Certified AMFI Advisor reviewing mutual fund portfolio on tablet with Indian couple',
+    alt: 'Certified AMFI Distributor reviewing mutual fund portfolio on tablet with Indian couple',
     topBadge: 'Dedicated Desk',
     topBadgeBg: 'linear-gradient(135deg, #008AD8, #006FB0)',
     leftBadge: {
@@ -390,9 +390,9 @@ export default function HeroSection({ onLeadSubmitted }) {
             }}>
               {[
                 'Goal-Based Scheme Selection',
-                'Zero Upfront Advisory Fee',
-                'Ongoing Portfolio Rebalancing',
-                'Dedicated AMFI Certified Advisor'
+                'Zero Upfront Platform Fee',
+                'Ongoing Portfolio Monitoring',
+                'Dedicated AMFI Certified Distributor'
               ].map((item, idx) => (
                 <div key={idx} style={{ 
                   display: 'flex', 
@@ -445,7 +445,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                 }}>
                   {yearsCount}+
                 </div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Years Advisory</div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Years Experience</div>
               </div>
               
               <div style={{
@@ -465,7 +465,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                 }}>
                   ₹{aumCount}+ Cr
                 </div>
-                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Advised AUM</div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, marginTop: '4px' }}>Managed AUM</div>
               </div>
               
               <div style={{
@@ -896,7 +896,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                         fontWeight: 700
                       }}>
                         <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E' }} />
-                        <span>Advisor Available</span>
+                        <span>Specialist Available</span>
                       </div>
                     </div>
 
@@ -1085,7 +1085,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                       Request Received!
                     </h3>
                     <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: 1.5 }}>
-                      Thank you, <strong>{formData.name}</strong>. Our certified mutual fund advisor will reach out to you at <strong>+91 {formData.phone}</strong> shortly.
+                      Thank you, <strong>{formData.name}</strong>. Our certified mutual fund specialist will reach out to you at <strong>+91 {formData.phone}</strong> shortly.
                     </p>
                     <a 
                       href={`https://wa.me/919102070777?text=Hi%20Investrow,%20I%20just%20booked%20a%20consultation%20for%20${encodeURIComponent(formData.service)}.%20My%20name%20is%20${encodeURIComponent(formData.name)}`}

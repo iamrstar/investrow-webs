@@ -162,7 +162,7 @@ export default function AMCPartners({ onOpenConsultModal }) {
             <span style={{ color: '#F59E0B' }}>✓</span> BSE StAR MF Execution
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 600, color: '#E2E8F0' }}>
-            <span style={{ color: '#FF6A13' }}>✓</span> ₹0 Advisory Upfront
+            <span style={{ color: '#FF6A13' }}>✓</span> ₹0 Distributor Fee Upfront
           </div>
         </div>
       </div>

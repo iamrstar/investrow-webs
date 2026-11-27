@@ -28,7 +28,7 @@ import {
 
 export default function DhanbadClient() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('Mutual Funds Advisory - Dhanbad Desk');
+  const [selectedService, setSelectedService] = useState('Mutual Funds Consultation - Dhanbad Desk');
   const [monthlySip, setMonthlySip] = useState(10000);
   const [years, setYears] = useState(15);
   const [returnRate, setReturnRate] = useState(12);
@@ -186,7 +186,7 @@ export default function DhanbadClient() {
                   color: '#CBD5E1',
                   marginBottom: '20px'
                 }}>
-                  Looking for trusted, certified mutual fund advisory in Dhanbad? Investrow Financial Services helps local doctors, mining executives, business owners, and salaried families compound wealth with goal-based SIPs, tax-saving ELSS, and disciplined portfolio rebalancing.
+                  Looking for trusted, certified mutual fund distribution in Dhanbad? Investrow Financial Services helps local doctors, mining executives, business owners, and salaried families compound wealth with goal-based SIPs, tax-saving ELSS, and disciplined portfolio rebalancing.
                 </p>
 
                 {/* Highlights Grid */}
@@ -201,7 +201,7 @@ export default function DhanbadClient() {
                     'BSE StAR MF Member (Code 55533)',
                     '₹250+ Cr AUM & 3,000+ Families',
                     '23+ Years Financial Expertise',
-                    '₹0 Upfront Advisory Fees',
+                    '₹0 Upfront Consultation Fees',
                     'Doorstep & In-Person Dhanbad Desk'
                   ].map((feat, idx) => (
                     <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', color: '#F1F5F9', fontWeight: 600 }}>
@@ -221,7 +221,7 @@ export default function DhanbadClient() {
                     Book Free Dhanbad Consultation <ArrowRight size={14} />
                   </button>
                   <a
-                    href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20am%20from%20Dhanbad%20and%20looking%20for%20Mutual%20Fund%20advisory"
+                    href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20am%20from%20Dhanbad%20and%20looking%20for%20Mutual%20Fund%20services"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-outline"
@@ -236,7 +236,7 @@ export default function DhanbadClient() {
                       gap: '6px'
                     }}
                   >
-                    <span>💬 WhatsApp Advisor</span>
+                    <span>💬 WhatsApp Desk</span>
                   </a>
                 </div>
               </div>
@@ -397,7 +397,7 @@ export default function DhanbadClient() {
                         Request Received!
                       </h4>
                       <p style={{ fontSize: '12.5px', color: '#64748B', marginBottom: '14px' }}>
-                        Our senior Dhanbad advisor will call you at <strong>+91 {leadPhone}</strong> shortly.
+                        Our senior Dhanbad consultant will call you at <strong>+91 {leadPhone}</strong> shortly.
                       </p>
                       <a
                         href="https://wa.me/919102070777"
@@ -459,7 +459,7 @@ export default function DhanbadClient() {
                 <Sparkles size={14} /> Comprehensive Mutual Fund Solutions
               </div>
               <h2 style={{ fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '14px' }}>
-                Mutual Fund Advisory Designed for Dhanbad Investors
+                Mutual Fund Services Designed for Dhanbad Investors
               </h2>
               <p style={{ fontSize: '15.5px', color: '#64748B', lineHeight: 1.65 }}>
                 Whether you are a medical practitioner in Saraidhela, a mining professional in Koyla Nagar, or an entrepreneur in Bank More, we tailor portfolio allocations to your exact milestones.
@@ -692,7 +692,7 @@ export default function DhanbadClient() {
                   {[...Array(5)].map((_, i) => <Star key={i} size={15} fill="#F59E0B" color="#F59E0B" />)}
                 </div>
                 <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#334155', marginBottom: '18px' }}>
-                  "We had surplus funds lying in traditional low-interest accounts. Investrow's Dhanbad advisory team introduced us to tax-efficient Arbitrage and STP models. Highly professional, responsive, and completely transparent."
+                  "We had surplus funds lying in traditional low-interest accounts. Investrow's Dhanbad team introduced us to tax-efficient Arbitrage and STP models. Highly professional, responsive, and completely transparent."
                 </p>
                 <div style={{ fontWeight: 800, fontSize: '14px', color: 'var(--navy-deep)' }}>Sunita Murmu</div>
                 <div style={{ fontSize: '12px', color: '#64748B' }}>Managing Director & Business Owner • Jharkhand</div>
@@ -712,7 +712,7 @@ export default function DhanbadClient() {
           </div>
         </section>
 
-        {/* DHANBAD ADVISORY FAQS */}
+        {/* DHANBAD MFD FAQS */}
         <section style={{ padding: 'clamp(48px, 6vw, 84px) 0', background: '#F8FAFC', borderTop: '1px solid #E2E8F0' }}>
           <div className="container" style={{ maxWidth: '820px' }}>
             <div style={{ textAlign: 'center', marginBottom: '44px' }}>
@@ -727,12 +727,12 @@ export default function DhanbadClient() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {[
                 {
-                  q: 'Where is Investrow located in Dhanbad and how can I meet an advisor?',
-                  a: 'Investrow Financial Services is based at Sundarpur Basti, Jealgora, Dhanbad, Jharkhand 828110. You can schedule an in-person advisory meeting at our office or request a dedicated advisor visit to your clinic, office, or residence anywhere across Dhanbad, Saraidhela, Bank More, or Bokaro.'
+                  q: 'Where is Investrow located in Dhanbad and how can I meet a consultant?',
+                  a: 'Investrow Financial Services is based at Sundarpur Basti, Jealgora, Dhanbad, Jharkhand 828110. You can schedule an in-person consultation meeting at our office or request a dedicated consultant visit to your clinic, office, or residence anywhere across Dhanbad, Saraidhela, Bank More, or Bokaro.'
                 },
                 {
-                  q: 'Does Investrow charge any upfront advisory or transaction fees?',
-                  a: 'No. Investrow provides complete portfolio goal-setting, scheme selection, and ongoing review at ₹0 upfront advisory fee. We are an AMFI-registered distributor compensated through standard, regulated commissions from AMCs.'
+                  q: 'Does Investrow charge any upfront distribution or transaction fees?',
+                  a: 'No. Investrow provides complete portfolio goal-setting, scheme selection, and ongoing review at ₹0 upfront fee. We are an AMFI-registered distributor compensated through standard, regulated commissions from AMCs.'
                 },
                 {
                   q: 'How safe is my money when investing through Investrow?',

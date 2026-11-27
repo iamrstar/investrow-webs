@@ -179,7 +179,7 @@ export default function DownloadsClient() {
       badge: 'Scheme Master',
       description: 'Official master download feed containing details of every active mutual fund scheme in India: ISIN codes, scheme codes, fund house name, scheme type, plan options (Growth / IDCW), and benchmark index.',
       requiredDocs: ['No documents required - open public master list'],
-      applicableTo: 'Financial Advisors, Investors, Tech Platforms'
+      applicableTo: 'Distributors, Investors, Tech Platforms'
     },
     {
       id: 'mutual-funds-sahi-hai-assets',
@@ -263,7 +263,7 @@ export default function DownloadsClient() {
     },
     {
       q: 'Can Investrow help me fill out and verify these forms online?',
-      a: 'Absolutely! If you prefer 100% paperless assistance or need help with any field on the form, you can click "Need Help With This Form" or contact us via WhatsApp at +91 91020 70777. Our AMFI-certified advisors will guide you step-by-step at zero charge.'
+      a: 'Absolutely! If you prefer 100% paperless assistance or need help with any field on the form, you can click "Need Help With This Form" or contact us via WhatsApp at +91 91020 70777. Our AMFI-certified team will guide you step-by-step at zero charge.'
     },
     {
       q: 'What is the purpose of the Multiple Bank Account Registration Form?',
@@ -826,7 +826,7 @@ export default function DownloadsClient() {
                   <span>Free AMFI Certified Form Verification Desk (ARN-194720)</span>
                 </div>
                 <div style={{ fontSize: '13px', color: '#94A3B8' }}>
-                  Our senior advisory desk reviews your filled forms before submission to guarantee zero rejection by RTAs.
+                  Our senior distribution desk reviews your filled forms before submission to guarantee zero rejection by RTAs.
                 </div>
               </div>
 

@@ -3,7 +3,7 @@ import TeamClient from './TeamClient';
 export const metadata = {
   title: 'Our Team & Leadership | Investrow Financial Services Pvt. Ltd.',
   description: 'Meet the executive leadership and 20+ certified wealth managers, research analysts, and operations specialists at Investrow Financial Services Pvt. Ltd. (AMFI ARN-194720). Led by Surendra Prasad, Dipankar Moi, and Birendra Kumar.',
-  keywords: 'Investrow team, Surendra Prasad, Dipankar Moi, Birendra Kumar, mutual fund advisors Dhanbad, AMFI registered MFD ARN 194720, wealth managers India, certified financial planners',
+  keywords: 'Investrow team, Surendra Prasad, Dipankar Moi, Birendra Kumar, mutual fund distributors Dhanbad, AMFI registered MFD ARN 194720, wealth managers India, mutual fund consultants Dhanbad',
   openGraph: {
     title: 'Our Team & Leadership | Investrow Financial Services Pvt. Ltd.',
     description: 'Meet Surendra Prasad, Dipankar Moi, Birendra Kumar and the 20+ specialized financial professionals guiding thousands of investors across India.',
@@ -48,7 +48,7 @@ export default function TeamPage() {
   const teamProfileJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    name: 'Investrow Executive Leadership & Advisory Team',
+    name: 'Investrow Executive Leadership & Distribution Team',
     url: 'https://www.investrow.in/team',
     mainEntity: {
       '@type': 'Organization',
@@ -57,7 +57,7 @@ export default function TeamPage() {
         {
           '@type': 'Person',
           name: 'Surendra Prasad',
-          jobTitle: 'Founder & Senior Wealth Advisor',
+          jobTitle: 'Founder & Principal Officer',
           image: 'https://www.investrow.in/images/team/surendra-prasad.png',
           knowsAbout: ['Mutual Funds', 'AMFI Regulations', 'SIP Compounding', 'Retirement Planning']
         },
@@ -70,7 +70,7 @@ export default function TeamPage() {
         {
           '@type': 'Person',
           name: 'Birendra Kumar',
-          jobTitle: 'Director & Strategic Advisory',
+          jobTitle: 'Director & Corporate Solutions',
           knowsAbout: ['Corporate Investments', 'Risk Management']
         }
       ]

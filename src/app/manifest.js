@@ -2,7 +2,7 @@ export default function manifest() {
   return {
     name: 'Investrow Financial Services',
     short_name: 'Investrow',
-    description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) & Wealth Advisory in Jharkhand & Pan-India',
+    description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) & Wealth Services in Jharkhand & Pan-India',
     start_url: '/',
     display: 'standalone',
     background_color: '#0A1628',

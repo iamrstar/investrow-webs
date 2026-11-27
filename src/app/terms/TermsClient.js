@@ -31,7 +31,7 @@ import {
 
 export default function TermsClient() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('Mutual Funds Advisory');
+  const [selectedService, setSelectedService] = useState('Mutual Funds Consultation');
 
   const handleOpenConsultModal = (service = 'Terms Page Consultation') => {
     setSelectedService(service);
@@ -61,7 +61,7 @@ export default function TermsClient() {
       icon: Briefcase,
       color: '#FF6A13',
       bgGlow: 'rgba(255, 106, 19, 0.08)',
-      content: 'We provide financial services including investment advisory, insurance guidance, loan assistance, and related services. All services are subject to applicable laws and regulations.'
+      content: 'We provide financial distribution and facilitation services including mutual fund distribution (AMFI ARN-194720), NPS facilitation, insurance guidance, loan assistance, and related support services. We do not provide investment advisory services as defined under SEBI (Investment Advisers) Regulations, 2013. All services are subject to applicable laws and regulations.'
     },
     {
       id: 'user-responsibilities',
@@ -427,7 +427,7 @@ export default function TermsClient() {
                   className="btn-orange"
                   style={{ width: '100%', padding: '10px 16px', fontSize: '13px' }}
                 >
-                  Speak With An Advisor <ArrowRight size={14} />
+                  Speak With A Specialist <ArrowRight size={14} />
                 </button>
               </div>
             </aside>
@@ -651,7 +651,7 @@ export default function TermsClient() {
                     lineHeight: 1.65,
                     marginBottom: '24px'
                   }}>
-                    Our compliance desk and certified mutual fund advisors are here to assist you with any questions or clarifications regarding your accounts, policies, or investments.
+                    Our compliance desk and certified mutual fund distributors are here to assist you with any questions or clarifications regarding your accounts, policies, or investments.
                   </p>
 
                   <div style={{

@@ -396,10 +396,10 @@ export default function AwardsClient() {
                 <ShieldCheck size={14} /> AMFI Reg. Mutual Fund Distributor (ARN-194720)
               </div>
               <h3 style={{ fontSize: '26px', fontWeight: 800, color: '#FFFFFF', marginBottom: '8px', lineHeight: 1.25 }}>
-                Partner With an Award-Winning Wealth Advisory Firm
+                Partner With an Award-Winning Mutual Fund Distributor
               </h3>
               <p style={{ fontSize: '15px', color: '#94A3B8', lineHeight: 1.6 }}>
-                Experience disciplined mutual fund planning, unbiased fund curation, and ongoing portfolio reviews with zero upfront advisory fees.
+                Experience disciplined mutual fund planning, unbiased fund curation, and ongoing portfolio reviews with zero upfront service fees.
               </p>
             </div>
 
@@ -582,7 +582,7 @@ export default function AwardsClient() {
                   className="btn-orange"
                   style={{ padding: '12px 24px', fontSize: '14px' }}
                 >
-                  Consult an Advisor <ArrowRight size={14} />
+                  Consult a Specialist <ArrowRight size={14} />
                 </button>
               </div>
             </div>

@@ -3,14 +3,14 @@ import DhanbadClient from './DhanbadClient';
 export const metadata = {
   title: 'Mutual Fund Consultant in Dhanbad | Investrow Financial Services (ARN-194720)',
   description: 'Certified AMFI Registered Mutual Fund Consultant in Dhanbad (ARN-194720). Tailored SIP, Tax-Saving ELSS, lumpsum STP, and portfolio rebalancing across Dhanbad, Bank More, Saraidhela & Bokaro.',
-  keywords: 'Mutual Fund Consultant Dhanbad, AMFI Registered MFD Dhanbad, Best SIP Advisor Dhanbad, Mutual Fund Distributor Jharkhand, Investrow Dhanbad, Wealth Advisor Dhanbad, Mutual Funds in Bank More, Mutual Funds in Saraidhela',
+  keywords: 'Mutual Fund Consultant Dhanbad, AMFI Registered MFD Dhanbad, Best SIP Distributor Dhanbad, Mutual Fund Distributor Jharkhand, Investrow Dhanbad, Wealth Consultant Dhanbad, Mutual Funds in Bank More, Mutual Funds in Saraidhela',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
     canonical: 'https://www.investrow.in/mutual-fund-consultant-in-dhanbad',
   },
   openGraph: {
     title: 'Mutual Fund Consultant in Dhanbad | Investrow Financial Services',
-    description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) in Dhanbad. Over ₹250+ Cr AUM advised for 3,000+ happy families. Book your complimentary portfolio review.',
+    description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) in Dhanbad. Over ₹250+ Cr AUM distributed for 3,000+ happy families. Book your complimentary portfolio review.',
     url: 'https://www.investrow.in/mutual-fund-consultant-in-dhanbad',
     siteName: 'Investrow Financial Services',
     images: [
@@ -93,7 +93,7 @@ export default function MutualFundConsultantDhanbadPage() {
       'Katras',
       'Bokaro Steel City'
     ],
-    priceRange: '₹0 Upfront Advisory',
+    priceRange: '₹0 Upfront Fees',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
@@ -110,15 +110,15 @@ export default function MutualFundConsultantDhanbadPage() {
         name: 'Where is Investrow registered office in Dhanbad?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Investrow Financial Services Pvt. Ltd. is headquartered at Sundarpur Basti, Jealgora, Dhanbad, Jharkhand, India, 828110. In-person advisory sessions are available across Dhanbad, Bank More, and Saraidhela.'
+          text: 'Investrow Financial Services Pvt. Ltd. is headquartered at Sundarpur Basti, Jealgora, Dhanbad, Jharkhand, India, 828110. In-person consultation sessions are available across Dhanbad, Bank More, and Saraidhela.'
         }
       },
       {
         '@type': 'Question',
-        name: 'Who leads mutual fund advisory at Investrow in Dhanbad?',
+        name: 'Who leads mutual fund distribution at Investrow in Dhanbad?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Senior AMFI-certified advisor Surendra Prasad (AMFI ARN-194720) and Dipankar Moi personally oversee mutual fund scheme selection and client portfolio health checks.'
+          text: 'Senior AMFI-certified distributor Surendra Prasad (AMFI ARN-194720) and Dipankar Moi personally oversee mutual fund scheme selection and client portfolio health checks.'
         }
       },
       {

@@ -1,15 +1,15 @@
 import NpsClient from './NpsClient';
 
 export const metadata = {
-  title: 'NPS Consultant & Advisor in Jharkhand | Investrow Financial Services',
+  title: 'NPS Consultant & Retirement Planning in Jharkhand | Investrow Financial Services',
   description: 'Certified National Pension System (NPS) Consultant in Jharkhand (Ranchi, Dhanbad, Bokaro, Jamshedpur). Learn about Tier 1, Tier 2, Corporate NPS, and save up to ₹2 Lakh tax under Section 80CCD.',
-  keywords: 'NPS Consultant Jharkhand, National Pension Scheme Advisor Dhanbad, NPS Tier 1 Tier 2 Ranchi, Corporate NPS Consultant Jharkhand, Section 80CCD Tax Saving, Investrow NPS, Retirement Planning Jharkhand',
+  keywords: 'NPS Consultant Jharkhand, National Pension Scheme Consultant Dhanbad, NPS Tier 1 Tier 2 Ranchi, Corporate NPS Consultant Jharkhand, Section 80CCD Tax Saving, Investrow NPS, Retirement Planning Jharkhand',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
     canonical: 'https://www.investrow.in/nps-consultant-in-jharkhand',
   },
   openGraph: {
-    title: 'NPS Consultant & Advisor in Jharkhand | Investrow Financial Services',
+    title: 'NPS Consultant & Retirement Planning in Jharkhand | Investrow Financial Services',
     description: 'Expert National Pension System guidance in Jharkhand. Open Tier-1 & Tier-2 PRAN, plan retirement corpus, and claim triple tax deductions.',
     url: 'https://www.investrow.in/nps-consultant-in-jharkhand',
     siteName: 'Investrow Financial Services',
@@ -26,7 +26,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NPS Consultant & Advisor in Jharkhand | Investrow Financial Services',
+    title: 'NPS Consultant & Retirement Planning in Jharkhand | Investrow Financial Services',
     description: 'Triple tax benefits and systematic pension compounding with NPS in Jharkhand.',
     images: ['/investrow-logo.png'],
   },
@@ -59,7 +59,7 @@ export default function NpsConsultantJharkhandPage() {
   const npsServiceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'National Pension System (NPS) Advisory in Jharkhand',
+    name: 'National Pension System (NPS) Distribution in Jharkhand',
     serviceType: 'Retirement Pension & Tax Deduction Planning',
     provider: {
       '@type': 'FinancialService',
@@ -103,7 +103,7 @@ export default function NpsConsultantJharkhandPage() {
         name: 'Can Investrow help open an NPS PRAN account online?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, Investrow financial advisors guide individuals and corporate employees across Jharkhand with 100% paperless PRAN generation and fund manager selection.'
+          text: 'Yes, Investrow financial consultants guide individuals and corporate employees across Jharkhand with 100% paperless PRAN generation and fund manager selection.'
         }
       }
     ]

@@ -9,7 +9,7 @@ export const leadershipTeam = [
     department: 'Executive Leadership',
     badge: 'Founder & Managing Director',
     image: '/images/team/surendra-prasad.png',
-    credentials: ['AMFI Registered Advisor', 'ARN-194720', '15+ Years Wealth Advisory', 'BSE StAR MF Certified'],
+    credentials: ['AMFI Registered Distributor', 'ARN-194720', '15+ Years Wealth Distribution', 'BSE StAR MF Certified'],
     experience: '15+ Years',
     specialties: ['Strategic Wealth Architecture', 'HNI & Family Office Planning', 'Portfolio Risk Governance', 'Retirement Engineering'],
     quote: 'Trust, transparency, and commitment are the pillars of long-term success. Our approach is centered on understanding each client’s unique goals and delivering personalized strategies that create lasting value.',
@@ -52,7 +52,7 @@ export const leadershipTeam = [
 export const departmentCategories = [
   { id: 'all', label: 'All Team Members', count: 25 },
   { id: 'leadership', label: 'Executive Leadership', count: 3 },
-  { id: 'advisory', label: 'Wealth Advisory & RM', count: 6 },
+  { id: 'wealth-rm', label: 'Wealth Management & RM', count: 6 },
   { id: 'research', label: 'Research & Analytics', count: 4 },
   { id: 'operations', label: 'Client Operations & KYC', count: 5 },
   { id: 'compliance', label: 'Compliance & Risk', count: 3 },
@@ -60,13 +60,13 @@ export const departmentCategories = [
 ];
 
 export const teamSpecialists = [
-  // --- Wealth Advisory & Relationship Management (6 Members) ---
+  // --- Wealth Management & Relationship Management (6 Members) ---
   {
     id: 'rajesh-ranjan-sharma',
     name: 'Rajesh Ranjan Sharma',
     role: 'Senior Wealth Manager & HNI Desk Lead',
-    department: 'advisory',
-    deptName: 'Wealth Advisory & RM',
+    department: 'wealth-rm',
+    deptName: 'Wealth Management & RM',
     qualifications: 'MBA Finance, NISM Series V-A',
     experience: '12+ Years',
     focus: 'HNI Wealth Structuring, Lumpsum Deployment, Family Asset Allocation',
@@ -77,8 +77,8 @@ export const teamSpecialists = [
     id: 'priyanka-sinha',
     name: 'Priyanka Sinha',
     role: 'Principal Relationship Manager',
-    department: 'advisory',
-    deptName: 'Wealth Advisory & RM',
+    department: 'wealth-rm',
+    deptName: 'Wealth Management & RM',
     qualifications: 'MBA, AMFI Registered',
     experience: '8+ Years',
     focus: 'Goal-Based SIP Architecture, Women Investors Desk, Retirement Portfolios',
@@ -89,8 +89,8 @@ export const teamSpecialists = [
     id: 'amitabh-sengupta',
     name: 'Amitabh Sengupta',
     role: 'Senior Portfolio Consultant',
-    department: 'advisory',
-    deptName: 'Wealth Advisory & RM',
+    department: 'wealth-rm',
+    deptName: 'Wealth Management & RM',
     qualifications: 'M.Com, NISM Series V-A & X-A',
     experience: '10+ Years',
     focus: 'Systematic Withdrawal Plans (SWP), Regular Pension Flows, Asset Rebalancing',
@@ -100,9 +100,9 @@ export const teamSpecialists = [
   {
     id: 'sunita-murmu',
     name: 'Sunita Murmu',
-    role: 'Senior Financial Advisor',
-    department: 'advisory',
-    deptName: 'Wealth Advisory & RM',
+    role: 'Senior Wealth Consultant',
+    department: 'wealth-rm',
+    deptName: 'Wealth Management & RM',
     qualifications: 'B.Com Hons, AMFI Certified',
     experience: '7+ Years',
     focus: 'Child Higher Education Funds, Tax-Saving ELSS Optimization, SIP Step-Ups',
@@ -112,9 +112,9 @@ export const teamSpecialists = [
   {
     id: 'vikramaditya-roy',
     name: 'Vikramaditya Roy',
-    role: 'Corporate Treasury & HNI Advisor',
-    department: 'advisory',
-    deptName: 'Wealth Advisory & RM',
+    role: 'Corporate Treasury & HNI Specialist',
+    department: 'wealth-rm',
+    deptName: 'Wealth Management & RM',
     qualifications: 'CFP Aspirant, NISM Series V-A',
     experience: '9+ Years',
     focus: 'Corporate Liquid Funds, Arbitrage Deployments, Business Cashflow Solutions',
@@ -124,9 +124,9 @@ export const teamSpecialists = [
   {
     id: 'neha-agarwal',
     name: 'Neha Agarwal',
-    role: 'NRI Advisory Specialist',
-    department: 'advisory',
-    deptName: 'Wealth Advisory & RM',
+    role: 'NRI Services Specialist',
+    department: 'wealth-rm',
+    deptName: 'Wealth Management & RM',
     qualifications: 'MBA Finance, NISM Certified',
     experience: '6+ Years',
     focus: 'NRI NRE/NRO Mutual Fund Portfolios, Cross-Border Tax Coordination, Inward Remittance',
@@ -255,7 +255,7 @@ export const teamSpecialists = [
     deptName: 'Compliance & Risk',
     qualifications: 'CS Executive, LL.B.',
     experience: '7+ Years',
-    focus: 'AMFI & SEBI Circular Adherence, MFD Code of Conduct, Advisory Due Diligence',
+    focus: 'AMFI & SEBI Circular Adherence, MFD Code of Conduct, Distribution Due Diligence',
     initials: 'AP',
     color: '#0F766E'
   },
@@ -361,8 +361,8 @@ export const allTeamMembers = [
 ];
 
 export const teamStats = [
-  { value: '25+', label: 'Certified Professionals', sub: 'Dedicated advisory, research & operations force' },
+  { value: '25+', label: 'Certified Professionals', sub: 'Dedicated distribution, research & operations force' },
   { value: '100%', label: 'AMFI / NISM Compliant', sub: 'Strict adherence to code of conduct & ethics' },
   { value: '₹250+ Cr', label: 'Portfolio Reach', sub: 'Across retail, HNIs and corporate treasuries' },
-  { value: '5,000+', label: 'Families Advised', sub: 'Long-term compounding journeys across India' }
+  { value: '5,000+', label: 'Families Served', sub: 'Long-term compounding journeys across India' }
 ];

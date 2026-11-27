@@ -162,7 +162,7 @@ export default function NpsClient() {
                   marginBottom: '16px'
                 }}>
                   <Landmark size={14} style={{ color: '#34D399' }} />
-                  <span>National Pension System (PFRDA Regulated) • Jharkhand Advisory</span>
+                  <span>National Pension System (PFRDA Regulated) • Jharkhand Distribution</span>
                 </div>
 
                 <h1 style={{
@@ -173,7 +173,7 @@ export default function NpsClient() {
                   letterSpacing: '-0.02em',
                   color: '#FFFFFF'
                 }}>
-                  Certified NPS Consultant & Retirement Advisor in <span style={{
+                  Certified NPS Consultant & Retirement Planning in <span style={{
                     background: 'linear-gradient(135deg, #34D399 0%, #059669 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent'
@@ -214,7 +214,7 @@ export default function NpsClient() {
                 {/* CTAs */}
                 <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
                   <button
-                    onClick={() => handleOpenConsultModal('NPS PRAN Advisory - Jharkhand')}
+                    onClick={() => handleOpenConsultModal('NPS PRAN Consultation - Jharkhand')}
                     className="btn-orange"
                     style={{ padding: '13px 28px', fontSize: '14.5px' }}
                   >
@@ -233,7 +233,7 @@ export default function NpsClient() {
                       textDecoration: 'none'
                     }}
                   >
-                    💬 WhatsApp NPS Advisor
+                    💬 WhatsApp NPS Desk
                   </a>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export default function NpsClient() {
                     </div>
                     <div>
                       <h3 style={{ fontSize: '17px', fontWeight: 800, margin: 0, color: 'var(--navy-deep)' }}>
-                        NPS Advisory Desk (Jharkhand)
+                        NPS Distribution Desk (Jharkhand)
                       </h3>
                       <p style={{ fontSize: '12px', color: '#64748B', margin: 0 }}>
                         PRAN account opening, scheme choice & tax planning

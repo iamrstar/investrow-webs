@@ -25,7 +25,7 @@ const testimonials = [
     tagColor: '#FF6A13',
     tagBg: '#FFF1EB',
     rating: 5,
-    quote: 'Before consulting Investrow, my corporate surplus was parked in low-yield traditional FDs losing to inflation. Their advisory team helped us allocate into tax-efficient Flexi-Cap and Arbitrage funds with total liquidity.'
+    quote: 'Before consulting Investrow, my corporate surplus was parked in low-yield traditional FDs losing to inflation. Their distribution team helped us allocate into tax-efficient Flexi-Cap and Arbitrage funds with total liquidity.'
   },
   {
     name: 'Rajesh Agarwal',
@@ -99,7 +99,7 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
             color: 'var(--text-secondary)',
             lineHeight: 1.6
           }}>
-            From senior doctors and business directors to tech leaders and retirees across Jharkhand & pan-India, see how disciplined mutual fund advisory changes lives.
+            From senior doctors and business directors to tech leaders and retirees across Jharkhand & pan-India, see how disciplined mutual fund distribution changes lives.
           </p>
         </div>
 
@@ -242,7 +242,7 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
           ))}
         </div>
 
-        {/* CTA Banner with Advisor Consultation */}
+        {/* CTA Banner with Consultation */}
         <div style={{
           background: 'linear-gradient(135deg, #0A1628 0%, #0F1E36 100%)',
           borderRadius: 'var(--radius-xl)',
@@ -259,7 +259,7 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <img 
               src="/images/team/surendra-prasad.png" 
-              alt="Surendra Prasad, Founder & Senior AMFI Advisor"
+              alt="Surendra Prasad, Founder & Principal Officer (AMFI Registered MFD)"
               style={{
                 width: '64px',
                 height: '64px',
@@ -272,13 +272,13 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
             />
             <div>
               <div style={{ fontSize: '12px', fontWeight: 800, color: '#38BDF8', letterSpacing: '0.8px', textTransform: 'uppercase', marginBottom: '4px' }}>
-                AMFI Registered Advisory Desk (ARN-194720)
+                AMFI Registered Distribution Desk (ARN-194720)
               </div>
               <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#FFFFFF', marginBottom: '4px' }}>
                 Ready to Join 3,000+ Families Compounding Their Future?
               </h3>
               <p style={{ fontSize: '13.5px', color: '#94A3B8', margin: 0 }}>
-                Get a complimentary portfolio review with Surendra Prasad and our senior AMFI wealth advisory team.
+                Get a complimentary portfolio review with Surendra Prasad and our senior AMFI mutual fund distribution team.
               </p>
             </div>
           </div>
@@ -289,7 +289,7 @@ export default function TestimonialsSection({ onOpenConsultModal }) {
               className="btn-orange"
               style={{ padding: '12px 24px', fontSize: '14px', borderRadius: '10px' }}
             >
-              Book Free Advisory Call ➔
+              Book Free Portfolio Call ➔
             </button>
             <a
               href="https://wa.me/919102070777?text=Hello%20Investrow,%20I%20would%20like%20to%20review%20my%20Mutual%20Fund%20Portfolio."

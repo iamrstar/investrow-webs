@@ -3,7 +3,7 @@ import WealthCreationClient from './WealthCreationClient';
 export const metadata = {
   title: 'Wealth Creation Strategies & Goal Planning | Investrow Financial Services',
   description: 'Transform savings into generational wealth with AMFI-registered mutual fund distributor Investrow. Build multi-crore portfolios through disciplined SIP compounding, Step-Up investing, and asset allocation.',
-  keywords: 'Wealth Creation Strategies, Mutual Fund Wealth Creation, SIP Compounding Dhanbad, Goal Based Investing Jharkhand, ₹1 Crore SIP Milestone, Financial Freedom FIRE India, Investrow Wealth Advisor',
+  keywords: 'Wealth Creation Strategies, Mutual Fund Wealth Creation, SIP Compounding Dhanbad, Goal Based Investing Jharkhand, ₹1 Crore SIP Milestone, Financial Freedom FIRE India, Investrow Wealth Distributor',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
     canonical: 'https://www.investrow.in/wealth-creation',
@@ -64,7 +64,7 @@ export default function WealthCreationPage() {
     author: {
       '@type': 'Person',
       name: 'Surendra Prasad',
-      jobTitle: 'Founder & Senior AMFI Advisor (ARN-194720)'
+      jobTitle: 'Founder & Senior AMFI Specialist (ARN-194720)'
     },
     publisher: {
       '@type': 'Organization',

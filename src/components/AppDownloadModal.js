@@ -232,7 +232,7 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
           border: '1px solid rgba(255, 255, 255, 0.06)'
         }}>
           <p style={{ fontSize: '12.5px', color: '#E2E8F0', margin: '0 0 8px 0', lineHeight: 1.4, fontWeight: 500 }}>
-            Download our app for live portfolio updates, automated SIP monitoring, and direct AMFI advisor chat.
+            Download our app for live portfolio updates, automated SIP monitoring, and direct AMFI specialist chat.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', fontSize: '11px', color: '#94A3B8' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>

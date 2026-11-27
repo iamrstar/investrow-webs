@@ -5,8 +5,8 @@ import { ChevronDown, HelpCircle, Shield } from 'lucide-react';
 
 const FAQS = [
   {
-    q: 'How does Investrow help me invest in Mutual Funds? Is there an extra advisory fee?',
-    a: 'Investrow Financial Services is an AMFI-Registered Mutual Fund Distributor (ARN-194720). We provide complete goal-based portfolio planning, top-quartile scheme selection, ongoing portfolio rebalancing, and tax harvesting at zero upfront advisory fee to you. We are compensated through standard regulated commissions paid directly by Asset Management Companies (AMCs).'
+    q: 'How does Investrow help me invest in Mutual Funds? Is there an extra fee?',
+    a: 'Investrow Financial Services is an AMFI-Registered Mutual Fund Distributor (ARN-194720). We provide complete goal-based portfolio reviews, top-quartile scheme selection, ongoing portfolio rebalancing, and tax harvesting at zero upfront distribution fee to you. We are compensated through standard regulated commissions paid directly by Asset Management Companies (AMCs).'
   },
   {
     q: 'What is the minimum amount required to start a Mutual Fund SIP?',
@@ -60,7 +60,7 @@ export default function FAQSection() {
             Frequently Asked Questions on Mutual Funds
           </h2>
           <p style={{ fontSize: '15.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-            Everything you need to know about disciplined SIP compounding, taxation, scheme selection, and our advisory process.
+            Everything you need to know about disciplined SIP compounding, taxation, scheme selection, and our distribution services.
           </p>
         </div>
 
@@ -176,7 +176,7 @@ export default function FAQSection() {
         }}>
           <Shield size={16} style={{ color: '#0284C7' }} />
           <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)' }}>
-            AMFI Certified • SEBI Regulated • BSE StAR MF Registered • 23+ Years of Advisory Trust
+            AMFI Certified • SEBI Regulated • BSE StAR MF Registered • 23+ Years of Cumulative Experience
           </span>
         </div>
 

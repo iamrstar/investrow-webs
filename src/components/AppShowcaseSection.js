@@ -121,7 +121,7 @@ export default function AppShowcaseSection() {
                 { title: 'Unified MF Portfolio', desc: 'Consolidated tracking for SIP, ELSS & Lumpsums across SBI, HDFC, ICICI & more.' },
                 { title: 'Real-Time Compounding', desc: 'Live NAV updates, XIRR analysis & 15%–25% alpha milestone projections.' },
                 { title: 'Zero Platform Friction', desc: 'Instant paperless KYC onboarding with BSE StAR MF infrastructure.' },
-                { title: 'Direct Advisory Chat', desc: 'Connect 1-on-1 with Surendra Prasad & the AMFI advisory desk.' }
+                { title: 'Direct MFD Guidance', desc: 'Connect 1-on-1 with Surendra Prasad & the AMFI distribution desk.' }
               ].map((item, idx) => (
                 <div 
                   key={idx}

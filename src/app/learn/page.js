@@ -3,7 +3,7 @@ import LearnClient from './LearnClient';
 export const metadata = {
   title: 'Mutual Fund Learning Academy & Guides 2026 | 24 Topics on SIP, SWP, ELSS, FIRE, NRI & Tax | Investrow',
   description: 'Master mutual funds with 24 plain-English guides. Explore SIP, SWP monthly income, ELSS 80C tax saving, 12.5% LTCG rules, Active vs Index funds, Balanced Advantage, STP lumpsum deployment, NRI investing, Minor accounts, and FIRE early retirement.',
-  keywords: 'what is SIP in mutual funds, SIP vs lumpsum, how does SWP work, ELSS tax saving mutual funds, mutual fund capital gains tax 2026, LTCG on mutual funds 12.5, direct vs regular mutual funds, step up SIP calculator, active vs index mutual funds, balanced advantage funds, systematic transfer plan STP, FIRE early retirement India, NRI mutual fund investment, mutual funds for minors, how to read mutual fund factsheet, arbitrage funds vs FD, debt funds taxation, mutual fund basics for beginners, Investrow learn, mutual fund advisor Dhanbad',
+  keywords: 'what is SIP in mutual funds, SIP vs lumpsum, how does SWP work, ELSS tax saving mutual funds, mutual fund capital gains tax 2026, LTCG on mutual funds 12.5, direct vs regular mutual funds, step up SIP calculator, active vs index mutual funds, balanced advantage funds, systematic transfer plan STP, FIRE early retirement India, NRI mutual fund investment, mutual funds for minors, how to read mutual fund factsheet, arbitrage funds vs FD, debt funds taxation, mutual fund basics for beginners, Investrow learn, mutual fund distributor Dhanbad, AMFI registered MFD Dhanbad',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
     canonical: 'https://www.investrow.in/learn',

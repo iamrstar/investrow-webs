@@ -1,24 +1,24 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { 
-  Calculator, 
-  ArrowRight, 
-  CheckCircle2, 
-  TrendingUp, 
-  Sparkles, 
-  Lock, 
-  Unlock, 
-  Phone, 
-  User, 
-  Target, 
-  Zap, 
-  ShieldCheck, 
-  Layers, 
-  PieChart, 
-  Info, 
-  MessageSquare, 
-  ChevronDown, 
+import {
+  Calculator,
+  ArrowRight,
+  CheckCircle2,
+  TrendingUp,
+  Sparkles,
+  Lock,
+  Unlock,
+  Phone,
+  User,
+  Target,
+  Zap,
+  ShieldCheck,
+  Layers,
+  PieChart,
+  Info,
+  MessageSquare,
+  ChevronDown,
   ChevronUp,
   Flame,
   Award,
@@ -77,7 +77,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
     if (calcMode === 'sip') {
       const P = Number(monthlySip);
       return Math.round(P * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate));
-    } 
+    }
     else if (calcMode === 'stepup') {
       const initialP = Number(monthlySip);
       const stepUp = Number(stepUpPercent) / 100;
@@ -90,11 +90,11 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
         }
       }
       return Math.round(totalFV);
-    } 
+    }
     else if (calcMode === 'lumpsum') {
       const P = Number(lumpsumAmount);
       return Math.round(P * Math.pow(1 + r, y));
-    } 
+    }
     else if (calcMode === 'goal') {
       // In goal seek mode, higher rate means lower required SIP, or higher outcome
       const target = Number(targetGoalCorpus);
@@ -158,7 +158,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
       const m5 = Math.max(0, (y - 5) * 12);
       const val5 = Math.round(P * ((Math.pow(1 + monthlyRate, m5) - 1) / monthlyRate) * (1 + monthlyRate));
       costOfWaiting5Yrs = Math.max(0, maturityValue - val5);
-    } 
+    }
     else if (calcMode === 'stepup') {
       const initialP = Number(monthlySip);
       const stepUp = Number(stepUpPercent) / 100;
@@ -176,12 +176,12 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
 
       totalInvested = Math.round(totalInv);
       maturityValue = Math.round(totalFV);
-    } 
+    }
     else if (calcMode === 'lumpsum') {
       const P = Number(lumpsumAmount);
       totalInvested = P;
       maturityValue = Math.round(P * Math.pow(1 + r, y));
-    } 
+    }
     else if (calcMode === 'goal') {
       const target = Number(targetGoalCorpus);
       maturityValue = target;
@@ -430,8 +430,8 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
   const investedPercent = Math.max(1, Math.min(99, Math.round((calculations.totalInvested / calculations.maturityValue) * 100) || 50));
   const returnsPercent = 100 - investedPercent;
 
-  const displayMaturity = adjustForInflation 
-    ? calculations.inflationAdjustedMaturity 
+  const displayMaturity = adjustForInflation
+    ? calculations.inflationAdjustedMaturity
     : calculations.maturityValue;
 
   return (
@@ -455,7 +455,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        
+
         {/* Section Header */}
         <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 40px' }}>
           <div className="badge-blue" style={{ marginBottom: '14px' }}>
@@ -513,7 +513,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
         </div>
 
         {/* 6-Tab Mode Switcher */}
-        <div 
+        <div
           className="calc-tab-switcher"
           style={{
             display: 'flex',
@@ -587,7 +587,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
           gap: '32px',
           alignItems: 'stretch'
         }} className="calc-grid">
-          
+
           {/* Left Column: Sliders Card */}
           <div style={{
             padding: 'clamp(18px, 4vw, 36px)',
@@ -612,7 +612,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
             }} />
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              
+
               {/* Parameter 1: Depends on Mode */}
               {calcMode === 'sip' && (
                 <div>
@@ -635,7 +635,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       ₹{monthlySip.toLocaleString('en-IN')}
                     </div>
                   </div>
-                  <input 
+                  <input
                     type="range"
                     min={500}
                     max={150000}
@@ -690,7 +690,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(swpCorpus)}
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={500000}
                       max={50000000}
@@ -741,7 +741,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(swpMonthly)} / mo
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={5000}
                       max={250000}
@@ -795,7 +795,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       ₹{monthlySip.toLocaleString('en-IN')}
                     </div>
                   </div>
-                  <input 
+                  <input
                     type="range"
                     min={1000}
                     max={100000}
@@ -862,7 +862,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         ₹{monthlySip.toLocaleString('en-IN')}
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={1000}
                       max={100000}
@@ -892,7 +892,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         +{stepUpPercent}% / Year
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={5}
                       max={25}
@@ -946,7 +946,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       {formatCurrency(lumpsumAmount)}
                     </div>
                   </div>
-                  <input 
+                  <input
                     type="range"
                     min={10000}
                     max={5000000}
@@ -1000,7 +1000,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(swpCorpus)}
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={500000}
                       max={50000000}
@@ -1051,7 +1051,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(swpMonthly)} / mo
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={5000}
                       max={250000}
@@ -1105,7 +1105,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       ₹{monthlySip.toLocaleString('en-IN')}
                     </div>
                   </div>
-                  <input 
+                  <input
                     type="range"
                     min={1000}
                     max={100000}
@@ -1171,7 +1171,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       {formatCurrency(targetGoalCorpus)}
                     </div>
                   </div>
-                  <input 
+                  <input
                     type="range"
                     min={500000}
                     max={50000000}
@@ -1225,7 +1225,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(swpCorpus)}
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={500000}
                       max={50000000}
@@ -1276,7 +1276,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                         {formatCurrency(swpMonthly)} / mo
                       </div>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min={5000}
                       max={250000}
@@ -1330,7 +1330,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       ₹{monthlySip.toLocaleString('en-IN')}
                     </div>
                   </div>
-                  <input 
+                  <input
                     type="range"
                     min={1000}
                     max={100000}
@@ -1396,7 +1396,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                     {years} {years === 1 ? 'Year' : 'Years'}
                   </div>
                 </div>
-                <input 
+                <input
                   type="range"
                   min={1}
                   max={30}
@@ -1448,7 +1448,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                     {returnRate}%
                   </div>
                 </div>
-                <input 
+                <input
                   type="range"
                   min={8}
                   max={18}
@@ -1465,7 +1465,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
 
             </div>
 
-            {/* Regulatory Advisory Footnote */}
+            {/* Regulatory Footnote */}
             <div style={{
               marginTop: '32px',
               padding: '14px 16px',
@@ -1520,7 +1520,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
             }} />
 
             <div style={{ position: 'relative', zIndex: 2 }}>
-              
+
               {/* Top Row: Title & Inflation Toggle */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
                 <div style={{
@@ -1530,13 +1530,13 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                   color: '#94A3B8',
                   fontWeight: 700
                 }}>
-                  {calcMode === 'goal' 
-                    ? 'Required Monthly SIP' 
+                  {calcMode === 'goal'
+                    ? 'Required Monthly SIP'
                     : calcMode === 'swp'
-                    ? 'Total Cashflow Generated'
-                    : calcMode === 'delay'
-                    ? 'Cost of Waiting 1 Year'
-                    : 'Projected Wealth Growth'}
+                      ? 'Total Cashflow Generated'
+                      : calcMode === 'delay'
+                        ? 'Cost of Waiting 1 Year'
+                        : 'Projected Wealth Growth'}
                 </div>
 
                 {calcMode !== 'delay' && calcMode !== 'swp' && (
@@ -1568,13 +1568,13 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                 letterSpacing: '-0.02em',
                 marginBottom: '8px'
               }}>
-                {calcMode === 'goal' 
+                {calcMode === 'goal'
                   ? `${formatCurrency(calculations.requiredSip)} / mo`
                   : calcMode === 'swp'
-                  ? formatCurrency(calculations.totalWithdrawn)
-                  : calcMode === 'delay'
-                  ? `- ${formatCurrency(calculations.costOfWaiting1Yr)}`
-                  : formatCurrency(displayMaturity)
+                    ? formatCurrency(calculations.totalWithdrawn)
+                    : calcMode === 'delay'
+                      ? `- ${formatCurrency(calculations.costOfWaiting1Yr)}`
+                      : formatCurrency(displayMaturity)
                 }
               </div>
 
@@ -1710,14 +1710,14 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                   <div style={{ position: 'relative', width: '56px', height: '56px', flexShrink: 0 }}>
                     <svg viewBox="0 0 36 36" style={{ width: '56px', height: '56px', transform: 'rotate(-90deg)' }}>
                       <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3.5" />
-                      <circle 
-                        cx="18" cy="18" r="15.5" fill="none" 
+                      <circle
+                        cx="18" cy="18" r="15.5" fill="none"
                         stroke="#94A3B8" strokeWidth="3.5"
                         strokeDasharray={`${investedPercent} ${returnsPercent}`}
                         strokeLinecap="round"
                       />
-                      <circle 
-                        cx="18" cy="18" r="15.5" fill="none" 
+                      <circle
+                        cx="18" cy="18" r="15.5" fill="none"
                         stroke="var(--accent-orange)" strokeWidth="3.5"
                         strokeDasharray={`${returnsPercent} ${investedPercent}`}
                         strokeDashoffset={`-${investedPercent}`}
@@ -2036,7 +2036,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                     padding: '16px 18px',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
                   }}>
-                    {/* Advisor Assigned Desk Strip */}
+                    {/* Specialist Assigned Desk Strip */}
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -2048,10 +2048,10 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       marginBottom: '12px'
                     }}>
                       <div style={{ position: 'relative', width: '36px', height: '36px', flexShrink: 0 }}>
-                        <img 
-                          src="/images/team/surendra-prasad.png" 
-                          alt="Surendra Prasad, Founder & Senior Wealth Advisor"
-                          style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #FF8A3D' }} 
+                        <img
+                          src="/images/team/surendra-prasad.png"
+                          alt="Surendra Prasad, Founder & Principal Officer (AMFI Registered MFD)"
+                          style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #FF8A3D' }}
                         />
                         <span style={{
                           position: 'absolute',
@@ -2066,7 +2066,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
                       </div>
                       <div style={{ lineHeight: 1.25 }}>
                         <div style={{ fontSize: '12px', fontWeight: 700, color: '#FFFFFF' }}>
-                          Surendra Prasad • Founder & Senior AMFI Advisor (ARN-194720)
+                          Surendra Prasad • Founder & Principal Officer (AMFI ARN-194720)
                         </div>
                         <div style={{ fontSize: '10.5px', color: '#94A3B8' }}>
                           Assigned to review & curate your 15%–25% alpha portfolio
@@ -2252,7 +2252,7 @@ export default function CalculatorSection({ onLeadSubmitted, onOpenConsultModal 
               <span>Ready to turn this simulation into a real investment portfolio?</span>
             </div>
             <div style={{ fontSize: '12.5px', color: '#64748B', marginTop: '2px' }}>
-              Share your exact numbers directly with AMFI Senior Advisor Surendra Prasad (ARN-194720) or download your official PDF blueprint.
+              Share your exact numbers directly with AMFI MFD Surendra Prasad (ARN-194720) or download your official PDF blueprint.
             </div>
           </div>
 

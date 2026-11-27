@@ -30,7 +30,7 @@ import {
 
 export default function PrivacyClient() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('Mutual Funds Advisory');
+  const [selectedService, setSelectedService] = useState('Mutual Funds Consultation');
 
   const handleOpenConsultModal = (service = 'Privacy Page Consultation') => {
     setSelectedService(service);
@@ -417,7 +417,7 @@ export default function PrivacyClient() {
                   className="btn-orange"
                   style={{ width: '100%', padding: '10px 16px', fontSize: '13px' }}
                 >
-                  Contact Advisory Team <ArrowRight size={14} />
+                  Contact Distribution Desk <ArrowRight size={14} />
                 </button>
               </div>
             </aside>

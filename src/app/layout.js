@@ -9,9 +9,9 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'Investrow Financial Services | AMFI Registered Mutual Fund Distributor & SIP Advisory',
+  title: 'Investrow Financial Services | AMFI Registered Mutual Fund Distributor & SIP Services',
   description: 'AMFI Registered Mutual Fund Distributor (ARN-194720) in Jharkhand & Pan-India. Offering goal-based Mutual Funds (SIP & Lumpsum), Tax-Saving ELSS, SWP cashflow, and complimentary portfolio health checks.',
-  keywords: 'Mutual Fund Distributor Jharkhand, AMFI Registered MFD Dhanbad, SIP Calculator, Mutual Funds Investment, ELSS Tax Saving, SWP Retirement Income, Investrow, Mutual Funds Dhanbad, Best Financial Advisor Jharkhand',
+  keywords: 'Mutual Fund Distributor Jharkhand, AMFI Registered MFD Dhanbad, SIP Calculator, Mutual Funds Investment, ELSS Tax Saving, SWP Retirement Income, Investrow, Mutual Funds Dhanbad, Best Mutual Fund Consultant Jharkhand',
   metadataBase: new URL('https://www.investrow.in'),
   alternates: {
     canonical: 'https://www.investrow.in',
@@ -54,7 +54,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Investrow Financial Services | Mutual Funds & SIP Advisory',
+    title: 'Investrow Financial Services | Mutual Funds & SIP Distribution',
     description: 'AMFI Registered Mutual Fund Distributor (ARN-194720). Empowering 3,000+ investors with disciplined wealth compounding.',
     images: ['/investrow-logo.png'],
   },
@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
     },
     founder: {
       '@type': 'Person',
-      name: 'Investrow Advisory Team'
+      name: 'Investrow Distribution Team'
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -153,7 +153,7 @@ export default function RootLayout({ children }) {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'National Pension System (NPS) Advisory',
+            name: 'National Pension System (NPS) Distribution & Registration',
             description: 'Tier-1 & Tier-2 corporate and individual retirement pension planning.'
           }
         },
@@ -212,10 +212,10 @@ export default function RootLayout({ children }) {
       },
       {
         '@type': 'Question',
-        name: 'Does Investrow charge any upfront advisory or transaction fees?',
+        name: 'Does Investrow charge any upfront distribution or consultation fees?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. Investrow provides comprehensive goal-based portfolio architecture, scheme selection, and ongoing portfolio rebalancing at ₹0 upfront fee.'
+          text: 'No. Investrow provides comprehensive goal-based portfolio reviews, scheme distribution, and ongoing portfolio monitoring at ₹0 upfront fee. As an AMFI-registered distributor, Investrow is compensated directly by AMCs via trailing commissions.'
         }
       },
       {

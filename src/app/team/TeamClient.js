@@ -35,7 +35,7 @@ import {
 
 export default function TeamClient() {
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [consultDefaultService, setConsultDefaultService] = useState('Executive Advisory Consultation');
+  const [consultDefaultService, setConsultDefaultService] = useState('Portfolio Review Consultation');
   const [selectedAdvisor, setSelectedAdvisor] = useState(null);
 
   const handleOpenConsultModal = (serviceName = 'Team Consultation', advisor = null) => {
@@ -320,7 +320,7 @@ export default function TeamClient() {
                   }}>
                     {/* Portrait Image Container */}
                     <div 
-                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`, leader)}
+                      onClick={() => handleOpenConsultModal(`Consultation with ${leader.name}`, leader)}
                       style={{
                         width: '210px',
                         height: '230px',
@@ -347,7 +347,7 @@ export default function TeamClient() {
                     </div>
 
                     <h3 
-                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`, leader)}
+                      onClick={() => handleOpenConsultModal(`Consultation with ${leader.name}`, leader)}
                       style={{
                         fontSize: '22px',
                         fontWeight: 800,
@@ -384,7 +384,7 @@ export default function TeamClient() {
                     </div>
 
                     <button
-                      onClick={() => handleOpenConsultModal(`Advisory Meeting with ${leader.name}`, leader)}
+                      onClick={() => handleOpenConsultModal(`Consultation with ${leader.name}`, leader)}
                       className="btn-orange"
                       style={{
                         width: '100%',
@@ -628,7 +628,7 @@ export default function TeamClient() {
                 Powered by 20+ Highly Qualified Professionals
               </h2>
               <p style={{ fontSize: '16px', lineHeight: 1.7, color: '#64748B' }}>
-                Behind Investrow’s executive leadership operates an institutional force of over 20+ full-time certified wealth advisors, quantitative research analysts, operations managers, and regulatory compliance specialists — dedicated to managing and compounding wealth for 3,000+ families.
+                Behind Investrow’s executive leadership operates an institutional force of over 20+ full-time certified wealth specialists, quantitative research analysts, operations managers, and regulatory compliance specialists — dedicated to managing and compounding wealth for 3,000+ families.
               </p>
             </div>
 
@@ -640,7 +640,7 @@ export default function TeamClient() {
               marginBottom: '44px'
             }}>
               {[
-                { number: '20+', label: 'Qualified Professionals', desc: 'Across Advisory, Research & Operations', icon: <Users size={20} color="#008AD8" /> },
+                { number: '20+', label: 'Qualified Professionals', desc: 'Across Distribution, Research & Operations', icon: <Users size={20} color="#008AD8" /> },
                 { number: '100%', label: 'AMFI / NISM Certified', desc: 'Strict regulatory code compliance (ARN-194720)', icon: <ShieldCheck size={20} color="#22C55E" /> },
                 { number: '40+', label: 'AMCs Under Coverage', desc: 'SBI, HDFC, ICICI, Nippon, Quant & more', icon: <Building2 size={20} color="#FF6A13" /> },
                 { number: '2 Hours', label: 'Client Desk SLA', desc: 'Dedicated relationship desk response', icon: <Clock size={20} color="#8B5CF6" /> }
@@ -691,8 +691,8 @@ export default function TeamClient() {
             }}>
               {[
                 {
-                  title: 'Wealth Advisory & Relationship Management Desk',
-                  teamSize: '6+ Senior Advisors',
+                  title: 'Wealth Management & Relationship Management Desk',
+                  teamSize: '6+ Senior Relationship Managers',
                   badgeColor: '#008AD8',
                   badgeBg: 'rgba(0, 138, 216, 0.1)',
                   qualifications: 'AMFI Registered (ARN-194720), NISM Series V-A, MBA Finance',
@@ -893,7 +893,7 @@ export default function TeamClient() {
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <button
-                  onClick={() => handleOpenConsultModal('Team Advisory Review')}
+                  onClick={() => handleOpenConsultModal('Team Portfolio Review')}
                   className="btn-orange"
                   style={{ padding: '12px 24px', fontSize: '14px' }}
                 >
@@ -916,7 +916,7 @@ export default function TeamClient() {
                   }}
                 >
                   <Phone size={14} style={{ color: 'var(--accent-orange)' }} />
-                  <span>Call Advisory Desk</span>
+                  <span>Call Distribution Desk</span>
                 </a>
               </div>
             </div>
@@ -972,7 +972,7 @@ export default function TeamClient() {
                 {
                   icon: <ShieldCheck size={24} style={{ color: '#FF6A13' }} />,
                   title: 'Full AMFI Code Compliance',
-                  desc: 'Our entire advisory team operates under strict SEBI and AMFI Code of Conduct standards. Your KYC, bank mandates, and investments remain 100% direct with registered AMCs.'
+                  desc: 'Our entire distribution team operates under strict SEBI and AMFI Code of Conduct standards. Your KYC, bank mandates, and investments remain 100% direct with registered AMCs.'
                 },
                 {
                   icon: <Layers size={24} style={{ color: '#10B981' }} />,

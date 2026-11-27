@@ -321,11 +321,11 @@ export default function Header({ onOpenConsultModal }) {
           </a>
 
           <button 
-            onClick={() => onOpenConsultModal('Free Wealth Advisory Call')}
+            onClick={() => onOpenConsultModal('Free Portfolio Review Call')}
             className="btn-orange hide-mobile"
             style={{ padding: '10px 22px', fontSize: '13.5px' }}
           >
-            Book Free Advisory Call <ArrowRight size={14} />
+            Book Free Portfolio Call <ArrowRight size={14} />
           </button>
 
           {/* Mobile Menu Toggle Button */}
@@ -569,12 +569,12 @@ export default function Header({ onOpenConsultModal }) {
             type="button"
             onClick={() => {
               setMobileMenuOpen(false);
-              onOpenConsultModal('Free Wealth Advisory Call');
+              onOpenConsultModal('Free Portfolio Review Call');
             }}
             className="btn-orange"
             style={{ width: '100%', marginTop: '8px', padding: '12px', fontSize: '14px' }}
           >
-            Book Free Advisory Call <ArrowRight size={15} />
+            Book Free Portfolio Call <ArrowRight size={15} />
           </button>
         </div>
       )}

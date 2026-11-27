@@ -64,8 +64,8 @@ export default function AboutClient() {
   const milestones = [
     {
       value: '₹250 Cr+',
-      label: 'Assets Under Advisory',
-      sub: 'Managed across 3,000+ client families',
+      label: 'Assets Under Management (AUM)',
+      sub: 'Distributed across 3,000+ client families',
       color: '#FF6A13',
       bgGlow: 'rgba(255, 106, 19, 0.1)',
       icon: TrendingUp
@@ -81,7 +81,7 @@ export default function AboutClient() {
     {
       value: '23+',
       label: 'Years Cumulative Experience',
-      sub: 'Leadership advisory experience',
+      sub: 'Leadership industry experience',
       color: '#10B981',
       bgGlow: 'rgba(16, 185, 129, 0.1)',
       icon: Clock
@@ -99,8 +99,8 @@ export default function AboutClient() {
   const whyChooseReasons = [
     {
       num: '01',
-      title: 'Zero Upfront Advisory Fee',
-      desc: 'Get comprehensive financial goal planning, risk profiling, and portfolio health checks with zero upfront retainer fees. Fiduciary care with no hidden consultation costs.',
+      title: 'Zero Upfront Platform Fee',
+      desc: 'Get comprehensive financial goal planning, risk profiling, and portfolio health checks with zero upfront retainer fees. Transparent distribution with no hidden consultation costs.',
       icon: BadgeCheck,
       color: '#008AD8',
       bg: 'rgba(0, 138, 216, 0.08)'
@@ -115,8 +115,8 @@ export default function AboutClient() {
     },
     {
       num: '03',
-      title: 'Dedicated Human Advisor + AI',
-      desc: 'Direct WhatsApp and phone access to your assigned NISM/AMFI-certified wealth specialist, supported by our intelligent 24/7 AI Wealth Advisor for real-time portfolio insights.',
+      title: 'Dedicated Human Specialist + AI',
+      desc: 'Direct WhatsApp and phone access to your assigned NISM/AMFI-certified wealth specialist, supported by our intelligent 24/7 AI Wealth Assistant for real-time portfolio insights.',
       icon: Users,
       color: '#10B981',
       bg: 'rgba(16, 185, 129, 0.08)'
@@ -358,7 +358,7 @@ export default function AboutClient() {
                 color: '#CBD5E1',
                 marginBottom: '16px'
               }}>
-                <strong>Investrow Financial Services Pvt. Ltd.</strong> was founded with a singular commitment: to make institutional-grade mutual fund advisory and financial planning transparent, disciplined, and accessible to everyday Indian families and businesses.
+                <strong>Investrow Financial Services Pvt. Ltd.</strong> was founded with a singular commitment: to make institutional-grade mutual fund distribution and financial planning transparent, disciplined, and accessible to everyday Indian families and businesses.
               </p>
 
               <p style={{
@@ -367,7 +367,7 @@ export default function AboutClient() {
                 color: '#94A3B8',
                 marginBottom: '28px'
               }}>
-                Headquartered in Dhanbad (Jharkhand) and serving clients across India and abroad, Investrow manages over <strong>₹250+ Crore AUM</strong> for more than <strong>3,000+ satisfied client families</strong>. Backed by 23+ years of combined industry expertise, our certified advisors bridge tier-2/3 wealth aspirations with India’s long-term economic growth story.
+                Headquartered in Dhanbad (Jharkhand) and serving clients across India and abroad, Investrow distributes over <strong>₹250+ Crore AUM</strong> for more than <strong>3,000+ satisfied client families</strong>. Backed by 23+ years of combined industry expertise, our certified specialists bridge tier-2/3 wealth aspirations with India’s long-term economic growth story.
               </p>
 
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
@@ -464,11 +464,11 @@ export default function AboutClient() {
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#CBD5E1' }}>
                   <CheckCircle2 size={16} style={{ color: '#4ADE80', flexShrink: 0 }} />
-                  <span>Strict fiduciary compliance with zero upfront fees</span>
+                  <span>Strict regulatory compliance with zero upfront fees</span>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', color: '#CBD5E1' }}>
                   <CheckCircle2 size={16} style={{ color: '#4ADE80', flexShrink: 0 }} />
-                  <span>Dedicated NISM certified advisory desk</span>
+                  <span>Dedicated NISM certified distribution desk</span>
                 </li>
               </ul>
             </div>
@@ -689,11 +689,11 @@ export default function AboutClient() {
               <div style={{ paddingTop: '18px', borderTop: '1px solid #F1F5F9', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13.5px', color: '#334155' }}>
                   <Check size={16} style={{ color: '#0EA5E9', flexShrink: 0, marginTop: '2px' }} />
-                  <span>Democratizing wealth advisory across Tier-2, Tier-3 and non-metro India</span>
+                  <span>Democratizing mutual fund distribution across Tier-2, Tier-3 and non-metro India</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13.5px', color: '#334155' }}>
                   <Check size={16} style={{ color: '#0EA5E9', flexShrink: 0, marginTop: '2px' }} />
-                  <span>Zero upfront advisory fee with complete commission transparency</span>
+                  <span>Zero upfront platform fee with complete commission transparency</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13.5px', color: '#334155' }}>
                   <Check size={16} style={{ color: '#0EA5E9', flexShrink: 0, marginTop: '2px' }} />
@@ -749,7 +749,7 @@ export default function AboutClient() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13.5px', color: '#334155' }}>
                   <Check size={16} style={{ color: '#FF6A13', flexShrink: 0, marginTop: '2px' }} />
-                  <span>Bridging human advisory warmth with cutting-edge digital execution</span>
+                  <span>Bridging human distributor warmth with cutting-edge digital execution</span>
                 </div>
               </div>
             </div>
@@ -801,7 +801,7 @@ export default function AboutClient() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13.5px', color: '#334155' }}>
                   <Check size={16} style={{ color: '#10B981', flexShrink: 0, marginTop: '2px' }} />
-                  <span><strong>Accountability:</strong> Clear quarterly reporting & direct advisor accessibility</span>
+                  <span><strong>Accountability:</strong> Clear quarterly reporting & direct specialist accessibility</span>
                 </div>
               </div>
             </div>
@@ -843,7 +843,7 @@ export default function AboutClient() {
               lineHeight: 1.75,
               color: 'var(--text-secondary)'
             }}>
-              We combine institutional research, direct exchange execution, and personal advisory care to build portfolios that compound wealth safely and predictably.
+              We combine institutional research, direct exchange execution, and personal distribution care to build portfolios that compound wealth safely and predictably.
             </p>
           </div>
 
@@ -931,7 +931,7 @@ export default function AboutClient() {
                 Ready to Experience the Investrow Advantage?
               </div>
               <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
-                Book a confidential 1-on-1 portfolio audit with our certified mutual fund advisory team.
+                Book a confidential 1-on-1 portfolio audit with our certified mutual fund distribution team.
               </div>
             </div>
 
@@ -940,7 +940,7 @@ export default function AboutClient() {
               className="btn-orange"
               style={{ padding: '12px 26px', fontSize: '14px' }}
             >
-              Book Free Advisory Call <ArrowRight size={15} />
+              Book Free Portfolio Call <ArrowRight size={15} />
             </button>
           </div>
         </div>
@@ -980,7 +980,7 @@ export default function AboutClient() {
               lineHeight: 1.75,
               color: 'var(--text-secondary)'
             }}>
-              Guided by experienced leadership and powered by an institutional team of 20+ certified specialists across Advisory, Research, Operations, Compliance, and Digital desks.
+              Guided by experienced leadership and powered by an institutional team of 20+ certified specialists across Distribution, Research, Operations, Compliance, and Digital desks.
             </p>
           </div>
 
@@ -1139,7 +1139,7 @@ export default function AboutClient() {
                   Powered by 20+ Highly Qualified Financial Professionals
                 </div>
                 <div style={{ fontSize: '13.5px', color: '#64748B' }}>
-                  Organized across 5 functional desks: Wealth Advisory, Research & Analytics, Client Operations & KYC, Regulatory Compliance, and Technology.
+                  Organized across 5 functional desks: Wealth Distribution, Research & Analytics, Client Operations & KYC, Regulatory Compliance, and Technology.
                 </div>
               </div>
             </div>
@@ -1258,7 +1258,7 @@ export default function AboutClient() {
                 borderTop: '1px solid rgba(255, 255, 255, 0.08)'
               }}>
                 <div>
-                  <div style={{ fontSize: '15px', fontWeight: 700, color: '#FFFFFF' }}>Investrow Leadership & Advisory Team</div>
+                  <div style={{ fontSize: '15px', fontWeight: 700, color: '#FFFFFF' }}>Investrow Leadership & Distribution Team</div>
                   <div style={{ fontSize: '13px', color: '#94A3B8' }}>AMFI Registered Mutual Fund Distributor • ARN-194720</div>
                 </div>
 
@@ -1483,7 +1483,7 @@ export default function AboutClient() {
                     <h3 style={{ fontSize: '16.5px', fontWeight: 800, color: 'var(--navy-deep)' }}>
                       SEBI Code of Conduct & EUIN
                     </h3>
-                    <div style={{ fontSize: '12px', color: '#64748B' }}>Full Advisory Accountability</div>
+                    <div style={{ fontSize: '12px', color: '#64748B' }}>Full MFD Accountability</div>
                   </div>
                 </div>
                 <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#475569' }}>
@@ -1695,7 +1695,7 @@ export default function AboutClient() {
                 Get Your Personalized Wealth Blueprint
               </div>
               <p style={{ fontSize: '13px', color: '#94A3B8', lineHeight: 1.6, marginBottom: '18px' }}>
-                Speak with Surendra Prasad or our certified advisory desk to map your life milestones to an optimal mutual fund portfolio.
+                Speak with Surendra Prasad or our certified distribution desk to map your life milestones to an optimal mutual fund portfolio.
               </p>
               <button
                 onClick={() => handleOpenConsultModal('Approach Section Blueprint')}
@@ -1789,7 +1789,7 @@ export default function AboutClient() {
                 Start Your Journey With Investrow
               </div>
               <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#FFFFFF', marginBottom: '8px' }}>
-                Experience True Fiduciary Wealth Advisory
+                Experience Disciplined Wealth Compounding
               </h3>
               <p style={{ fontSize: '14.5px', color: '#94A3B8', lineHeight: 1.6 }}>
                 Join over 3,000+ satisfied families across India compounding their wealth with complete peace of mind.
@@ -1802,7 +1802,7 @@ export default function AboutClient() {
                 className="btn-orange"
                 style={{ padding: '13px 26px', fontSize: '14.5px' }}
               >
-                Book Free Advisory Call <ArrowRight size={16} />
+                Book Free Portfolio Call <ArrowRight size={16} />
               </button>
               <a
                 href="tel:+919102070777"

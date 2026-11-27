@@ -135,7 +135,7 @@ export default function WealthCreationClient() {
     },
     {
       q: 'Can Investrow review and rebalance my existing scattered mutual funds?',
-      a: 'Yes, absolutely. Most investors end up with 15–20 overlapping mutual fund schemes without clear asset allocation. Our AMFI-registered advisors provide a comprehensive Portfolio Health Audit. We analyze sector duplication, identify chronic underperformers, eliminate high expense ratios, and restructure your holdings into a clean, goal-aligned wealth creation basket at zero advisory fee.'
+      a: 'Yes, absolutely. Most investors end up with 15–20 overlapping mutual fund schemes without clear asset allocation. Our AMFI-registered distribution specialists provide a comprehensive Portfolio Health Audit. We analyze sector duplication, identify chronic underperformers, eliminate high expense ratios, and restructure your holdings into a clean, goal-aligned wealth creation basket at zero distributor fee.'
     },
     {
       q: 'How do I start my wealth creation journey with Investrow?',
@@ -254,7 +254,7 @@ export default function WealthCreationClient() {
                   {[
                     'Goal-Aligned Portfolio Structuring',
                     'Step-Up SIP Compounding Model',
-                    'Zero Advisory Fees on Direct Route',
+                    'Zero Service Charges on Distribution',
                     'Quarterly Rebalancing & Tax Harvesting',
                     'AMFI Regd. Distributor (ARN-194720)',
                     'BSE StAR MF Execution Desk'
@@ -291,7 +291,7 @@ export default function WealthCreationClient() {
                       gap: '6px'
                     }}
                   >
-                    <span>💬 WhatsApp Advisor</span>
+                    <span>💬 WhatsApp Specialist</span>
                   </a>
                 </div>
               </div>
@@ -473,7 +473,7 @@ export default function WealthCreationClient() {
                         Request Received!
                       </h4>
                       <p style={{ fontSize: '12.5px', color: '#64748B', marginBottom: '14px' }}>
-                        Our Senior AMFI Wealth Advisor will call you at <strong>+91 {leadPhone}</strong> shortly.
+                        Our Senior AMFI Wealth Specialist will call you at <strong>+91 {leadPhone}</strong> shortly.
                       </p>
                       <button
                         onClick={() => setSubmitted(false)}

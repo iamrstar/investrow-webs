@@ -49,12 +49,12 @@ export default function StickyMobileBar({ onOpenCallbackModal, onOpenConsultModa
           <span className="dock-text">WhatsApp</span>
         </a>
 
-        {/* 2. AI Wealth Advisor (24/7 Live Assistant) */}
+        {/* 2. AI Wealth Assistant (24/7 Live Assistant) */}
         <button 
           type="button"
           onClick={handleOpenAI}
           className="dock-item"
-          aria-label="Open 24/7 AI Wealth Advisor"
+          aria-label="Open 24/7 AI Wealth Assistant"
         >
           <div className="dock-icon-box" style={{ color: '#008AD8', position: 'relative' }}>
             <Sparkles size={18} />
@@ -69,7 +69,7 @@ export default function StickyMobileBar({ onOpenCallbackModal, onOpenConsultModa
               boxShadow: '0 0 6px #22C55E'
             }} />
           </div>
-          <span className="dock-text">AI Advisor</span>
+          <span className="dock-text">AI Guide</span>
         </button>
 
         {/* 3. Official Investrow App (Google Play) */}
@@ -86,12 +86,12 @@ export default function StickyMobileBar({ onOpenCallbackModal, onOpenConsultModa
           <span className="dock-text">Get App</span>
         </a>
 
-        {/* 4. Book Free Advisory Call (Primary CTA) */}
+        {/* 4. Book Free Consultation Call (Primary CTA) */}
         <button 
           type="button"
           onClick={handleOpen}
           className="dock-item dock-item-highlight"
-          aria-label="Book Free Advisory Call"
+          aria-label="Book Free Portfolio Call"
         >
           <div className="dock-icon-box" style={{ color: '#FFFFFF' }}>
             <Phone size={16} />
