@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Sparkles, CheckCircle2, ShieldCheck, Gift } from 'lucide-react';
+import { X, CheckCircle2, ShieldCheck, Gift } from 'lucide-react';
 
 export default function ExitIntentModal({ onLeadSubmitted }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +39,16 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
     };
   }, [hasTriggered]);
 
+  // Keyboard accessibility: Escape key closes modal
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim()) return;
@@ -75,105 +85,122 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
   if (!isOpen) return null;
 
   return (
-    <div className="animate-fade-in" style={{
-      position: 'fixed',
-      inset: 0,
-      background: 'rgba(10, 22, 40, 0.85)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 300,
-      padding: '16px'
-    }}>
-      <div className="animate-fade-in" style={{
-        background: 'rgba(255, 255, 255, 0.98)',
-        width: '100%',
-        maxWidth: '520px',
-        maxHeight: '92vh',
-        overflowY: 'auto',
-        WebkitOverflowScrolling: 'touch',
-        padding: 'clamp(22px, 4vw, 42px)',
-        position: 'relative',
-        boxShadow: '0 32px 84px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 106, 19, 0.2)',
-        borderRadius: 'var(--radius-xl)',
-        overflow: 'hidden'
-      }}>
+    <div 
+      className="animate-fade-in" 
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setIsOpen(false);
+      }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(10, 22, 40, 0.82)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 300,
+        padding: '16px'
+      }}
+    >
+      <div 
+        className="animate-fade-in" 
+        style={{
+          background: 'rgba(255, 255, 255, 0.99)',
+          width: '100%',
+          maxWidth: '430px',
+          maxHeight: 'min(90vh, 560px)',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          padding: 'clamp(20px, 3.5vw, 24px) clamp(18px, 4vw, 26px)',
+          position: 'relative',
+          boxShadow: '0 24px 64px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 106, 19, 0.18)',
+          borderRadius: '18px'
+        }}
+      >
         {/* Decorative gradient banner */}
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
-          height: '6px',
-          background: 'var(--accent-orange-gradient)'
+          height: '4px',
+          background: 'var(--accent-orange-gradient)',
+          borderTopLeftRadius: '18px',
+          borderTopRightRadius: '18px'
         }} />
 
-        {/* Close Button */}
+        {/* Close Button - High visibility & contrast */}
         <button
           onClick={() => setIsOpen(false)}
+          aria-label="Close offer popup"
           style={{
             position: 'absolute',
-            top: '20px',
-            right: '20px',
-            background: 'rgba(241, 245, 249, 0.8)',
-            border: 'none',
+            top: '12px',
+            right: '12px',
+            background: '#F1F5F9',
+            border: '1.5px solid #CBD5E1',
             borderRadius: '50%',
-            width: '36px',
-            height: '36px',
+            width: '32px',
+            height: '32px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--text-muted)',
+            color: '#0F172A',
             cursor: 'pointer',
-            transition: 'var(--transition-smooth)'
+            zIndex: 40,
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.08)',
+            transition: 'all 0.2s ease'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = '#E2E8F0';
-            e.currentTarget.style.color = 'var(--navy-deep)';
+            e.currentTarget.style.borderColor = '#94A3B8';
+            e.currentTarget.style.color = '#000000';
+            e.currentTarget.style.transform = 'scale(1.06)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(241, 245, 249, 0.8)';
-            e.currentTarget.style.color = 'var(--text-muted)';
+            e.currentTarget.style.background = '#F1F5F9';
+            e.currentTarget.style.borderColor = '#CBD5E1';
+            e.currentTarget.style.color = '#0F172A';
+            e.currentTarget.style.transform = 'scale(1)';
           }}
         >
-          <X size={18} />
+          <X size={16} strokeWidth={2.5} />
         </button>
 
         {!submitted ? (
           <>
-            <div style={{ textAlign: 'center', marginBottom: '28px', paddingTop: '8px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '18px', paddingTop: '4px' }}>
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 background: 'linear-gradient(135deg, #FFF1EB, #FFE0CC)',
                 color: '#C2410C',
                 fontWeight: 800,
-                fontSize: '12.5px',
-                padding: '8px 16px',
+                fontSize: '11px',
+                padding: '4px 12px',
                 borderRadius: 'var(--radius-full)',
-                letterSpacing: '0.5px',
+                letterSpacing: '0.4px',
                 textTransform: 'uppercase',
-                marginBottom: '16px',
-                boxShadow: '0 4px 12px rgba(255, 106, 19, 0.15)'
+                marginBottom: '10px',
+                boxShadow: '0 2px 8px rgba(255, 106, 19, 0.12)'
               }}>
-                <Gift size={16} /> Wait! Special Investor Privilege
+                <Gift size={13} /> Wait! Special Investor Privilege
               </div>
 
-              <h3 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '12px', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                Claim Your 100% Free <br/>
+              <h3 style={{ fontSize: 'clamp(19px, 3.5vw, 21px)', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '6px', lineHeight: 1.25, letterSpacing: '-0.02em' }}>
+                Claim Your 100% Free <br />
                 <span className="gradient-text-orange">Mutual Fund Portfolio Audit</span>
               </h3>
-              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-                Worth ₹4,999 — complimentary today. Discover hidden AMC expense ratios, underperforming schemes, and overlapping portfolio holdings.
+              <p style={{ fontSize: '12.5px', color: '#475569', lineHeight: 1.45, margin: 0 }}>
+                Worth ₹4,999 — complimentary today. Discover hidden AMC expense ratios, underperforming schemes & overlapping folios.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
               <div>
-                <input 
+                <input
                   type="text"
                   required
                   placeholder="Your Full Name"
@@ -181,10 +208,10 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
                   onChange={(e) => setName(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '14px 18px',
-                    borderRadius: 'var(--radius-sm)',
+                    padding: '10px 14px',
+                    borderRadius: '8px',
                     border: '1.5px solid var(--border-subtle)',
-                    fontSize: '14.5px',
+                    fontSize: '13.5px',
                     background: '#F8FAFC',
                     transition: 'var(--transition-smooth)'
                   }}
@@ -206,19 +233,19 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
                   <span style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    padding: '0 16px',
+                    padding: '0 12px',
                     background: 'linear-gradient(180deg, #F8FAFC, #F1F5F9)',
                     border: '1.5px solid var(--border-subtle)',
                     borderRight: 'none',
-                    borderTopLeftRadius: 'var(--radius-sm)',
-                    borderBottomLeftRadius: 'var(--radius-sm)',
-                    fontSize: '14.5px',
+                    borderTopLeftRadius: '8px',
+                    borderBottomLeftRadius: '8px',
+                    fontSize: '13px',
                     fontWeight: 700,
                     color: 'var(--text-secondary)'
                   }}>
                     +91
                   </span>
-                  <input 
+                  <input
                     type="tel"
                     required
                     maxLength={10}
@@ -227,11 +254,11 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
                     style={{
                       width: '100%',
-                      padding: '14px 18px',
-                      borderTopRightRadius: 'var(--radius-sm)',
-                      borderBottomRightRadius: 'var(--radius-sm)',
+                      padding: '10px 14px',
+                      borderTopRightRadius: '8px',
+                      borderBottomRightRadius: '8px',
                       border: '1.5px solid var(--border-subtle)',
-                      fontSize: '14.5px',
+                      fontSize: '13.5px',
                       background: '#F8FAFC',
                       transition: 'var(--transition-smooth)'
                     }}
@@ -255,10 +282,10 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
                   onChange={(e) => setService(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '14px 18px',
-                    borderRadius: 'var(--radius-sm)',
+                    padding: '10px 14px',
+                    borderRadius: '8px',
                     border: '1.5px solid var(--border-subtle)',
-                    fontSize: '14.5px',
+                    fontSize: '13px',
                     background: 'white',
                     transition: 'var(--transition-smooth)'
                   }}
@@ -279,11 +306,11 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
                 </select>
               </div>
 
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="btn-orange"
-                style={{ width: '100%', padding: '16px', fontSize: '16px', marginTop: '4px' }}
+                style={{ width: '100%', padding: '11px 16px', fontSize: '14.5px', borderRadius: '8px', marginTop: '2px' }}
               >
                 {loading ? 'Locking in slot...' : 'Claim Free Audit Slot 🚀'}
               </button>
@@ -292,42 +319,42 @@ export default function ExitIntentModal({ onLeadSubmitted }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: '8px',
-                fontSize: '12.5px',
+                gap: '6px',
+                fontSize: '11.5px',
                 color: 'var(--text-muted)',
-                marginTop: '6px',
+                marginTop: '4px',
                 fontWeight: 500
               }}>
-                <ShieldCheck size={16} style={{ color: '#16A34A' }} />
+                <ShieldCheck size={14} style={{ color: '#16A34A' }} />
                 <span>Only 3 free consultation slots remaining today</span>
               </div>
             </form>
           </>
         ) : (
-          <div style={{ textAlign: 'center', padding: '40px 0 20px' }}>
+          <div style={{ textAlign: 'center', padding: '24px 0 10px' }}>
             <div style={{
-              width: '80px',
-              height: '80px',
+              width: '56px',
+              height: '56px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #DCFCE7, #BBF7D0)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '0 auto 24px',
-              boxShadow: '0 12px 32px rgba(22, 163, 74, 0.2)'
+              margin: '0 auto 16px',
+              boxShadow: '0 8px 20px rgba(22, 163, 74, 0.2)'
             }}>
-              <CheckCircle2 size={44} style={{ color: '#16A34A' }} />
+              <CheckCircle2 size={32} style={{ color: '#16A34A' }} />
             </div>
-            <h3 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--navy-deep)', marginBottom: '8px' }}>
               Your Free Audit Is Locked In!
             </h3>
-            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', marginBottom: '32px', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '20px', lineHeight: 1.5 }}>
               Thank you, <strong>{name}</strong>. A Senior AMFI Certified Mutual Fund Specialist from Investrow will call you at <strong>+91 {phone}</strong> to coordinate your portfolio review.
             </p>
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="btn-outline"
-              style={{ width: '100%', padding: '14px', fontSize: '15px' }}
+              style={{ width: '100%', padding: '11px', fontSize: '14px', borderRadius: '8px' }}
             >
               Continue Exploring
             </button>

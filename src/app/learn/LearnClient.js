@@ -7,26 +7,26 @@ import Footer from '@/components/Footer';
 import ConsultModal from '@/components/ConsultModal';
 import AIChatAdvisor from '@/components/AIChatAdvisor';
 import StickyMobileBar from '@/components/StickyMobileBar';
-import { 
-  BookOpen, 
-  Search, 
-  TrendingUp, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  ChevronDown, 
-  ChevronUp, 
-  HelpCircle, 
-  Sparkles, 
-  MessageSquare, 
-  Coins, 
-  Calculator, 
-  Percent, 
-  Clock, 
-  Layers, 
-  AlertTriangle, 
-  Lightbulb, 
-  FileText, 
+import {
+  BookOpen,
+  Search,
+  TrendingUp,
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  ChevronDown,
+  ChevronUp,
+  HelpCircle,
+  Sparkles,
+  MessageSquare,
+  Coins,
+  Calculator,
+  Percent,
+  Clock,
+  Layers,
+  AlertTriangle,
+  Lightbulb,
+  FileText,
   ExternalLink,
   Target,
   Zap,
@@ -1044,8 +1044,8 @@ export default function LearnClient() {
     return learningModules.filter(m => {
       const matchesCat = activeCategory === 'all' || m.category === activeCategory;
       const q = searchTerm.toLowerCase().trim();
-      const matchesSearch = !q || 
-        m.title.toLowerCase().includes(q) || 
+      const matchesSearch = !q ||
+        m.title.toLowerCase().includes(q) ||
         m.snippet.toLowerCase().includes(q) ||
         m.categoryLabel.toLowerCase().includes(q);
       return matchesCat && matchesSearch;
@@ -1163,7 +1163,7 @@ export default function LearnClient() {
               <div style={{ paddingLeft: '14px', color: '#64748B', display: 'flex', alignItems: 'center' }}>
                 <Search size={20} />
               </div>
-              <input 
+              <input
                 type="text"
                 placeholder="Search any topic (e.g. SIP, SWP, ELSS, FIRE, NRI, STP, Index Funds, XIRR)..."
                 value={searchTerm}
@@ -1724,11 +1724,11 @@ export default function LearnClient() {
         isOpen={consultModalOpen}
         initialService={selectedService}
         onClose={() => setConsultModalOpen(false)}
-        onLeadSubmitted={() => {}}
+        onLeadSubmitted={() => { }}
       />
 
       {/* Floating Groq AI Wealth Advisor */}
-      <AIChatAdvisor onLeadSubmitted={() => {}} />
+      <AIChatAdvisor onLeadSubmitted={() => { }} />
 
       {/* Sticky Mobile Actions Bar */}
       <StickyMobileBar onOpenCallbackModal={() => handleOpenConsultModal('Mobile Callback - Learn')} />

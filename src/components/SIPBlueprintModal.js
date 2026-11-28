@@ -42,8 +42,11 @@ export default function SIPBlueprintModal({
   };
 
   return (
-    <div 
+    <div
       className="blueprint-modal-backdrop"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
       style={{
         position: 'fixed',
         inset: 0,
@@ -58,7 +61,7 @@ export default function SIPBlueprintModal({
         overflowY: 'auto'
       }}
     >
-      <div 
+      <div
         className="blueprint-modal-sheet"
         style={{
           background: '#FFFFFF',
@@ -158,9 +161,9 @@ export default function SIPBlueprintModal({
           }}>
             <div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                <img 
-                  src="/investrow-logo.png" 
-                  alt="Investrow Financial Services" 
+                <img
+                  src="/investrow-logo.png"
+                  alt="Investrow Financial Services"
                   style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
                 />
                 <BrandTagline size="xs" style={{ marginTop: '2px' }} />
@@ -208,11 +211,11 @@ export default function SIPBlueprintModal({
                   {calcMode === 'lumpsum' ? 'One-Time Principal' : calcMode === 'swp' ? 'Initial Corpus' : 'Monthly Allocation'}
                 </div>
                 <div style={{ fontSize: '18px', fontWeight: 800, color: '#0A1628' }}>
-                  {calcMode === 'lumpsum' 
+                  {calcMode === 'lumpsum'
                     ? formatCurrency(lumpsumAmount)
                     : calcMode === 'swp'
-                    ? formatCurrency(swpCorpus)
-                    : `${formatCurrency(monthlySip)} / mo`}
+                      ? formatCurrency(swpCorpus)
+                      : `${formatCurrency(monthlySip)} / mo`}
                 </div>
               </div>
 
@@ -255,7 +258,7 @@ export default function SIPBlueprintModal({
                 </thead>
                 <tbody>
                   {milestones.map((m, idx) => (
-                    <tr 
+                    <tr
                       key={m.year}
                       style={{
                         background: idx % 2 === 0 ? '#FFFFFF' : '#F8FAFC',

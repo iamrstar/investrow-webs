@@ -34,7 +34,7 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
     setInternalIsOpen(false);
     try {
       sessionStorage.setItem('investrow_app_popup_dismissed', 'true');
-    } catch (e) {}
+    } catch (e) { }
     if (externalOnClose) externalOnClose();
   };
 
@@ -87,7 +87,7 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
           background: '#22C55E',
           boxShadow: '0 0 8px #22C55E'
         }} />
-        
+
         <style jsx>{`
           @media (max-width: 768px) {
             .app-floating-pill-trigger {
@@ -100,7 +100,7 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
   }
 
   return (
-    <div 
+    <div
       className="app-popup-backdrop"
       style={{
         position: 'fixed',
@@ -181,8 +181,8 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
             boxShadow: '0 8px 20px rgba(0, 138, 216, 0.35)',
             flexShrink: 0
           }}>
-            <img 
-              src="/investrow-logo.png" 
+            <img
+              src="/investrow-logo.png"
               alt="Investrow App"
               style={{
                 width: '40px',
@@ -283,10 +283,10 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
           >
             {/* Google Play SVG Icon */}
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-              <path d="M3.609 1.813c-.347.375-.55.947-.55 1.688v16.998c0 .741.203 1.313.55 1.688l.09.082 9.53-9.53v-.223l-9.53-9.53-.09.082z" fill="#00E676"/>
-              <path d="M16.408 15.632l-3.179-3.179v-.223l3.179-3.179.072.041 3.766 2.14c1.076.611 1.076 1.61 0 2.221l-3.766 2.14-.072.04z" fill="#FFD54F"/>
-              <path d="M16.48 15.592L13.229 12.23 3.609 21.85c.355.378.948.423 1.623.04l11.248-6.298z" fill="#FF3D00"/>
-              <path d="M16.48 8.868L5.232 2.57c-.675-.383-1.268-.338-1.623.04l9.62 9.62 3.251-3.362z" fill="#00B0FF"/>
+              <path d="M3.609 1.813c-.347.375-.55.947-.55 1.688v16.998c0 .741.203 1.313.55 1.688l.09.082 9.53-9.53v-.223l-9.53-9.53-.09.082z" fill="#00E676" />
+              <path d="M16.408 15.632l-3.179-3.179v-.223l3.179-3.179.072.041 3.766 2.14c1.076.611 1.076 1.61 0 2.221l-3.766 2.14-.072.04z" fill="#FFD54F" />
+              <path d="M16.48 15.592L13.229 12.23 3.609 21.85c.355.378.948.423 1.623.04l11.248-6.298z" fill="#FF3D00" />
+              <path d="M16.48 8.868L5.232 2.57c-.675-.383-1.268-.338-1.623.04l9.62 9.62 3.251-3.362z" fill="#00B0FF" />
             </svg>
             <div style={{ textAlign: 'left', lineHeight: 1.15 }}>
               <div style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#94A3B8', fontWeight: 600 }}>
@@ -317,7 +317,7 @@ export default function AppDownloadModal({ isOpen: externalIsOpen, onClose: exte
           >
             {/* Apple SVG Icon */}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="#94A3B8" style={{ flexShrink: 0 }}>
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.62-2.67 1.39-.58.67-1.09 1.76-.95 2.82 1.03.08 2.06-.52 2.68-1.27z"/>
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.78 1.06-1.85.94-2.94-.92.04-2.02.62-2.67 1.39-.58.67-1.09 1.76-.95 2.82 1.03.08 2.06-.52 2.68-1.27z" />
             </svg>
             <div style={{ textAlign: 'left', lineHeight: 1.15 }}>
               <div style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.6px', color: '#64748B', fontWeight: 600 }}>

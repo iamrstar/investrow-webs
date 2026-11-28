@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react';
 import { X, CheckCircle2, ShieldCheck, Sparkles, Calendar } from 'lucide-react';
 
-export default function ConsultModal({ 
-  isOpen, 
-  onClose, 
-  initialService = 'Mutual Funds & Monthly SIP', 
+export default function ConsultModal({
+  isOpen,
+  onClose,
+  initialService = 'Mutual Funds & Monthly SIP',
   defaultService,
   advisor: propAdvisor,
-  onLeadSubmitted 
+  onLeadSubmitted
 }) {
   const rawService = defaultService || initialService || 'Mutual Funds & Monthly SIP';
 
@@ -40,12 +40,22 @@ export default function ConsultModal({
     }
   }, [rawService, isOpen]);
 
+  // Keyboard accessibility: Escape key closes modal
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   // Dynamically resolve active advisor ONLY if specifically requested
   let activeAdvisor = propAdvisor;
   const sLower = (rawService || '').toLowerCase();
-  
+
   if (!activeAdvisor) {
     if (sLower.includes('dipankar') || sLower.includes('moi')) {
       activeAdvisor = {
@@ -111,18 +121,24 @@ export default function ConsultModal({
   };
 
   return (
-    <div className="animate-fade-in" style={{
-      position: 'fixed',
-      inset: 0,
-      background: 'rgba(10, 22, 40, 0.8)',
-      backdropFilter: 'blur(12px)',
-      WebkitBackdropFilter: 'blur(12px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 250,
-      padding: '16px'
-    }}>
+    <div 
+      className="animate-fade-in" 
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(10, 22, 40, 0.8)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 250,
+        padding: '16px'
+      }}
+    >
       <div className="premium-card animate-fade-in" style={{
         background: 'rgba(255, 255, 255, 0.98)',
         width: '100%',
@@ -145,25 +161,39 @@ export default function ConsultModal({
 
         <button
           onClick={onClose}
+          aria-label="Close consultation modal"
           style={{
             position: 'absolute',
-            top: '16px',
-            right: '16px',
-            background: 'rgba(241, 245, 249, 0.8)',
+            top: '14px',
+            right: '14px',
+            background: '#F1F5F9',
+            border: '1.5px solid #CBD5E1',
             width: '32px',
             height: '32px',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '18px',
-            color: 'var(--text-muted)',
-            transition: 'var(--transition-smooth)'
+            color: '#0F172A',
+            cursor: 'pointer',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.08)',
+            transition: 'all 0.2s ease',
+            zIndex: 30
           }}
-          onMouseEnter={(e) => e.currentTarget.style.background = '#E2E8F0'}
-          onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(241, 245, 249, 0.8)'}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#E2E8F0';
+            e.currentTarget.style.borderColor = '#94A3B8';
+            e.currentTarget.style.color = '#000000';
+            e.currentTarget.style.transform = 'scale(1.06)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#F1F5F9';
+            e.currentTarget.style.borderColor = '#CBD5E1';
+            e.currentTarget.style.color = '#0F172A';
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
         >
-          <X size={18} />
+          <X size={16} strokeWidth={2.5} />
         </button>
 
         {!submitted ? (
@@ -180,14 +210,14 @@ export default function ConsultModal({
                 marginBottom: '16px'
               }}>
                 <div style={{ position: 'relative', width: '44px', height: '44px', flexShrink: 0 }}>
-                  <img 
-                    src={activeAdvisor ? activeAdvisor.image : '/images/brand/investrow-emblem.png'} 
+                  <img
+                    src={activeAdvisor ? activeAdvisor.image : '/images/brand/investrow-emblem.png'}
                     alt={activeAdvisor ? `${activeAdvisor.name}, ${activeAdvisor.role}` : 'Investrow Distribution Desk'}
-                    style={{ 
-                      width: '44px', 
-                      height: '44px', 
-                      borderRadius: activeAdvisor ? '50%' : '10px', 
-                      objectFit: activeAdvisor ? 'cover' : 'contain', 
+                    style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: activeAdvisor ? '50%' : '10px',
+                      objectFit: activeAdvisor ? 'cover' : 'contain',
                       border: '2px solid #0EA5E9',
                       background: '#FFFFFF',
                       padding: activeAdvisor ? '0' : '4px'
@@ -218,7 +248,7 @@ export default function ConsultModal({
                 {activeAdvisor ? `Book Your Meeting with ${activeAdvisor.name}` : 'Book Your Free Portfolio Review Call'}
               </h3>
               <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                {activeAdvisor 
+                {activeAdvisor
                   ? `Speak directly with ${activeAdvisor.name} (${activeAdvisor.role}) at Investrow Financial Services for tailored portfolio guidance and financial planning.`
                   : 'Speak directly with our certified wealth management specialists at Investrow Financial Services for tailored portfolio guidance, SIP planning, and goal architecture.'}
               </p>
@@ -229,7 +259,7 @@ export default function ConsultModal({
                 <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: '6px' }}>
                   Your Full Name <span style={{ color: 'var(--accent-orange)' }}>*</span>
                 </label>
-                <input 
+                <input
                   type="text"
                   required
                   placeholder="e.g. Anjali Verma"
@@ -277,7 +307,7 @@ export default function ConsultModal({
                   }}>
                     +91
                   </span>
-                  <input 
+                  <input
                     type="tel"
                     required
                     maxLength={10}
@@ -381,12 +411,12 @@ export default function ConsultModal({
                 {loading ? 'Confirming slot...' : 'Confirm Consultation Slot 🚀'}
               </button>
 
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                gap: '8px', 
-                fontSize: '11.5px', 
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                fontSize: '11.5px',
                 color: 'var(--text-muted)',
                 marginTop: '4px',
                 background: '#F8FAFC',

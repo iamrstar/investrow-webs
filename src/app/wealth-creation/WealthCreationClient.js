@@ -7,20 +7,20 @@ import Footer from '@/components/Footer';
 import ConsultModal from '@/components/ConsultModal';
 import AIChatAdvisor from '@/components/AIChatAdvisor';
 import StickyMobileBar from '@/components/StickyMobileBar';
-import { 
-  TrendingUp, 
-  ShieldCheck, 
-  Award, 
-  ArrowRight, 
-  CheckCircle2, 
-  Sparkles, 
-  Target, 
-  Clock, 
-  Zap, 
-  HelpCircle, 
-  Phone, 
-  Flame, 
-  Coins, 
+import {
+  TrendingUp,
+  ShieldCheck,
+  Award,
+  ArrowRight,
+  CheckCircle2,
+  Sparkles,
+  Target,
+  Clock,
+  Zap,
+  HelpCircle,
+  Phone,
+  Flame,
+  Coins,
   Building2,
   ChevronRight,
   Lock
@@ -200,7 +200,7 @@ export default function WealthCreationClient() {
               gap: '32px',
               alignItems: 'center'
             }} className="hero-grid">
-              
+
               {/* Left Column: Headlines & Value Prop */}
               <div>
                 <div style={{
@@ -617,7 +617,7 @@ export default function WealthCreationClient() {
               gridTemplateColumns: '1.1fr 0.9fr',
               gap: '32px'
             }} className="calc-grid">
-              
+
               {/* Sliders */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
                 <div>
@@ -818,7 +818,7 @@ export default function WealthCreationClient() {
         onClose={() => setConsultModalOpen(false)}
         onLeadSubmitted={() => { }}
       />
-      <StickyMobileBar 
+      <StickyMobileBar
         onOpenCallbackModal={() => handleOpenConsultModal('Wealth Creation Sticky Callback')}
         onOpenConsultModal={() => handleOpenConsultModal('Wealth Creation Sticky Callback')}
       />

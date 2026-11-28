@@ -572,7 +572,7 @@ export default function HeroSection({ onLeadSubmitted }) {
                 }}
               >
                 {/* Cross-fade Slide Images */}
-                {HERO_SLIDES.map((slide, idx) => (
+                {HERO_SLIDES.map((slide, idx) => 3(
                   <img 
                     key={slide.id}
                     src={slide.src}

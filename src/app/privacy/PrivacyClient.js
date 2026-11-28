@@ -7,22 +7,22 @@ import Footer from '@/components/Footer';
 import ConsultModal from '@/components/ConsultModal';
 import AIChatAdvisor from '@/components/AIChatAdvisor';
 import StickyMobileBar from '@/components/StickyMobileBar';
-import { 
-  ShieldCheck, 
-  Lock, 
-  Database, 
-  Settings, 
-  Share2, 
-  Cookie, 
-  UserCheck, 
-  ExternalLink, 
-  RefreshCw, 
-  Mail, 
-  Phone, 
-  Building, 
-  Info, 
-  ChevronRight, 
-  Printer, 
+import {
+  ShieldCheck,
+  Lock,
+  Database,
+  Settings,
+  Share2,
+  Cookie,
+  UserCheck,
+  ExternalLink,
+  RefreshCw,
+  Mail,
+  Phone,
+  Building,
+  Info,
+  ChevronRight,
+  Printer,
   ArrowRight,
   CheckCircle2,
   AlertCircle
@@ -176,10 +176,10 @@ export default function PrivacyClient() {
               color: '#94A3B8'
             }}>
               <li>
-                <Link 
-                  href="/" 
-                  style={{ 
-                    color: '#94A3B8', 
+                <Link
+                  href="/"
+                  style={{
+                    color: '#94A3B8',
                     transition: 'color 0.2s',
                     textDecoration: 'none'
                   }}
@@ -193,10 +193,10 @@ export default function PrivacyClient() {
                 <ChevronRight size={14} style={{ color: '#475569' }} />
               </li>
               <li>
-                <Link 
-                  href="/#services" 
-                  style={{ 
-                    color: '#94A3B8', 
+                <Link
+                  href="/#services"
+                  style={{
+                    color: '#94A3B8',
                     transition: 'color 0.2s',
                     textDecoration: 'none'
                   }}
@@ -282,7 +282,7 @@ export default function PrivacyClient() {
 
           {/* Action Row */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <button 
+            <button
               onClick={handlePrint}
               style={{
                 display: 'inline-flex',
@@ -483,16 +483,16 @@ export default function PrivacyClient() {
                     key={section.id}
                     id={section.id}
                     style={{
-                      background: section.isHighlight 
-                        ? 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)' 
+                      background: section.isHighlight
+                        ? 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)'
                         : '#FFFFFF',
                       borderRadius: 'var(--radius-lg)',
-                      border: section.isHighlight 
-                        ? '1.5px solid rgba(99, 102, 241, 0.3)' 
+                      border: section.isHighlight
+                        ? '1.5px solid rgba(99, 102, 241, 0.3)'
                         : '1px solid var(--border-subtle)',
                       padding: '32px',
-                      boxShadow: section.isHighlight 
-                        ? '0 10px 30px rgba(99, 102, 241, 0.08)' 
+                      boxShadow: section.isHighlight
+                        ? '0 10px 30px rgba(99, 102, 241, 0.08)'
                         : 'var(--shadow-sm)',
                       transition: 'var(--transition-smooth)',
                       position: 'relative'
@@ -717,14 +717,14 @@ export default function PrivacyClient() {
       <Footer />
 
       {/* AI Advisor Floating Widget */}
-      <AIChatAdvisor onLeadSubmitted={() => {}} />
+      <AIChatAdvisor onLeadSubmitted={() => { }} />
 
       {/* Consultation Modal */}
       <ConsultModal
         isOpen={consultModalOpen}
         initialService={selectedService}
         onClose={() => setConsultModalOpen(false)}
-        onLeadSubmitted={() => {}}
+        onLeadSubmitted={() => { }}
       />
 
       {/* Mobile Sticky Bar */}

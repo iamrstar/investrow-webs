@@ -7,22 +7,22 @@ import Footer from '@/components/Footer';
 import ConsultModal from '@/components/ConsultModal';
 import AIChatAdvisor from '@/components/AIChatAdvisor';
 import StickyMobileBar from '@/components/StickyMobileBar';
-import { 
-  FileText, 
-  Download, 
-  ExternalLink, 
-  Search, 
-  ShieldCheck, 
-  CheckCircle2, 
-  HelpCircle, 
-  Copy, 
-  Check, 
-  MessageSquare, 
-  FolderDown, 
-  BookOpen, 
-  Database, 
-  UserCheck, 
-  Building2, 
+import {
+  FileText,
+  Download,
+  ExternalLink,
+  Search,
+  ShieldCheck,
+  CheckCircle2,
+  HelpCircle,
+  Copy,
+  Check,
+  MessageSquare,
+  FolderDown,
+  BookOpen,
+  Database,
+  UserCheck,
+  Building2,
   ArrowRight,
   Info,
   Layers,
@@ -230,8 +230,8 @@ export default function DownloadsClient() {
     return downloadsData.filter(item => {
       const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
       const q = searchTerm.toLowerCase().trim();
-      const matchesSearch = !q || 
-        item.title.toLowerCase().includes(q) || 
+      const matchesSearch = !q ||
+        item.title.toLowerCase().includes(q) ||
         item.description.toLowerCase().includes(q) ||
         item.categoryLabel.toLowerCase().includes(q) ||
         item.format.toLowerCase().includes(q);
@@ -366,7 +366,7 @@ export default function DownloadsClient() {
               <div style={{ paddingLeft: '14px', color: '#64748B', display: 'flex', alignItems: 'center' }}>
                 <Search size={20} />
               </div>
-              <input 
+              <input
                 type="text"
                 placeholder="Search forms (e.g. CKYC, Nomination, Bank, NAV, Sahi Hai)..."
                 value={searchTerm}
@@ -780,7 +780,7 @@ export default function DownloadsClient() {
                   desc: 'Submit at any CAMS or KFintech branch pan-India, or visit Investrow Registered Office in Dhanbad for 100% free submission and digital verification.'
                 }
               ].map((stepItem, idx) => (
-                <div 
+                <div
                   key={idx}
                   style={{
                     background: '#F8FAFC',
@@ -910,14 +910,14 @@ export default function DownloadsClient() {
                       <span style={{ fontSize: '15px', fontWeight: 700, color: '#0A1628' }}>
                         {faq.q}
                       </span>
-                      <ChevronDown 
-                        size={18} 
-                        style={{ 
-                          color: '#64748B', 
+                      <ChevronDown
+                        size={18}
+                        style={{
+                          color: '#64748B',
                           transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                           transition: 'transform 0.2s ease',
                           flexShrink: 0
-                        }} 
+                        }}
                       />
                     </button>
                     {isOpen && (
@@ -948,11 +948,11 @@ export default function DownloadsClient() {
         isOpen={consultModalOpen}
         initialService={selectedService}
         onClose={() => setConsultModalOpen(false)}
-        onLeadSubmitted={() => {}}
+        onLeadSubmitted={() => { }}
       />
 
       {/* Floating Groq AI Wealth Advisor */}
-      <AIChatAdvisor onLeadSubmitted={() => {}} />
+      <AIChatAdvisor onLeadSubmitted={() => { }} />
 
       {/* Sticky Mobile Actions Bar */}
       <StickyMobileBar onOpenCallbackModal={() => handleOpenConsultModal('Mobile Callback - Downloads')} />
